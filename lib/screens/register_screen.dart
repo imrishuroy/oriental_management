@@ -1,5 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:oriental_management/screens/login_screen.dart';
 import 'package:oriental_management/services/auth_service.dart';
 
@@ -30,56 +31,66 @@ class _RegisterScreenState extends State<RegisterScreen> {
     FocusScope.of(context).unfocus();
     if (form.validate()) {
       form.save();
-
       try {
         setState(() {
           _isLoading = true;
         });
-        Provider.of<AuthServices>(context, listen: false)
-            .createUserWithEmailAndPassword(email: _email, password: _password);
-      } on FirebaseAuthException catch (error) {
+        await Provider.of<AuthServices>(context, listen: false)
+            .createUserWithEmailAndPassword(
+          email: _email,
+          password: _password,
+        );
+      }
+      //on FirebaseAuthException catch (error) {
+      //   setState(() {
+      //     _isLoading = false;
+      //   });
+      //   // _scaffoldKey.currentState
+      //   //     .showSnackBar(SnackBar(content: Text(error.message)));
+      //   print('ERROR MESSAGE ${error.message}');
+      // }
+
+      on FirebaseAuthException catch (error) {
         setState(() {
           _isLoading = false;
         });
-        if (error.code == 'weak-password') {
-          print('The password provided is too weak.');
-          // Scaffold.of(context).showSnackBar(
-          //   SnackBar(
-          //     content: Text(error.message),
-          //     backgroundColor: Theme.of(context).errorColor,
-          //   ),
-          // );
-          _scaffoldKey.currentState
-              .showSnackBar(SnackBar(content: Text(error.message)));
-        } else if (error.code == 'email-already-in-use') {
+        print(error.code);
+
+        if (error.code == 'email-already-in-use') {
           print('The account already exists for that email.');
-          // Scaffold.of(context).showSnackBar(
-          //   SnackBar(
-          //     content: Text(error.message),
-          //     backgroundColor: Theme.of(context).errorColor,
-          //   ),
-          // );
           _scaffoldKey.currentState.showSnackBar(
             SnackBar(
               content: Text(
-                error.message,
+                'Email already in use',
                 textAlign: TextAlign.center,
               ),
-              backgroundColor: Theme.of(ctx).errorColor,
+              backgroundColor: Colors.redAccent,
             ),
           );
         }
-      } on SocketException catch (_) {
+        if (error.code == 'invalid-emai') {
+          _scaffoldKey.currentState.showSnackBar(
+            SnackBar(
+              content: Text(
+                'Invalid Email',
+                textAlign: TextAlign.center,
+              ),
+              backgroundColor: Colors.redAccent,
+            ),
+          );
+        }
+      } on SocketException catch (error) {
+        print(error);
         setState(() {
           _isLoading = false;
         });
         _scaffoldKey.currentState.showSnackBar(
           SnackBar(
             content: Text(
-              'Please check your internet connectivity',
+              'Something went wrong, try again!',
               textAlign: TextAlign.center,
             ),
-            backgroundColor: Theme.of(ctx).errorColor,
+            backgroundColor: Colors.redAccent,
           ),
         );
       } catch (error) {
@@ -89,12 +100,11 @@ class _RegisterScreenState extends State<RegisterScreen> {
         print('Register Error : $error');
         _scaffoldKey.currentState.showSnackBar(
           SnackBar(
-            content: Text(
-              'An unexpected error occured',
-              textAlign: TextAlign.center,
-            ),
-            backgroundColor: Theme.of(ctx).errorColor,
-          ),
+              content: Text(
+                'An unexpected error occured',
+                textAlign: TextAlign.center,
+              ),
+              backgroundColor: Colors.redAccent),
         );
       }
     }
@@ -133,8 +143,9 @@ class _RegisterScreenState extends State<RegisterScreen> {
                         onSaved: (value) => _email = value,
                         keyboardType: TextInputType.emailAddress,
                         controller: _emailController,
-                        validator: (value) =>
-                            !(value.contains('@')) ? 'Invalid Input' : null,
+                        validator: (value) => !(value.contains('@gmail.com'))
+                            ? 'Invalid Email'
+                            : null,
                         decoration: InputDecoration(
                           //icon: Icon(Icons.mail),
                           prefixIcon: Icon(Icons.mail),

@@ -55,7 +55,8 @@ class _LoginScreenState extends State<LoginScreen> {
               backgroundColor: Colors.redAccent,
             ),
           );
-        } else if (error.code == 'wrong-password') {
+        }
+        if (error.code == 'wrong-password') {
           _scaffoldKey.currentState.showSnackBar(
             SnackBar(
               content: Text(
@@ -108,8 +109,9 @@ class _LoginScreenState extends State<LoginScreen> {
                         onSaved: (value) => _email = value,
                         keyboardType: TextInputType.emailAddress,
                         controller: _emailController,
-                        validator: (value) =>
-                            !(value.contains('@')) ? 'Invalid Input' : null,
+                        validator: (value) => !(value.contains('@gmail.com'))
+                            ? 'Invalid Email'
+                            : null,
                         decoration: InputDecoration(
                           //icon: Icon(Icons.mail),
                           prefixIcon: Icon(Icons.mail),
