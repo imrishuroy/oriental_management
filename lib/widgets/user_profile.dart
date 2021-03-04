@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:oriental_management/screens/add_profile_screen.dart';
+import 'package:oriental_management/screens/edit_profile_screen.dart';
 import 'package:oriental_management/services/database_service.dart';
 
 class UserProfile extends StatelessWidget {
@@ -22,10 +23,6 @@ class UserProfile extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.center,
                 crossAxisAlignment: CrossAxisAlignment.stretch,
                 children: [
-                  // Container(
-                  //   height: 100,
-                  //   child: Image.asset('assets/avatar.png'),
-                  // ),
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 70.0),
                     child: RaisedButton(
@@ -146,6 +143,20 @@ class UserProfile extends StatelessWidget {
                           ),
                         ),
                       ),
+                      SizedBox(height: 50.0),
+                      Center(
+                        child: ElevatedButton(
+                          onPressed: () => Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => EditProfileScreen(
+                                database: database,
+                              ),
+                            ),
+                          ),
+                          child: Text('Edit Profile'),
+                        ),
+                      )
                     ],
                   );
                 },

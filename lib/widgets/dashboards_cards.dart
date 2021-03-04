@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:oriental_management/screens/lectures_screen.dart';
 
 import 'onecard.dart';
 
@@ -38,6 +39,8 @@ class DashBoardCards extends StatelessWidget {
                   title: 'Inventory',
                   icon: FontAwesomeIcons.watchmanMonitoring,
                   count: 1,
+                  onTap: () =>
+                      Navigator.pushNamed(context, LeactureScreeen.routeName),
                 ),
               ],
             ),

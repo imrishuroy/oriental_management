@@ -4,8 +4,7 @@ import 'package:oriental_management/services/database_service.dart';
 
 class DisplayImage extends StatelessWidget {
   final DataBase database;
-  final String avatar =
-      'https://raw.githubusercontent.com/imrishuroy/Images/main/woman.png';
+
   final usersRef = FirebaseFirestore.instance.collection('users');
 
   DisplayImage({Key key, this.database}) : super(key: key);

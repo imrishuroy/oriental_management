@@ -4,31 +4,41 @@ class OneCard extends StatelessWidget {
   final String title;
   final IconData icon;
   final int count;
+  final Function onTap;
 
-  const OneCard({Key key, this.title, this.icon, this.count}) : super(key: key);
+  const OneCard({
+    Key key,
+    this.title,
+    this.icon,
+    this.count,
+    this.onTap,
+  }) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return Stack(
       children: [
-        Card(
-          color: Color.fromRGBO(255, 255, 250, 1),
-          child: Column(
-            //mainAxisAlignment: MainAxisAlignment.center,
-            mainAxisSize: MainAxisSize.min,
-            crossAxisAlignment: CrossAxisAlignment.stretch,
-            children: [
-              SizedBox(height: 30.0),
-              Icon(icon, size: 40),
-              SizedBox(height: 12.0),
-              Text(
-                title,
-                textAlign: TextAlign.center,
-                style: TextStyle(
-                  fontSize: 18.0,
+        GestureDetector(
+          onTap: onTap,
+          child: Card(
+            color: Color.fromRGBO(255, 255, 250, 1),
+            child: Column(
+              //mainAxisAlignment: MainAxisAlignment.center,
+              mainAxisSize: MainAxisSize.min,
+              crossAxisAlignment: CrossAxisAlignment.stretch,
+              children: [
+                SizedBox(height: 30.0),
+                Icon(icon, size: 40),
+                SizedBox(height: 12.0),
+                Text(
+                  title,
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                    fontSize: 18.0,
+                  ),
                 ),
-              ),
-              SizedBox(height: 30.0),
-            ],
+                SizedBox(height: 30.0),
+              ],
+            ),
           ),
         ),
         Positioned(

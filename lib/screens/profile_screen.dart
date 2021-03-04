@@ -41,26 +41,15 @@ class _ProfileScreenState extends State<ProfileScreen> {
             mainAxisAlignment: MainAxisAlignment.center,
             // mainAxisSize: MainAxisSize.max,
             children: [
-              // UserImage(
-              //   dataBase: database,
-              // ),
               DisplayImage(database: database),
-              // CircleAvatar(
-              //   radius: 60.0,
-              //   backgroundColor: Colors.white,
-              // ),
               SizedBox(height: 25.0),
             ],
           ),
         ),
       ),
-
-      // body: isOpen
-      //     ?
       body: UserProfile(
         database: database,
       ),
-      // : Container(),
     );
   }
 }
