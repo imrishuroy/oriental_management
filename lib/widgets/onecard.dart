@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 
 class OneCard extends StatelessWidget {
-  final String title;
-  final IconData icon;
-  final int count;
-  final Function onTap;
+  final String? title;
+  final IconData? icon;
+  final int? count;
+  final Function? onTap;
 
   const OneCard({
-    Key key,
+    Key? key,
     this.title,
     this.icon,
     this.count,
@@ -18,7 +18,7 @@ class OneCard extends StatelessWidget {
     return Stack(
       children: [
         GestureDetector(
-          onTap: onTap,
+          onTap: onTap as void Function()?,
           child: Card(
             color: Color.fromRGBO(255, 255, 250, 1),
             child: Column(
@@ -30,7 +30,7 @@ class OneCard extends StatelessWidget {
                 Icon(icon, size: 40),
                 SizedBox(height: 12.0),
                 Text(
-                  title,
+                  title!,
                   textAlign: TextAlign.center,
                   style: TextStyle(
                     fontSize: 18.0,

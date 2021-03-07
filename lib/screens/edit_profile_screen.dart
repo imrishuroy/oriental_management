@@ -8,9 +8,9 @@ import 'dart:io';
 import 'package:image_picker/image_picker.dart';
 
 class EditProfileScreen extends StatefulWidget {
-  final DataBase database;
+  final DataBase? database;
 
-  const EditProfileScreen({Key key, this.database}) : super(key: key);
+  const EditProfileScreen({Key? key, this.database}) : super(key: key);
 
   @override
   _EditProfileScreenState createState() => _EditProfileScreenState();
@@ -23,7 +23,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
   TextEditingController _motherNameController = TextEditingController();
   TextEditingController _mobileNoController = TextEditingController();
   bool _isLoading = false;
-  AppUser user;
+  AppUser? user;
   bool _nameValid = true;
   bool _fatherNameValid = true;
   bool _motherNameValid = true;
@@ -33,9 +33,9 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
 
   final _scaffoldKey = GlobalKey<ScaffoldState>();
 
-  String imageUrl;
+  String? imageUrl;
 
-  File _image;
+  File? _image;
   final picker = ImagePicker();
 
   Future getImage() async {
@@ -61,13 +61,13 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
       _isLoading = true;
     });
     // getting current user document
-    DocumentSnapshot doc = await usersRef.doc(widget.database.id).get();
+    DocumentSnapshot doc = await usersRef.doc(widget.database!.id).get();
     AppUser user = AppUser.fromDocument(doc);
     // print(user.photUrl); // hurray it works
-    _nameController.text = user.name;
-    _fatherNameController.text = user.fatherName;
-    _motherNameController.text = user.motherName;
-    _mobileNoController.text = user.mobileNo;
+    _nameController.text = user.name!;
+    _fatherNameController.text = user.fatherName!;
+    _motherNameController.text = user.motherName!;
+    _mobileNoController.text = user.mobileNo!;
 
     imageUrl = user.photUrl;
 
@@ -104,8 +104,8 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
       final ref = firebaseStorage
           .ref()
           .child('user_image')
-          .child('${widget.database.id}.jpg');
-      await ref.putFile(_image);
+          .child('${widget.database!.id}.jpg');
+      await ref.putFile(_image!);
       imageUrl = await ref.getDownloadURL();
     }
 
@@ -113,7 +113,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
       setState(() {
         _updatingProfile = true;
       });
-      usersRef.doc(widget.database.id).update({
+      usersRef.doc(widget.database!.id).update({
         'name': _nameController.text,
         'father_name': _fatherNameController.text,
         'mother_name': _motherNameController.text,
@@ -129,7 +129,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
             'Succussfully updated your profle',
             textAlign: TextAlign.center,
           ));
-      _scaffoldKey.currentState.showSnackBar(snackbar);
+      _scaffoldKey.currentState!.showSnackBar(snackbar);
       //  ScaffoldMessenger.of(context).showSnackBar(snackbar);
     }
   }
@@ -172,9 +172,9 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                           CircleAvatar(
                             backgroundColor: Colors.grey,
                             radius: 60.0,
-                            backgroundImage: _image == null
-                                ? NetworkImage(imageUrl)
-                                : FileImage(_image),
+                            backgroundImage: (_image == null
+                                ? NetworkImage(imageUrl!)
+                                : FileImage(_image!)) as ImageProvider<Object>?,
                           ),
                           SizedBox(width: 20.0),
                           IconButton(

@@ -36,11 +36,11 @@ class AuthWrapper extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final auth = Provider.of<AuthServices>(context);
-    return StreamBuilder<AppUser>(
+    return StreamBuilder<AppUser?>(
       stream: auth.onAuthChanges,
       builder: (context, snapshot) {
         if (snapshot.connectionState == ConnectionState.active) {
-          AppUser user = snapshot.data;
+          AppUser? user = snapshot.data;
           if (user == null) {
             return RegisterScreen();
             // } else if (!user.isVerified) {

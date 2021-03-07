@@ -20,14 +20,14 @@ class _RegisterScreenState extends State<RegisterScreen> {
   TextEditingController _emailController = TextEditingController();
   TextEditingController _passwordController = TextEditingController();
 
-  String _email;
-  String _password;
+  String? _email;
+  String? _password;
 
   bool _hidePassword = true;
   bool _isLoading = false;
 
   void _registerUser(BuildContext ctx) async {
-    final form = _formKey.currentState;
+    final form = _formKey.currentState!;
     FocusScope.of(context).unfocus();
     if (form.validate()) {
       form.save();
@@ -58,7 +58,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
 
         if (error.code == 'email-already-in-use') {
           print('The account already exists for that email.');
-          _scaffoldKey.currentState.showSnackBar(
+          _scaffoldKey.currentState!.showSnackBar(
             SnackBar(
               content: Text(
                 'Email already in use',
@@ -69,7 +69,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
           );
         }
         if (error.code == 'invalid-emai') {
-          _scaffoldKey.currentState.showSnackBar(
+          _scaffoldKey.currentState!.showSnackBar(
             SnackBar(
               content: Text(
                 'Invalid Email',
@@ -84,7 +84,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
         setState(() {
           _isLoading = false;
         });
-        _scaffoldKey.currentState.showSnackBar(
+        _scaffoldKey.currentState!.showSnackBar(
           SnackBar(
             content: Text(
               'Something went wrong, try again!',
@@ -98,7 +98,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
           _isLoading = false;
         });
         print('Register Error : $error');
-        _scaffoldKey.currentState.showSnackBar(
+        _scaffoldKey.currentState!.showSnackBar(
           SnackBar(
               content: Text(
                 'An unexpected error occured',
@@ -143,7 +143,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                         onSaved: (value) => _email = value,
                         keyboardType: TextInputType.emailAddress,
                         controller: _emailController,
-                        validator: (value) => !(value.contains('@gmail.com'))
+                        validator: (value) => !(value!.contains('@gmail.com'))
                             ? 'Invalid Email'
                             : null,
                         decoration: InputDecoration(
@@ -166,7 +166,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                         obscureText: _hidePassword,
                         controller: _passwordController,
                         validator: (value) =>
-                            value.length < 6 ? 'Password too short' : null,
+                            value!.length < 6 ? 'Password too short' : null,
                         decoration: InputDecoration(
                           // icon: Icon(Icons.lock),
                           prefixIcon: Icon(Icons.lock),
@@ -190,8 +190,12 @@ class _RegisterScreenState extends State<RegisterScreen> {
                     ),
                     if (_isLoading) CircularProgressIndicator(),
                     if (!_isLoading)
-                      RaisedButton(
-                        color: Color.fromRGBO(0, 141, 82, 1),
+                      ElevatedButton(
+                        style: ButtonStyle(
+                          backgroundColor: MaterialStateProperty.all<Color>(
+                            Color.fromRGBO(0, 141, 82, 1),
+                          ),
+                        ),
                         onPressed: () {
                           _registerUser(context);
                         },
@@ -204,7 +208,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                         ),
                       ),
                     if (!_isLoading)
-                      FlatButton(
+                      TextButton(
                         onPressed: () {
                           Navigator.pushNamed(context, LoginScreen.routeName);
                         },

@@ -3,41 +3,36 @@ import 'package:flutter/material.dart';
 import 'package:oriental_management/services/database_service.dart';
 
 class DisplayImage extends StatelessWidget {
-  final DataBase database;
+  final DataBase? database;
 
-  final usersRef = FirebaseFirestore.instance.collection('users');
-
-  DisplayImage({Key key, this.database}) : super(key: key);
+  DisplayImage({Key? key, this.database}) : super(key: key);
   @override
   Widget build(BuildContext context) {
-    return StreamBuilder(
-      stream: database.userData(),
-      builder: (context, snapshot) {
-        if (snapshot.connectionState == ConnectionState.active) {
-          if (snapshot.data.length == 0) {
-            return CircleAvatar(
-              backgroundColor: Colors.white,
-              radius: 60.0,
-              child: SizedBox(
-                height: 50.0,
-                child: Image.asset(
-                  'assets/avatar.png',
-                  fit: BoxFit.cover,
-                ),
-              ),
-            );
-          } else {
-            final imageUrl = snapshot.data[0]['image_url'] ?? null;
-            return CircleAvatar(
-              radius: 60.0,
-              backgroundImage: NetworkImage(imageUrl),
-            );
-          }
-        } else {
-          return Center(
-            child: CircularProgressIndicator(),
+    return StreamBuilder<QuerySnapshot>(
+      stream: database?.profileDataSnapshot,
+      builder: (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
+        if (snapshot.hasError) {
+          return Center(child: Text('Something went wrong'));
+        }
+        if (snapshot.connectionState == ConnectionState.waiting) {
+          return Center(child: CircularProgressIndicator());
+        }
+        if (snapshot.data?.size == 0) {
+          return CircleAvatar(
+            radius: 55.0,
+            backgroundColor: Colors.white,
+            child: Icon(
+              Icons.image,
+              color: Colors.green,
+            ),
           );
         }
+        String? imageUrl = '${snapshot.data?.docs[0]['image_url']}';
+        return CircleAvatar(
+          radius: 55.0,
+          backgroundColor: Colors.white,
+          backgroundImage: NetworkImage(imageUrl),
+        );
       },
     );
   }

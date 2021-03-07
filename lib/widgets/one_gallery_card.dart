@@ -6,7 +6,7 @@ class OneGalleryCard extends StatelessWidget {
   final Color color;
 
   const OneGalleryCard({
-    Key key,
+    Key? key,
     this.label: 'Campus Tour',
     this.icon: Icons.map,
     this.color: Colors.yellow,

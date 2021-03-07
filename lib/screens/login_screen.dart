@@ -14,14 +14,14 @@ class _LoginScreenState extends State<LoginScreen> {
   TextEditingController _passwordController = TextEditingController();
   final _scaffoldKey = GlobalKey<ScaffoldState>();
 
-  String _email;
-  String _password;
+  String? _email;
+  String? _password;
 
   bool _hidePassword = true;
   bool _isLoading = false;
 
   void _login() async {
-    final form = _formKey.currentState;
+    final form = _formKey.currentState!;
     FocusScope.of(context).unfocus();
     if (form.validate()) {
       form.save();
@@ -31,8 +31,8 @@ class _LoginScreenState extends State<LoginScreen> {
         });
         UserCredential userCredential =
             await FirebaseAuth.instance.signInWithEmailAndPassword(
-          email: _email,
-          password: _password,
+          email: _email!,
+          password: _password!,
         );
         // print(userCredential);
         Navigator.pushReplacementNamed(context, '/');
@@ -46,7 +46,7 @@ class _LoginScreenState extends State<LoginScreen> {
         });
         if (error.code == 'user-not-found') {
           print('No user found for that email.');
-          _scaffoldKey.currentState.showSnackBar(
+          _scaffoldKey.currentState!.showSnackBar(
             SnackBar(
               content: Text(
                 'User not found',
@@ -57,7 +57,7 @@ class _LoginScreenState extends State<LoginScreen> {
           );
         }
         if (error.code == 'wrong-password') {
-          _scaffoldKey.currentState.showSnackBar(
+          _scaffoldKey.currentState!.showSnackBar(
             SnackBar(
               content: Text(
                 'Wrong password',
@@ -109,7 +109,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         onSaved: (value) => _email = value,
                         keyboardType: TextInputType.emailAddress,
                         controller: _emailController,
-                        validator: (value) => !(value.contains('@gmail.com'))
+                        validator: (value) => !(value!.contains('@gmail.com'))
                             ? 'Invalid Email'
                             : null,
                         decoration: InputDecoration(
@@ -132,7 +132,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         obscureText: _hidePassword,
                         controller: _passwordController,
                         validator: (value) =>
-                            value.length < 6 ? 'Password too short' : null,
+                            value!.length < 6 ? 'Password too short' : null,
                         decoration: InputDecoration(
                           // icon: Icon(Icons.lock),
                           prefixIcon: Icon(Icons.lock),
@@ -170,7 +170,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         ),
                       ),
                     if (!_isLoading)
-                      FlatButton(
+                      TextButton(
                         onPressed: () {
                           Navigator.of(context).pop();
                         },

@@ -4,6 +4,8 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:oriental_management/widgets/one_gallery_card.dart';
 
 class GalleryScreen extends StatelessWidget {
+  final CollectionReference? /*!*/ gallery =
+      FirebaseFirestore.instance.collection('gallery');
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -11,14 +13,22 @@ class GalleryScreen extends StatelessWidget {
         centerTitle: true,
         title: Text('Gallery'),
       ),
-      body: StreamBuilder(
-        stream: FirebaseFirestore.instance.collection('gallery').snapshots(),
-        builder: (context, snapshot) {
-          if (snapshot.connectionState == ConnectionState.waiting) {
-            return Center(
-              child: CircularProgressIndicator(),
-            );
-          } else {
+      body: StreamBuilder<QuerySnapshot>(
+          stream: gallery?.snapshots(),
+          builder:
+              (BuildContext context, AsyncSnapshot<QuerySnapshot> snapshot) {
+            if (snapshot.hasError) {
+              return Text('Some thing went wrong');
+            }
+
+            if (snapshot.connectionState == ConnectionState.waiting) {
+              return Center(
+                child: CircularProgressIndicator(),
+              );
+            }
+            // important
+            QuerySnapshot? querySnapshot = snapshot.data;
+
             return Column(
               children: [
                 SizedBox(height: 10.0),
@@ -100,12 +110,12 @@ class GalleryScreen extends StatelessWidget {
                 Expanded(
                   child: GridView.builder(
                     padding: EdgeInsets.all(10.0),
-                    itemCount: snapshot.data.docs.length,
+                    itemCount: snapshot.data?.docs.length,
                     gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
                       crossAxisCount: 2,
                     ),
                     itemBuilder: (context, index) {
-                      final imageUrl = snapshot.data.docs[index]['imageUrl'];
+                      final imageUrl = snapshot.data?.docs[index]['imageUrl'];
                       return Padding(
                         padding: const EdgeInsets.all(10.0),
                         child: ClipRRect(
@@ -119,11 +129,31 @@ class GalleryScreen extends StatelessWidget {
                     },
                   ),
                 )
+
+                // Expanded(
+                //   child: ListView(
+                //     children: snapshot.data.docs.map((DocumentSnapshot doc) {
+                //       return Image.network('${doc.data()['image_url']}');
+                //     }).toList(),
+                //   ),
+                // )
+                // Expanded(
+                //   child: ListView.builder(
+                //     itemCount: querySnapshot?.size,
+                //     itemBuilder: (context, index) {
+                //       return Container(
+                //         height: 200,
+                //         width: 100,
+                //         child: Image.network(
+                //           '${querySnapshot?.docs[index]['imageUrl']}',
+                //         ),
+                //       );
+                //     },
+                //   ),
+                // )
               ],
             );
-          }
-        },
-      ),
+          }),
     );
   }
 }

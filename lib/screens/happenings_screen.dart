@@ -36,11 +36,11 @@ class HappeningScreen extends StatelessWidget {
 }
 
 class OneHappeningCard extends StatelessWidget {
-  final String imageUrl;
-  final String tilte;
-  final String subTitle;
+  final String? imageUrl;
+  final String? tilte;
+  final String? subTitle;
 
-  const OneHappeningCard({Key key, this.imageUrl, this.tilte, this.subTitle})
+  const OneHappeningCard({Key? key, this.imageUrl, this.tilte, this.subTitle})
       : super(key: key);
   @override
   Widget build(BuildContext context) {
@@ -54,12 +54,12 @@ class OneHappeningCard extends StatelessWidget {
             height: 100.0,
             width: 100.0,
             child: Image.network(
-              imageUrl,
+              imageUrl!,
               fit: BoxFit.fill,
             ),
           ),
-          title: Text(tilte),
-          subtitle: Text(subTitle),
+          title: Text(tilte!),
+          subtitle: Text(subTitle!),
         ),
       ),
     );

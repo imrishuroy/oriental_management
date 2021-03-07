@@ -9,9 +9,9 @@ import 'package:image_picker/image_picker.dart';
 
 class AddProfileScreen extends StatefulWidget {
   static String routeName = '/add-profile_screen';
-  final DataBase database;
+  final DataBase? database;
 
-  const AddProfileScreen({Key key, this.database}) : super(key: key);
+  const AddProfileScreen({Key? key, this.database}) : super(key: key);
 
   @override
   _ProfileScreenState createState() => _ProfileScreenState();
@@ -26,22 +26,22 @@ class _ProfileScreenState extends State<AddProfileScreen> {
 
   final auth = FirebaseAuth.instance;
 
-  File _image;
+  File? _image;
   final picker = ImagePicker();
-  String _name;
-  String _fatherName;
-  String _motherName;
-  String _mobileNo;
+  String? _name;
+  String? _fatherName;
+  String? _motherName;
+  String? _mobileNo;
 
   bool _isSubmiting = false;
 
   void _submit(BuildContext context) async {
-    final form = _formKey.currentState;
+    final form = _formKey.currentState!;
     // final database = Provider.of<DataBase>(context, listen: false);
     FocusScope.of(context).unfocus();
     if (form.validate()) {
       if (_image == null) {
-        _scaffoldKey.currentState.showSnackBar(
+        _scaffoldKey.currentState!.showSnackBar(
           SnackBar(
             content: Text(
               'Select a image for upload',
@@ -55,7 +55,7 @@ class _ProfileScreenState extends State<AddProfileScreen> {
         setState(() {
           _isSubmiting = true;
         });
-        await widget.database
+        await widget.database!
             .setData(
                 name: _name,
                 fatherName: _fatherName,
@@ -102,7 +102,7 @@ class _ProfileScreenState extends State<AddProfileScreen> {
                 CircleAvatar(
                   radius: 60,
                   backgroundColor: Colors.white,
-                  backgroundImage: _image == null ? null : FileImage(_image),
+                  backgroundImage: _image == null ? null : FileImage(_image!),
                   child: _image == null
                       ? IconButton(
                           icon: Icon(
@@ -153,7 +153,7 @@ class _ProfileScreenState extends State<AddProfileScreen> {
                           keyboardType: TextInputType.name,
                           // controller: _emailController,
                           validator: (value) =>
-                              !(value.length >= 3) ? 'Invalid Input' : null,
+                              !(value!.length >= 3) ? 'Invalid Input' : null,
                           decoration: InputDecoration(
                             //icon: Icon(Icons.mail),
                             labelText: 'Your Name',
@@ -177,7 +177,7 @@ class _ProfileScreenState extends State<AddProfileScreen> {
                           keyboardType: TextInputType.name,
                           // controller: _emailController,
                           validator: (value) =>
-                              !(value.length >= 3) ? 'Invalid Input' : null,
+                              !(value!.length >= 3) ? 'Invalid Input' : null,
                           decoration: InputDecoration(
                             //icon: Icon(Icons.mail),
                             labelText: 'Father\'s Name',
@@ -201,7 +201,7 @@ class _ProfileScreenState extends State<AddProfileScreen> {
                           keyboardType: TextInputType.name,
                           // controller: _emailController,
                           validator: (value) =>
-                              !(value.length >= 3) ? 'Invalid Input' : null,
+                              !(value!.length >= 3) ? 'Invalid Input' : null,
                           decoration: InputDecoration(
                             //icon: Icon(Icons.mail),
                             labelText: 'Mother\'s Name',
@@ -225,7 +225,7 @@ class _ProfileScreenState extends State<AddProfileScreen> {
                           keyboardType: TextInputType.name,
                           // controller: _emailController,
                           validator: (value) =>
-                              !(value.length >= 10) ? 'Invalid Input' : null,
+                              !(value!.length >= 10) ? 'Invalid Input' : null,
                           decoration: InputDecoration(
                             //icon: Icon(Icons.mail),
                             labelText: 'Moblie No.',
@@ -241,8 +241,11 @@ class _ProfileScreenState extends State<AddProfileScreen> {
                       Padding(
                         padding: const EdgeInsets.symmetric(
                             horizontal: 60, vertical: 8.0),
-                        child: RaisedButton(
-                          color: Colors.green,
+                        child: ElevatedButton(
+                          style: ButtonStyle(
+                            backgroundColor:
+                                MaterialStateProperty.all<Color>(Colors.green),
+                          ),
                           onPressed: () {
                             _submit(context);
                           },

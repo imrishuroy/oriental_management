@@ -1,17 +1,16 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:flutter/foundation.dart';
 
 class AppUser {
-  final String uid;
-  final String photUrl;
-  final String name;
+  final String? uid;
+  final String? photUrl;
+  final String? name;
   //final bool isVerified;
-  final String fatherName;
-  final String motherName;
-  final String mobileNo;
+  final String? fatherName;
+  final String? motherName;
+  final String? mobileNo;
 
   AppUser({
-    @required this.uid,
+    required this.uid,
     this.photUrl,
     this.name,
     this.fatherName,

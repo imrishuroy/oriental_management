@@ -38,7 +38,7 @@ class _SuccusScreenState extends State<SuccusScreen> {
                   value: 'Logout',
                 )
               ],
-              onChanged: (itemIdentifier) {
+              onChanged: (dynamic itemIdentifier) {
                 if (itemIdentifier == 'Logout') {
                   FirebaseAuth.instance.signOut();
                 }
@@ -50,7 +50,7 @@ class _SuccusScreenState extends State<SuccusScreen> {
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
             Text('SuccussFull'),
-            RaisedButton(
+            ElevatedButton(
               onPressed: () {
                 FirebaseAuth.instance.signOut();
                 Navigator.of(context).pop();
