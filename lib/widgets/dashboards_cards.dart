@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:oriental_management/screens/attendance_screen.dart';
 import 'package:oriental_management/screens/lectures_screen.dart';
 
 import 'onecard.dart';
@@ -29,14 +30,23 @@ class DashBoardCards extends StatelessWidget {
                   title: 'Attendence',
                   icon: FontAwesomeIcons.calendarCheck,
                   count: 57,
+                  onTap: () =>
+                      Navigator.pushNamed(context, AttendanceScreen.routeName),
                 ),
                 OneCard(
                   title: 'Assignments',
                   icon: FontAwesomeIcons.clipboardList,
                   count: 5,
                 ),
+                // OneCard(
+                //   title: 'Inventory',
+                //   icon: FontAwesomeIcons.watchmanMonitoring,
+                //   count: 1,
+                //   onTap: () =>
+                //       Navigator.pushNamed(context, LeactureScreeen.routeName),
+                // ),
                 OneCard(
-                  title: 'Inventory',
+                  title: 'Lectures',
                   icon: FontAwesomeIcons.watchmanMonitoring,
                   count: 1,
                   onTap: () =>

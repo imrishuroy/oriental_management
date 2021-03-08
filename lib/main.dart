@@ -1,6 +1,7 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:oriental_management/screens/add_profile_screen.dart';
+import 'package:oriental_management/screens/attendance_screen.dart';
 import 'package:oriental_management/screens/homepage_screen.dart';
 import 'package:oriental_management/screens/lectures_screen.dart';
 import 'package:oriental_management/screens/login_screen.dart';
@@ -36,6 +37,7 @@ class MyApp extends StatelessWidget {
           SuccusScreen.routeName: (ctx) => SuccusScreen(),
           AddProfileScreen.routeName: (ctx) => AddProfileScreen(),
           LeactureScreeen.routeName: (ctx) => LeactureScreeen(),
+          AttendanceScreen.routeName: (ctx) => AttendanceScreen(),
         },
       ),
     );
