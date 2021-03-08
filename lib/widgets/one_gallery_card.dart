@@ -49,17 +49,3 @@ class OneGalleryCard extends StatelessWidget {
     );
   }
 }
-
-// Expanded(
-//   flex: 1,
-//   child: GridView.count(
-//     crossAxisCount: 2,
-//     childAspectRatio: 16 / 9,
-//     children: [
-//       OneGalleryCard(),
-//       OneGalleryCard(),
-//       OneGalleryCard(),
-//       OneGalleryCard(),
-//     ],
-//   ),
-// )
