@@ -19,7 +19,7 @@ class BuildOneLeactureDay extends StatelessWidget {
       children: [
         Container(
           alignment: Alignment.topLeft,
-          padding: const EdgeInsets.symmetric(horizontal: 23.0),
+          padding: const EdgeInsets.symmetric(horizontal: 14.0),
           child: Row(
             children: [
               Text(
@@ -74,41 +74,44 @@ class OneLeactureCard extends StatelessWidget {
   }) : super(key: key);
   @override
   Widget build(BuildContext context) {
-    return Card(
-      child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10.0),
-        child: Column(
-          children: [
-            Container(
-              padding: EdgeInsets.symmetric(
-                horizontal: 8.0,
-                vertical: 4.0,
-              ),
-              color: Color.fromRGBO(0, 141, 82, 1),
-              child: Text(
-                '$time',
-                style: TextStyle(
-                  color: Colors.white,
+    return Padding(
+      padding: const EdgeInsets.only(left: 10.0),
+      child: Card(
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10.0),
+          child: Column(
+            children: [
+              Container(
+                padding: EdgeInsets.symmetric(
+                  horizontal: 8.0,
+                  vertical: 4.0,
+                ),
+                color: Color.fromRGBO(0, 141, 82, 1),
+                child: Text(
+                  '$time',
+                  style: TextStyle(
+                    color: Colors.white,
+                  ),
                 ),
               ),
-            ),
-            SizedBox(height: 10.0),
-            Text('$subCode', style: TextStyle(fontSize: 16.0)),
-            SizedBox(height: 5.0),
-            Text(
-              subName!,
-              style: TextStyle(fontWeight: FontWeight.bold),
-            ),
-            SizedBox(height: 8.0),
-            Text(
-              '$profName',
-              style: TextStyle(
-                color: Colors.orange,
-                fontWeight: FontWeight.w600,
-                letterSpacing: 1.1,
+              SizedBox(height: 10.0),
+              Text('$subCode', style: TextStyle(fontSize: 16.0)),
+              SizedBox(height: 5.0),
+              Text(
+                subName!,
+                style: TextStyle(fontWeight: FontWeight.bold),
               ),
-            )
-          ],
+              SizedBox(height: 8.0),
+              Text(
+                '$profName',
+                style: TextStyle(
+                  color: Colors.orange,
+                  fontWeight: FontWeight.w600,
+                  letterSpacing: 1.1,
+                ),
+              )
+            ],
+          ),
         ),
       ),
     );

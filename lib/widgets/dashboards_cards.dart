@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:oriental_management/screens/attendance_screen.dart';
-import 'package:oriental_management/screens/lectures_screen.dart';
+import 'package:oriental_management/screens/lecture_selection.dart';
 
 import 'onecard.dart';
 
@@ -47,10 +47,12 @@ class DashBoardCards extends StatelessWidget {
                 // ),
                 OneCard(
                   title: 'Lectures',
-                  icon: FontAwesomeIcons.watchmanMonitoring,
+                  icon: FontAwesomeIcons.book,
                   count: 1,
+                  // onTap: () =>
+                  //     Navigator.pushNamed(context, LeactureScreeen.routeName),
                   onTap: () =>
-                      Navigator.pushNamed(context, LeactureScreeen.routeName),
+                      Navigator.pushNamed(context, LectureSelection.routeName),
                 ),
               ],
             ),
