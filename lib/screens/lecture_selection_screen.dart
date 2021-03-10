@@ -15,7 +15,6 @@ class _LectureSelectionState extends State<LectureSelection> {
   String semValue = '2nd';
   Section? _section = Section.a;
 
-  List itemsList = <String>['One', 'Two', 'Free', 'Four'];
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -33,24 +32,25 @@ class _LectureSelectionState extends State<LectureSelection> {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.center,
                   children: [
-                    SizedBox(height: 10.0),
+                    SizedBox(height: 20.0),
                     Padding(
                       padding: const EdgeInsets.symmetric(horizontal: 20.0),
                       child: Text(
-                        'Please select your Domain',
+                        'Please Select Your Domain',
                         style: TextStyle(fontSize: 20.0),
                       ),
                     ),
+                    SizedBox(height: 20.0),
                     Container(
                       alignment: Alignment.topCenter,
                       child: DropdownButton<String>(
                         value: branchValue,
-                        icon: Icon(Icons.arrow_downward),
                         iconSize: 24,
                         elevation: 16,
-                        style: TextStyle(color: Colors.deepPurple),
+                        style:
+                            TextStyle(fontSize: 20.0, color: Colors.deepPurple),
                         underline: Container(
-                          height: 2,
+                          height: 3,
                           color: Colors.deepPurpleAccent,
                         ),
                         onChanged: (String? newValue) {
@@ -70,16 +70,17 @@ class _LectureSelectionState extends State<LectureSelection> {
                         ).toList(),
                       ),
                     ),
+                    SizedBox(height: 10.0),
                     Container(
                       alignment: Alignment.topCenter,
                       child: DropdownButton<String>(
                         value: semValue,
-                        icon: Icon(Icons.arrow_downward),
                         iconSize: 24,
                         elevation: 16,
-                        style: TextStyle(color: Colors.deepPurple),
+                        style:
+                            TextStyle(fontSize: 18.0, color: Colors.deepPurple),
                         underline: Container(
-                          height: 2,
+                          height: 3,
                           color: Colors.deepPurpleAccent,
                         ),
                         onChanged: (String? newValue) {
@@ -93,12 +94,19 @@ class _LectureSelectionState extends State<LectureSelection> {
                           (String value) {
                             return DropdownMenuItem<String>(
                               value: value,
-                              child: Text(value),
+                              child: SizedBox(
+                                width: 40.0,
+                                child: Text(
+                                  value,
+                                  textAlign: TextAlign.center,
+                                ),
+                              ),
                             );
                           },
                         ).toList(),
                       ),
                     ),
+                    SizedBox(height: 10.0),
                     ListTile(
                       title: Text('Section-A'),
                       leading: Radio(
@@ -122,12 +130,14 @@ class _LectureSelectionState extends State<LectureSelection> {
                           });
                         },
                       ),
-                    )
+                    ),
+                    SizedBox(height: 15.0),
                   ],
                 ),
               ),
             ),
           ),
+          SizedBox(height: 20.0),
           ElevatedButton(
             onPressed: () {
               // print(branchValue);
@@ -148,7 +158,16 @@ class _LectureSelectionState extends State<LectureSelection> {
                 ),
               );
             },
-            child: Text('Submit'),
+            child: Padding(
+              padding:
+                  const EdgeInsets.symmetric(horizontal: 20.0, vertical: 10.0),
+              child: Text(
+                'Check',
+                style: TextStyle(
+                  fontSize: 16.0,
+                ),
+              ),
+            ),
           )
         ],
       ),

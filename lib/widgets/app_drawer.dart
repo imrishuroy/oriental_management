@@ -41,9 +41,10 @@ class _AppDrawerState extends State<AppDrawer> {
                     mainAxisSize: MainAxisSize.min,
                     children: [
                       CircleAvatar(
-                          radius: 60.0,
-                          backgroundColor: Colors.white,
-                          child: Icon(Icons.image)),
+                        radius: 60.0,
+                        backgroundColor: Colors.white,
+                        child: Icon(Icons.image),
+                      ),
                     ],
                   ),
                 )

@@ -6,11 +6,16 @@ import 'package:firebase_storage/firebase_storage.dart';
 abstract class DataBase {
   Future<void> setData({
     String? name,
+    String? enrollNo,
+    String? section,
+    String? sem,
     String? fatherName,
     String? motherName,
     String? mobileNo,
     File? image,
-    String? documentId,
+    int? attendance,
+
+    //  String? documentId,
   });
 
   String? get id;
@@ -26,15 +31,19 @@ class FireStoreDataBase implements DataBase {
   String? get id => uid;
 
   @override
-  Future<void> setData({
-    String? name,
-    String? fatherName,
-    String? motherName,
-    String? mobileNo,
-    File? image,
-    String? documentId,
-    // adding new documents
-  }) async {
+  Future<void> setData(
+      {String? name,
+      String? enrollNo,
+      String? sem,
+      String? fatherName,
+      String? motherName,
+      String? mobileNo,
+      File? image,
+      String? section,
+      int? attendance
+      //String? documentId,
+      // adding new documents
+      }) async {
     final firebaseStorage = FirebaseStorage.instance;
     final reference =
         //   FirebaseFirestore.instance.doc('users/$uid/userData/$documentId/');
@@ -51,11 +60,15 @@ class FireStoreDataBase implements DataBase {
     await reference.set(
       {
         'name': name,
+        'enrollNo': enrollNo,
+        'sem': sem,
+        'section': section,
         'image_url': imageUrl,
         'father_name': fatherName,
         'mother_name': motherName,
         'mobile_no': mobileNo,
         'id': uid,
+        'attendance': 0
       },
     );
   }

@@ -7,6 +7,8 @@ import 'package:oriental_management/services/database_service.dart';
 
 import 'package:image_picker/image_picker.dart';
 
+enum Section { a, b }
+
 class AddProfileScreen extends StatefulWidget {
   static String routeName = '/add-profile_screen';
   final DataBase? database;
@@ -26,14 +28,19 @@ class _ProfileScreenState extends State<AddProfileScreen> {
 
   final auth = FirebaseAuth.instance;
 
+  Section? _section = Section.a;
+
   File? _image;
   final picker = ImagePicker();
   String? _name;
   String? _fatherName;
   String? _motherName;
   String? _mobileNo;
+  String? _enrollNo;
 
   bool _isSubmiting = false;
+  String branchValue = 'CS';
+  String semValue = '2nd';
 
   void _submit(BuildContext context) async {
     final form = _formKey.currentState!;
@@ -57,12 +64,15 @@ class _ProfileScreenState extends State<AddProfileScreen> {
         });
         await widget.database!
             .setData(
-                name: _name,
-                fatherName: _fatherName,
-                motherName: _motherName,
-                mobileNo: _mobileNo,
-                image: _image,
-                documentId: documentId())
+              name: _name,
+              enrollNo: _enrollNo,
+              sem: semValue,
+              fatherName: _fatherName,
+              motherName: _motherName,
+              mobileNo: _mobileNo,
+              image: _image,
+              section: _section == Section.a ? 'A' : 'B',
+            )
             .then((value) => Navigator.of(context).pop());
       }
     }
@@ -71,7 +81,10 @@ class _ProfileScreenState extends State<AddProfileScreen> {
   Future<void> _pickImage() async {
     final pickedFile = await picker.getImage(
       source: ImageSource.gallery,
+      // for reducing the quality of image
       imageQuality: 20,
+      maxHeight: 675,
+      maxWidth: 960,
     );
     setState(
       () {
@@ -89,287 +102,326 @@ class _ProfileScreenState extends State<AddProfileScreen> {
     // final authProvider = Provider.of<AuthServices>(context, listen: false);
     // final database = Provider.of<DataBase>(context, listen: false);
     return Scaffold(
-        key: _scaffoldKey,
-        appBar: AppBar(
-          centerTitle: true,
-          title: Text('Add Your Profile'),
-          backgroundColor: Color.fromRGBO(0, 141, 82, 1),
-          bottom: PreferredSize(
-            preferredSize: Size.fromHeight(200.0),
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                CircleAvatar(
-                  radius: 60,
-                  backgroundColor: Colors.white,
-                  backgroundImage: _image == null ? null : FileImage(_image!),
-                  child: _image == null
-                      ? IconButton(
-                          icon: Icon(
-                            Icons.camera_alt,
-                            size: 30.0,
-                          ),
-                          onPressed: () => _pickImage(),
-                        )
-                      : null,
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.end,
+      key: _scaffoldKey,
+      appBar: AppBar(
+        centerTitle: true,
+        title: Text('Add Your Profile'),
+        backgroundColor: Color.fromRGBO(0, 141, 82, 1),
+        bottom: PreferredSize(
+          preferredSize: Size.fromHeight(170.0),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              CircleAvatar(
+                radius: 60,
+                backgroundColor: Colors.white,
+                backgroundImage: _image == null ? null : FileImage(_image!),
+                child: _image == null
+                    ? IconButton(
+                        icon: Icon(
+                          Icons.camera_alt,
+                          size: 30.0,
+                        ),
+                        onPressed: () => _pickImage(),
+                      )
+                    : null,
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.end,
+                children: [
+                  IconButton(
+                    icon: Icon(
+                      Icons.edit,
+                      size: 27.0,
+                      color: Color.fromRGBO(255, 203, 0, 1),
+                    ),
+                    onPressed: _image != null ? () => _pickImage() : null,
+                  ),
+                  SizedBox(width: 5.0)
+                ],
+              ),
+            ],
+          ),
+        ),
+      ),
+      body: _isSubmiting
+          ? Center(
+              child: CircularProgressIndicator(),
+            )
+          : SingleChildScrollView(
+              child: Form(
+                key: _formKey,
+                child: Column(
+                  // crossAxisAlignment: CrossAxisAlignment.stretch,
+                  // mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    IconButton(
-                      icon: Icon(
-                        Icons.edit,
-                        size: 27.0,
-                        color: Colors.white,
+                    SizedBox(height: 15.0),
+                    Padding(
+                      padding: const EdgeInsets.symmetric(
+                        horizontal: 20.0,
                       ),
-                      onPressed: _image != null ? () => _pickImage() : null,
+                      child: Card(
+                        child: Padding(
+                          padding: const EdgeInsets.symmetric(
+                              horizontal: 20.0, vertical: 10.0),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Container(
+                                //  alignment: Alignment.topCenter,
+                                child: DropdownButton<String>(
+                                  value: branchValue,
+                                  iconSize: 24,
+                                  elevation: 16,
+                                  style: TextStyle(
+                                    fontSize: 20.0,
+                                    color: Color.fromRGBO(0, 141, 82, 1),
+                                  ),
+                                  underline: Container(
+                                    height: 3,
+                                    color: Color.fromRGBO(255, 203, 0, 1),
+                                  ),
+                                  onChanged: (String? newValue) {
+                                    setState(() {
+                                      branchValue = newValue!;
+                                      //   print(branchValue);
+                                    });
+                                  },
+                                  items: <String>['CS', 'IT', 'ECE', 'CIVIL']
+                                      .map<DropdownMenuItem<String>>(
+                                    (String value) {
+                                      return DropdownMenuItem<String>(
+                                        value: value,
+                                        child: Text(value),
+                                      );
+                                    },
+                                  ).toList(),
+                                ),
+                              ),
+                              SizedBox(width: 20),
+                              Container(
+                                //   alignment: Alignment.topCenter,
+                                child: DropdownButton<String>(
+                                  value: semValue,
+                                  iconSize: 24,
+                                  elevation: 16,
+                                  style: TextStyle(
+                                    fontSize: 19.0,
+                                    color: Color.fromRGBO(0, 141, 82, 1),
+                                  ),
+                                  underline: Container(
+                                    height: 3,
+                                    color: Color.fromRGBO(255, 203, 0, 1),
+                                  ),
+                                  onChanged: (String? newValue) {
+                                    setState(() {
+                                      semValue = newValue!;
+                                      //  print(semValue);
+                                    });
+                                  },
+                                  items: <String>['2nd', '4th', '6th', '8th']
+                                      .map<DropdownMenuItem<String>>(
+                                    (String value) {
+                                      return DropdownMenuItem<String>(
+                                        value: value,
+                                        child: SizedBox(
+                                          width: 40.0,
+                                          child: Text(
+                                            value,
+                                            textAlign: TextAlign.center,
+                                          ),
+                                        ),
+                                      );
+                                    },
+                                  ).toList(),
+                                ),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.symmetric(horizontal: 40.0),
+                      child: Row(
+                        children: [
+                          Expanded(
+                            child: ListTile(
+                              title: Text('A'),
+                              leading: Radio(
+                                value: Section.a,
+                                groupValue: _section,
+                                onChanged: (Section? value) {
+                                  setState(() {
+                                    _section = value;
+                                  });
+                                },
+                              ),
+                            ),
+                          ),
+                          Expanded(
+                            child: ListTile(
+                              title: Text('B'),
+                              leading: Radio(
+                                value: Section.b,
+                                groupValue: _section,
+                                onChanged: (Section? value) {
+                                  setState(() {
+                                    _section = value;
+                                  });
+                                },
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.symmetric(
+                        horizontal: 25.0,
+                        vertical: 15.0,
+                      ),
+                      child: TextFormField(
+                        key: ValueKey('name'),
+                        onSaved: (value) => _name = value?.trim(),
+                        keyboardType: TextInputType.name,
+                        // controller: _emailController,
+                        validator: (value) =>
+                            !(value!.length >= 3) ? 'Invalid Input' : null,
+                        decoration: InputDecoration(
+                          //icon: Icon(Icons.mail),
+                          labelText: 'Your Name',
+                          hintText: 'Enter your full name',
+                          border: OutlineInputBorder(
+                            borderSide: BorderSide(
+                              color: Colors.green,
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.symmetric(
+                        horizontal: 25.0,
+                        vertical: 15.0,
+                      ),
+                      child: TextFormField(
+                        key: ValueKey('enrollNo'),
+                        onSaved: (value) =>
+                            _enrollNo = value?.trim().toUpperCase(),
+                        keyboardType: TextInputType.text,
+                        // controller: _emailController,
+                        validator: (value) =>
+                            !(value!.length >= 3) ? 'Invalid Input' : null,
+                        decoration: InputDecoration(
+                          //icon: Icon(Icons.mail),
+                          labelText: 'Enrollment Number',
+                          hintText: 'For eg- 0105CS191091',
+                          border: OutlineInputBorder(
+                            borderSide: BorderSide(
+                              color: Colors.green,
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.symmetric(
+                        horizontal: 25.0,
+                        vertical: 15.0,
+                      ),
+                      child: TextFormField(
+                        key: ValueKey('fathers-name'),
+                        onSaved: (value) => _fatherName = value?.trim(),
+                        keyboardType: TextInputType.name,
+                        // controller: _emailController,
+                        validator: (value) =>
+                            !(value!.length >= 3) ? 'Invalid Input' : null,
+                        decoration: InputDecoration(
+                          //icon: Icon(Icons.mail),
+                          labelText: 'Father\'s Name',
+                          hintText: 'Enter your father name.',
+                          border: OutlineInputBorder(
+                            borderSide: BorderSide(
+                              color: Colors.green,
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.symmetric(
+                        horizontal: 25.0,
+                        vertical: 15.0,
+                      ),
+                      child: TextFormField(
+                        key: ValueKey('mothers-name'),
+                        onSaved: (value) => _motherName = value?.trim(),
+                        keyboardType: TextInputType.name,
+                        // controller: _emailController,
+                        validator: (value) =>
+                            !(value!.length >= 3) ? 'Invalid Input' : null,
+                        decoration: InputDecoration(
+                          //icon: Icon(Icons.mail),
+                          labelText: 'Mother\'s Name',
+                          hintText: 'Enter your mother name.',
+                          border: OutlineInputBorder(
+                            borderSide: BorderSide(
+                              color: Colors.green,
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.symmetric(
+                        horizontal: 25.0,
+                        vertical: 15.0,
+                      ),
+                      child: TextFormField(
+                        key: ValueKey('phone-no'),
+                        onSaved: (value) => _mobileNo = value?.trim(),
+                        keyboardType: TextInputType.name,
+                        // controller: _emailController,
+                        validator: (value) =>
+                            !(value!.length >= 10) ? 'Invalid Input' : null,
+                        decoration: InputDecoration(
+                          //icon: Icon(Icons.mail),
+                          labelText: 'Moblie No.',
+                          hintText: 'Enter your mobile number.',
+                          border: OutlineInputBorder(
+                            borderSide: BorderSide(
+                              color: Colors.green,
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.symmetric(
+                          horizontal: 60, vertical: 8.0),
+                      child: ElevatedButton(
+                        style: ButtonStyle(
+                          backgroundColor:
+                              MaterialStateProperty.all<Color>(Colors.green),
+                        ),
+                        onPressed: () {
+                          _submit(context);
+                        },
+                        child: Text(
+                          'Submit',
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 18.0,
+                            fontWeight: FontWeight.w400,
+                          ),
+                        ),
+                      ),
                     ),
                   ],
                 ),
-              ],
+              ),
             ),
-          ),
-        ),
-        body: _isSubmiting
-            ? Center(
-                child: CircularProgressIndicator(),
-              )
-            : SingleChildScrollView(
-                child: Form(
-                  key: _formKey,
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.stretch,
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      SizedBox(height: 30.0),
-                      Padding(
-                        padding: const EdgeInsets.symmetric(
-                          horizontal: 25.0,
-                          vertical: 15.0,
-                        ),
-                        child: TextFormField(
-                          key: ValueKey('name'),
-                          onSaved: (value) => _name = value,
-                          keyboardType: TextInputType.name,
-                          // controller: _emailController,
-                          validator: (value) =>
-                              !(value!.length >= 3) ? 'Invalid Input' : null,
-                          decoration: InputDecoration(
-                            //icon: Icon(Icons.mail),
-                            labelText: 'Your Name',
-                            hintText: 'Enter your full name',
-                            border: OutlineInputBorder(
-                              borderSide: BorderSide(
-                                color: Colors.green,
-                              ),
-                            ),
-                          ),
-                        ),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.symmetric(
-                          horizontal: 25.0,
-                          vertical: 15.0,
-                        ),
-                        child: TextFormField(
-                          key: ValueKey('fathers-name'),
-                          onSaved: (value) => _fatherName = value,
-                          keyboardType: TextInputType.name,
-                          // controller: _emailController,
-                          validator: (value) =>
-                              !(value!.length >= 3) ? 'Invalid Input' : null,
-                          decoration: InputDecoration(
-                            //icon: Icon(Icons.mail),
-                            labelText: 'Father\'s Name',
-                            hintText: 'Enter your father name.',
-                            border: OutlineInputBorder(
-                              borderSide: BorderSide(
-                                color: Colors.green,
-                              ),
-                            ),
-                          ),
-                        ),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.symmetric(
-                          horizontal: 25.0,
-                          vertical: 15.0,
-                        ),
-                        child: TextFormField(
-                          key: ValueKey('mothers-name'),
-                          onSaved: (value) => _motherName = value,
-                          keyboardType: TextInputType.name,
-                          // controller: _emailController,
-                          validator: (value) =>
-                              !(value!.length >= 3) ? 'Invalid Input' : null,
-                          decoration: InputDecoration(
-                            //icon: Icon(Icons.mail),
-                            labelText: 'Mother\'s Name',
-                            hintText: 'Enter your mother name.',
-                            border: OutlineInputBorder(
-                              borderSide: BorderSide(
-                                color: Colors.green,
-                              ),
-                            ),
-                          ),
-                        ),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.symmetric(
-                          horizontal: 25.0,
-                          vertical: 15.0,
-                        ),
-                        child: TextFormField(
-                          key: ValueKey('phone-no'),
-                          onSaved: (value) => _mobileNo = value,
-                          keyboardType: TextInputType.name,
-                          // controller: _emailController,
-                          validator: (value) =>
-                              !(value!.length >= 10) ? 'Invalid Input' : null,
-                          decoration: InputDecoration(
-                            //icon: Icon(Icons.mail),
-                            labelText: 'Moblie No.',
-                            hintText: 'Enter your mobile number.',
-                            border: OutlineInputBorder(
-                              borderSide: BorderSide(
-                                color: Colors.green,
-                              ),
-                            ),
-                          ),
-                        ),
-                      ),
-                      Padding(
-                        padding: const EdgeInsets.symmetric(
-                            horizontal: 60, vertical: 8.0),
-                        child: ElevatedButton(
-                          style: ButtonStyle(
-                            backgroundColor:
-                                MaterialStateProperty.all<Color>(Colors.green),
-                          ),
-                          onPressed: () {
-                            _submit(context);
-                          },
-                          child: Text(
-                            'Submit',
-                            style: TextStyle(
-                              color: Colors.white,
-                              fontSize: 18.0,
-                              fontWeight: FontWeight.w400,
-                            ),
-                          ),
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-              )
-        // : UserProfile(
-        //     dataBase: database,
-        //   ),
-        // : Container(),
-        );
+    );
   }
 }
-
-// SizedBox(height: 20.0),
-// isOpen
-//     ? CircleAvatar(
-//         backgroundColor: Colors.white,
-//         // backgroundImage:
-//         //     _image != null ? FileImage(_image) : null,
-//         child: GestureDetector(
-//           onTap: _pickImage,
-//           child: _image == null
-//               ? Icon(
-//                   Icons.camera_alt,
-//                   size: 40.0,
-//                   color: Colors.green,
-//                 )
-//               : null,
-//         ),
-//         radius: 60.0,
-//       )
-//     : UserImage(),
-// Container(
-//   child: Padding(
-//     padding: const EdgeInsets.symmetric(
-//       horizontal: 10,
-//       vertical: 5,
-//     ),
-//     child: Row(
-//       mainAxisAlignment: MainAxisAlignment.end,
-//       children: [
-//         IconButton(
-//           icon: Icon(
-//             Icons.edit,
-//             size: 27.0,
-//             color: Colors.white,
-//           ),
-//           // onPressed: _showBottomSheat,
-//           onPressed: () {
-//             setState(() {
-//               isOpen = !isOpen;
-//             });
-//           },
-//         ),
-//       ],
-//     ),
-//   ),
-// ),
-// SizedBox(height: 40.0)
-
-// bottom: PreferredSize(
-//   preferredSize: Size.fromHeight(180),
-//   child: FutureBuilder<DocumentSnapshot>(
-//     future: users.doc(auth.currentUser.uid).get(),
-//     builder: (context, snapshot) {
-//       if (snapshot.hasError) {
-//         return Center(
-//           child: Text('Something went wrong'),
-//         );
-//       }
-//       if (snapshot.connectionState == ConnectionState.done) {
-//         Map data = snapshot.data.data();
-//         print('User data $data');
-//         final userImage = data['image_url'];
-//         return Column(
-//           mainAxisAlignment: MainAxisAlignment.center,
-//           children: [
-//             Center(
-//               child: CircleAvatar(
-//                 radius: 45.0,
-//                 backgroundImage:
-//                     userImage != null ? NetworkImage(userImage) : null,
-//               ),
-//             ),
-//             SizedBox(height: 10.0),
-//             Text(
-//               'Nikhil Tripathi',
-//               style: TextStyle(
-//                 color: Colors.white,
-//                 letterSpacing: 1.2,
-//               ),
-//             ),
-//             SizedBox(height: 2.0),
-//             Text(
-//               '0105CS191076',
-//               style: TextStyle(
-//                 color: Colors.white,
-//                 letterSpacing: 1.2,
-//               ),
-//             ),
-//             Text(
-//               'P239-10976',
-//               style: TextStyle(
-//                 color: Colors.white,
-//                 letterSpacing: 1.2,
-//               ),
-//             ),
-//             SizedBox(height: 30),
-//           ],
-//         );
-//       }
-//       return CircularProgressIndicator();
-//     },
-//   ),
-// ),

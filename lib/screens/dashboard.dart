@@ -1,11 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:oriental_management/services/database_service.dart';
 import 'package:oriental_management/widgets/app_drawer.dart';
 import 'package:oriental_management/widgets/dashboards_cards.dart';
 import 'package:oriental_management/widgets/todays_lectures.dart';
+import 'package:provider/provider.dart';
 
 class DashBoard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    final database = Provider.of<DataBase>(context);
     return Scaffold(
       drawer: AppDrawer(),
       // floatingActionButton: FloatingActionButton(
@@ -40,7 +43,7 @@ class DashBoard extends StatelessWidget {
       ),
       body: Column(
         children: [
-          DashBoardCards(),
+          DashBoardCards(database: database),
           TodaysLectures(),
         ],
       ),

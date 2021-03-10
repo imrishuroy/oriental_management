@@ -2,6 +2,17 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:oriental_management/widgets/leactures_card.dart';
 
+const List defaultList = [
+  {
+    'day': 'Not-available',
+    'date': '(**)',
+    'time': '():--??-??:--()',
+    'subCode': '----',
+    'profName': '---------',
+    'subName': '--'
+  },
+];
+
 class LectureScreen extends StatelessWidget {
   final String? branch;
   final String? sem;
@@ -51,20 +62,41 @@ class LectureScreen extends StatelessWidget {
             return ListView.builder(
               itemCount: data?.length,
               itemBuilder: (context, index) {
-                final List monday = data?['lectures']['monday'];
-                final List tuesday = data?['lectures']['tuesday'];
+                final List? monday = data?['lectures']['monday'];
+                final List? tuesday = data?['lectures']['tuesday'];
+                final List? wednesday = data?['lectures']['wednesday'];
+                final List? thrusday = data?['lectures']['thrusday'];
+                final List? friday = data?['lectures']['friday'];
+                final List? saturday = data?['lectures']['saturday'];
 
                 return Column(
                   children: [
-                    SizedBox(height: 10.0),
+                    SizedBox(height: 20.0),
                     BuildOneLeactureDay(
-                      lectureList: monday,
+                      lectureList: monday?.length != 0 ? monday : defaultList,
                     ),
-                    SizedBox(height: 10.0),
+                    SizedBox(height: 20.0),
                     BuildOneLeactureDay(
-                      lectureList: tuesday,
+                      lectureList: tuesday?.length != 0 ? tuesday : defaultList,
                     ),
-                    // Text('$tuesday'),
+                    SizedBox(height: 20.0),
+                    BuildOneLeactureDay(
+                      lectureList:
+                          friday?.length != 0 ? wednesday : defaultList,
+                    ),
+                    SizedBox(height: 20.0),
+                    BuildOneLeactureDay(
+                      lectureList:
+                          wednesday?.length != 0 ? thrusday : defaultList,
+                    ),
+                    SizedBox(height: 20.0),
+                    BuildOneLeactureDay(
+                      lectureList: friday?.length != 0 ? friday : defaultList,
+                    ),
+                    SizedBox(height: 20.0),
+                    BuildOneLeactureDay(
+                      lectureList: friday?.length != 0 ? saturday : defaultList,
+                    ),
                   ],
                 );
               },

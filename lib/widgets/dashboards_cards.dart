@@ -1,11 +1,15 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:oriental_management/screens/attendance_screen.dart';
-import 'package:oriental_management/screens/lecture_selection.dart';
+import 'package:oriental_management/screens/lecture_selection_screen.dart';
+import 'package:oriental_management/services/database_service.dart';
 
 import 'onecard.dart';
 
 class DashBoardCards extends StatelessWidget {
+  final DataBase? database;
+
+  const DashBoardCards({Key? key, this.database}) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return Expanded(
@@ -27,30 +31,27 @@ class DashBoardCards extends StatelessWidget {
                   count: 11,
                 ),
                 OneCard(
-                  title: 'Attendence',
-                  icon: FontAwesomeIcons.calendarCheck,
-                  count: 57,
-                  onTap: () =>
-                      Navigator.pushNamed(context, AttendanceScreen.routeName),
-                ),
+                    title: 'Attendence',
+                    icon: FontAwesomeIcons.calendarCheck,
+                    count: 57,
+                    onTap: () {
+                      // MaterialPageRoute(
+                      //   builder: (context) => AttendanceScreen(
+                      //     database: database,
+                      //   ),
+                      // );
+                      Navigator.pushNamed(context, AttendanceScreen.routeName,
+                          arguments: database);
+                    }),
                 OneCard(
                   title: 'Assignments',
                   icon: FontAwesomeIcons.clipboardList,
                   count: 5,
                 ),
-                // OneCard(
-                //   title: 'Inventory',
-                //   icon: FontAwesomeIcons.watchmanMonitoring,
-                //   count: 1,
-                //   onTap: () =>
-                //       Navigator.pushNamed(context, LeactureScreeen.routeName),
-                // ),
                 OneCard(
                   title: 'Lectures',
                   icon: FontAwesomeIcons.book,
                   count: 1,
-                  // onTap: () =>
-                  //     Navigator.pushNamed(context, LeactureScreeen.routeName),
                   onTap: () =>
                       Navigator.pushNamed(context, LectureSelection.routeName),
                 ),

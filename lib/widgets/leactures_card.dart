@@ -13,8 +13,10 @@ class BuildOneLeactureDay extends StatelessWidget {
   }) : super(key: key);
   @override
   Widget build(BuildContext context) {
-    final String? day = '${lectureList?[0]['day']}';
-    final String? date = '${lectureList?[0]['date']}';
+    // final String? day = '${lectureList?[0]['day']}' ?? null;
+    // final String? date = '${lectureList?[0]['date']}' ?? null;
+    final String? day = lectureList?[0]['day'] ?? null;
+    final String? date = lectureList?[0]['date'] ?? null;
     return Column(
       children: [
         Container(
@@ -22,18 +24,22 @@ class BuildOneLeactureDay extends StatelessWidget {
           padding: const EdgeInsets.symmetric(horizontal: 14.0),
           child: Row(
             children: [
-              Text(
-                '$day',
-                style: TextStyle(fontSize: 25.0),
-                textAlign: TextAlign.start,
-              ),
+              day != null
+                  ? Text(
+                      '$day',
+                      style: TextStyle(fontSize: 25.0),
+                      textAlign: TextAlign.start,
+                    )
+                  : Text('-'),
               SizedBox(width: 4.0),
-              Text(
-                '$date',
-                style: TextStyle(
-                  fontWeight: FontWeight.w600,
-                ),
-              )
+              date != null
+                  ? Text(
+                      '$date',
+                      style: TextStyle(
+                        fontWeight: FontWeight.w600,
+                      ),
+                    )
+                  : Text('-'),
             ],
           ),
         ),
@@ -45,10 +51,10 @@ class BuildOneLeactureDay extends StatelessWidget {
             itemCount: lectureList?.length,
             itemBuilder: (context, index) {
               return OneLeactureCard(
-                time: '${lectureList?[index]['time']}',
-                profName: lectureList?[index]['profName'],
-                subCode: lectureList?[index]['subCode'],
-                subName: lectureList?[index]['subName'],
+                time: lectureList?[index]['time'] ?? '-',
+                profName: lectureList?[index]['profName'] ?? '-',
+                subCode: lectureList?[index]['subCode'] ?? '-',
+                subName: lectureList?[index]['subName'] ?? '-',
               );
             },
           ),
@@ -76,41 +82,45 @@ class OneLeactureCard extends StatelessWidget {
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.only(left: 10.0),
-      child: Card(
-        child: Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10.0),
-          child: Column(
-            children: [
-              Container(
-                padding: EdgeInsets.symmetric(
-                  horizontal: 8.0,
-                  vertical: 4.0,
-                ),
-                color: Color.fromRGBO(0, 141, 82, 1),
-                child: Text(
-                  '$time',
-                  style: TextStyle(
-                    color: Colors.white,
+      child: SizedBox(
+        height: 300,
+        width: 200,
+        child: Card(
+          child: Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 10.0),
+            child: Column(
+              children: [
+                Container(
+                  padding: EdgeInsets.symmetric(
+                    horizontal: 8.0,
+                    vertical: 4.0,
+                  ),
+                  color: Color.fromRGBO(0, 141, 82, 1),
+                  child: Text(
+                    '$time',
+                    style: TextStyle(
+                      color: Colors.white,
+                    ),
                   ),
                 ),
-              ),
-              SizedBox(height: 10.0),
-              Text('$subCode', style: TextStyle(fontSize: 16.0)),
-              SizedBox(height: 5.0),
-              Text(
-                subName!,
-                style: TextStyle(fontWeight: FontWeight.bold),
-              ),
-              SizedBox(height: 8.0),
-              Text(
-                '$profName',
-                style: TextStyle(
-                  color: Colors.orange,
-                  fontWeight: FontWeight.w600,
-                  letterSpacing: 1.1,
+                SizedBox(height: 10.0),
+                Text('$subCode', style: TextStyle(fontSize: 16.0)),
+                SizedBox(height: 5.0),
+                Text(
+                  subName!,
+                  style: TextStyle(fontWeight: FontWeight.bold),
                 ),
-              )
-            ],
+                SizedBox(height: 8.0),
+                Text(
+                  '$profName',
+                  style: TextStyle(
+                    color: Colors.orange,
+                    fontWeight: FontWeight.w600,
+                    letterSpacing: 1.1,
+                  ),
+                )
+              ],
+            ),
           ),
         ),
       ),

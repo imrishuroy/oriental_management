@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:oriental_management/screens/add_profile_screen.dart';
 import 'package:oriental_management/screens/attendance_screen.dart';
 import 'package:oriental_management/screens/homepage_screen.dart';
-import 'package:oriental_management/screens/lecture_selection.dart';
+import 'package:oriental_management/screens/lecture_selection_screen.dart';
 import 'package:oriental_management/screens/old_lectures_screen.dart';
 import 'package:oriental_management/screens/login_screen.dart';
 import 'package:oriental_management/screens/success_screen.dart';

@@ -8,6 +8,9 @@ class AppUser {
   final String? fatherName;
   final String? motherName;
   final String? mobileNo;
+  final String? enrollNo;
+  final String? branch;
+  final String? sem;
 
   AppUser({
     required this.uid,
@@ -16,6 +19,9 @@ class AppUser {
     this.fatherName,
     this.motherName,
     this.mobileNo,
+    this.enrollNo,
+    this.branch,
+    this.sem,
     // this.isVerified,
   });
 

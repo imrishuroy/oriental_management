@@ -39,7 +39,12 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
   final picker = ImagePicker();
 
   Future getImage() async {
-    final pickedFile = await picker.getImage(source: ImageSource.gallery);
+    final pickedFile = await picker.getImage(
+      source: ImageSource.gallery,
+      imageQuality: 20,
+      maxHeight: 675,
+      maxWidth: 960,
+    );
 
     setState(() {
       if (pickedFile != null) {
