@@ -11,6 +11,7 @@ class AppUser {
   final String? enrollNo;
   final String? branch;
   final String? sem;
+  final int? attendance;
 
   AppUser({
     required this.uid,
@@ -22,6 +23,7 @@ class AppUser {
     this.enrollNo,
     this.branch,
     this.sem,
+    this.attendance = 0,
     // this.isVerified,
   });
 

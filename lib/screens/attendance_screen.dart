@@ -12,7 +12,6 @@ class AttendanceScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final DataBase? database =
         ModalRoute.of(context)?.settings.arguments as DataBase;
-
     return Scaffold(
       appBar: AppBar(
         title: Text('Attendance'),
@@ -37,10 +36,9 @@ class AttendanceScreen extends StatelessWidget {
           }
           return ListView.builder(
             // itemCount: snapshot.data?.size,
-            itemCount: 1,
+            itemCount: snapshot.data?.size,
             itemBuilder: (context, index) {
               String attendance = '${snapshot.data?.docs[index]['attendance']}';
-
               return Center(child: Text('$attendance'));
             },
           );
