@@ -29,24 +29,20 @@ class _LoginScreenState extends State<LoginScreen> {
         setState(() {
           _isLoading = true;
         });
-        UserCredential userCredential =
-            await FirebaseAuth.instance.signInWithEmailAndPassword(
+        // UserCredential userCredential =
+        await FirebaseAuth.instance.signInWithEmailAndPassword(
           email: _email!,
           password: _password!,
         );
         // print(userCredential);
         Navigator.pushReplacementNamed(context, '/');
-        if (userCredential != null) {
-          //Navigator.pushReplacementNamed(context, SuccusScreen.routeName);
-          // Navigator.pushNamed(context, SuccusScreen.routeName);
-        }
       } on FirebaseAuthException catch (error) {
         setState(() {
           _isLoading = false;
         });
         if (error.code == 'user-not-found') {
           print('No user found for that email.');
-          _scaffoldKey.currentState!.showSnackBar(
+          ScaffoldMessenger.of(context).showSnackBar(
             SnackBar(
               content: Text(
                 'User not found',
@@ -57,7 +53,7 @@ class _LoginScreenState extends State<LoginScreen> {
           );
         }
         if (error.code == 'wrong-password') {
-          _scaffoldKey.currentState!.showSnackBar(
+          ScaffoldMessenger.of(context).showSnackBar(
             SnackBar(
               content: Text(
                 'Wrong password',
@@ -78,6 +74,7 @@ class _LoginScreenState extends State<LoginScreen> {
 
   @override
   Widget build(BuildContext context) {
+    print('BUID RUN');
     return Scaffold(
       key: _scaffoldKey,
       appBar: AppBar(
@@ -156,8 +153,8 @@ class _LoginScreenState extends State<LoginScreen> {
                     ),
                     if (_isLoading) CircularProgressIndicator(),
                     if (!_isLoading)
-                      RaisedButton(
-                        color: Color.fromRGBO(0, 141, 82, 1),
+                      ElevatedButton(
+                        //  color: Color.fromRGBO(0, 141, 82, 1),
                         onPressed: () {
                           _login();
                         },

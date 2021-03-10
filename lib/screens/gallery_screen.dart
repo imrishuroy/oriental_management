@@ -27,7 +27,7 @@ class GalleryScreen extends StatelessWidget {
               );
             }
             // important
-            QuerySnapshot? querySnapshot = snapshot.data;
+            // QuerySnapshot? querySnapshot = snapshot.data;
 
             return Column(
               children: [

@@ -124,13 +124,15 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
         _updatingProfile = false;
       });
       SnackBar snackbar = SnackBar(
-          backgroundColor: Colors.green,
-          content: Text(
-            'Succussfully updated your profle',
-            textAlign: TextAlign.center,
-          ));
-      _scaffoldKey.currentState!.showSnackBar(snackbar);
-      //  ScaffoldMessenger.of(context).showSnackBar(snackbar);
+        backgroundColor: Colors.green,
+        content: Text(
+          'Succussfully updated your profle',
+          textAlign: TextAlign.center,
+        ),
+      );
+      // _scaffoldKey.currentState!.showSnackBar(snackbar);
+
+      ScaffoldMessenger.of(context).showSnackBar(snackbar);
     }
   }
 

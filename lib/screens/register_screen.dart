@@ -58,7 +58,8 @@ class _RegisterScreenState extends State<RegisterScreen> {
 
         if (error.code == 'email-already-in-use') {
           print('The account already exists for that email.');
-          _scaffoldKey.currentState!.showSnackBar(
+
+          ScaffoldMessenger.of(context).showSnackBar(
             SnackBar(
               content: Text(
                 'Email already in use',
@@ -68,8 +69,8 @@ class _RegisterScreenState extends State<RegisterScreen> {
             ),
           );
         }
-        if (error.code == 'invalid-emai') {
-          _scaffoldKey.currentState!.showSnackBar(
+        if (error.code == 'invalid-email') {
+          ScaffoldMessenger.of(context).showSnackBar(
             SnackBar(
               content: Text(
                 'Invalid Email',
@@ -84,7 +85,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
         setState(() {
           _isLoading = false;
         });
-        _scaffoldKey.currentState!.showSnackBar(
+        ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
             content: Text(
               'Something went wrong, try again!',
@@ -98,13 +99,14 @@ class _RegisterScreenState extends State<RegisterScreen> {
           _isLoading = false;
         });
         print('Register Error : $error');
-        _scaffoldKey.currentState!.showSnackBar(
+        ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
-              content: Text(
-                'An unexpected error occured',
-                textAlign: TextAlign.center,
-              ),
-              backgroundColor: Colors.redAccent),
+            content: Text(
+              'An unexpected error occured',
+              textAlign: TextAlign.center,
+            ),
+            backgroundColor: Colors.redAccent,
+          ),
         );
       }
     }

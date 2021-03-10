@@ -41,7 +41,7 @@ class _ProfileScreenState extends State<AddProfileScreen> {
     FocusScope.of(context).unfocus();
     if (form.validate()) {
       if (_image == null) {
-        _scaffoldKey.currentState!.showSnackBar(
+        ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
             content: Text(
               'Select a image for upload',
