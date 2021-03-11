@@ -1,6 +1,8 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:oriental_management/services/app_database_service.dart';
 import 'package:oriental_management/widgets/leactures_card.dart';
+import 'package:provider/provider.dart';
 
 const List defaultList = [
   {
@@ -25,20 +27,20 @@ class LectureScreen extends StatelessWidget {
     this.section,
   }) : super(key: key);
 
-  final CollectionReference lectures =
-      FirebaseFirestore.instance.collection('lecturesCollection');
-
   @override
   Widget build(BuildContext context) {
+    final AppDataBase database =
+        Provider.of<AppDataBase>(context, listen: false);
+    // print(database?.id);
     return Scaffold(
       appBar: AppBar(
+        backgroundColor: Color.fromRGBO(0, 141, 82, 1),
         centerTitle: true,
-        title: Text('$branch-$sem Sem ($section)'),
+        title: Text('$branch - $sem Sem ($section)'),
       ),
       body: FutureBuilder<DocumentSnapshot>(
-        //   future: lectures.doc('CS').collection('2nd').doc('B').get(),
-        future:
-            lectures.doc('$branch').collection('$sem').doc('$section').get(),
+        future: database.getLecturesData(
+            branch: branch, sem: sem, section: section),
         builder:
             (BuildContext context, AsyncSnapshot<DocumentSnapshot> snapshot) {
           if (snapshot.hasError) {
@@ -59,47 +61,39 @@ class LectureScreen extends StatelessWidget {
                 ),
               );
             }
-            return ListView.builder(
-              itemCount: data?.length,
-              itemBuilder: (context, index) {
-                final List? monday = data?['lectures']['monday'];
-                final List? tuesday = data?['lectures']['tuesday'];
-                final List? wednesday = data?['lectures']['wednesday'];
-                final List? thrusday = data?['lectures']['thrusday'];
-                final List? friday = data?['lectures']['friday'];
-                final List? saturday = data?['lectures']['saturday'];
-
-                return Column(
-                  children: [
-                    SizedBox(height: 20.0),
-                    BuildOneLeactureDay(
-                      lectureList: monday?.length != 0 ? monday : defaultList,
-                    ),
-                    SizedBox(height: 20.0),
-                    BuildOneLeactureDay(
-                      lectureList: tuesday?.length != 0 ? tuesday : defaultList,
-                    ),
-                    SizedBox(height: 20.0),
-                    BuildOneLeactureDay(
-                      lectureList:
-                          friday?.length != 0 ? wednesday : defaultList,
-                    ),
-                    SizedBox(height: 20.0),
-                    BuildOneLeactureDay(
-                      lectureList:
-                          wednesday?.length != 0 ? thrusday : defaultList,
-                    ),
-                    SizedBox(height: 20.0),
-                    BuildOneLeactureDay(
-                      lectureList: friday?.length != 0 ? friday : defaultList,
-                    ),
-                    SizedBox(height: 20.0),
-                    BuildOneLeactureDay(
-                      lectureList: friday?.length != 0 ? saturday : defaultList,
-                    ),
-                  ],
-                );
-              },
+            final List? monday = data?['Monday'];
+            final List? tuesday = data?['Tuesday'];
+            final List? wednesday = data?['Wednesday'];
+            final List? thursday = data?['Thursday'];
+            final List? friday = data?['Friday'];
+            final List? saturday = data?['Saturday'];
+            //  Text('${data?['Thursday']}'),
+            return ListView(
+              children: [
+                SizedBox(height: 20.0),
+                BuildOneLeactureDay(
+                  lectureList: monday?.length != 0 ? monday : defaultList,
+                ),
+                SizedBox(height: 20.0),
+                BuildOneLeactureDay(
+                  lectureList: tuesday?.length != 0 ? tuesday : defaultList,
+                ),
+                SizedBox(height: 20.0),
+                BuildOneLeactureDay(
+                  lectureList: wednesday?.length != 0 ? wednesday : defaultList,
+                ),
+                BuildOneLeactureDay(
+                  lectureList: thursday,
+                ),
+                SizedBox(height: 20.0),
+                BuildOneLeactureDay(
+                  lectureList: friday?.length != 0 ? wednesday : defaultList,
+                ),
+                SizedBox(height: 20.0),
+                BuildOneLeactureDay(
+                  lectureList: saturday?.length != 0 ? saturday : defaultList,
+                ),
+              ],
             );
           }
         },
@@ -107,64 +101,3 @@ class LectureScreen extends StatelessWidget {
     );
   }
 }
-
-//  final String? day = data?.map((key, value) => value);
-
-// final String? day = data?['monday'][index]['day'] ?? 'Error';
-// //return Center(child: Text('${data?.map((key, value) => prin(value))}'));
-// final String? monday =
-//     '${data?['lectures']['monday'][index]['subName']}';
-// final String? tuesday =
-//     '${data?['lectures']['tuesday'][index]['subName']}';
-// import 'package:cloud_firestore/cloud_firestore.dart';
-// import 'package:flutter/material.dart';
-
-// class NewLectureScreen extends StatelessWidget {
-//   final String? branch;
-//   final String? sem;
-//   final String? section;
-
-//   NewLectureScreen({
-//     Key? key,
-//     this.branch,
-//     this.sem,
-//     this.section,
-//   }) : super(key: key);
-
-//   final CollectionReference lectures =
-//       FirebaseFirestore.instance.collection('lecturesCollection');
-
-//   @override
-//   Widget build(BuildContext context) {
-//     return Scaffold(
-//       appBar: AppBar(
-//         centerTitle: true,
-//         title: Text('$branch-$sem Sem ($section)'),
-//       ),
-//       body: FutureBuilder<DocumentSnapshot>(
-//         future: lectures.doc('CS').get(),
-//         builder:
-//             (BuildContext context, AsyncSnapshot<DocumentSnapshot> snapshot) {
-//           if (snapshot.hasError) {
-//             return Text('Something went wrong');
-//           }
-
-//           if (snapshot.connectionState == ConnectionState.waiting) {
-//             return Center(
-//               child: CircularProgressIndicator(),
-//             );
-//           } else {
-//             Map? data = snapshot.data?.data();
-//             return ListView.builder(
-//               itemCount: data?.length,
-//               itemBuilder: (context, index) {
-//                 final String? day = data?['monday'][index]['day'] ?? 'Error';
-//                 return Center(child: Text('$day'));
-//               },
-//             );
-//           }
-//         },
-//       ),
-//     );
-//   }
-// }

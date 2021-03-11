@@ -7,6 +7,7 @@ import 'package:oriental_management/screens/lecture_selection_screen.dart';
 import 'package:oriental_management/screens/old_lectures_screen.dart';
 import 'package:oriental_management/screens/login_screen.dart';
 import 'package:oriental_management/screens/success_screen.dart';
+import 'package:oriental_management/services/app_database_service.dart';
 import 'package:oriental_management/services/auth_service.dart';
 import 'package:oriental_management/services/auth_wrapper.dart';
 
@@ -21,8 +22,11 @@ void main() async {
 class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
-    return Provider<AuthServices>(
-      create: (context) => Auth(),
+    return MultiProvider(
+      providers: [
+        Provider<AuthServices>(create: (context) => Auth()),
+        Provider<AppDataBase>(create: (context) => FirebaseDataBase()),
+      ],
       child: MaterialApp(
         debugShowCheckedModeBanner: false,
         title: 'Orienatal App',

@@ -3,15 +3,17 @@ import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:oriental_management/screens/attendance_screen.dart';
 import 'package:oriental_management/screens/lecture_selection_screen.dart';
 import 'package:oriental_management/services/database_service.dart';
+import 'package:provider/provider.dart';
 
 import 'onecard.dart';
 
 class DashBoardCards extends StatelessWidget {
-  final DataBase? database;
+  // final DataBase? database;
 
-  const DashBoardCards({Key? key, this.database}) : super(key: key);
+  // const DashBoardCards({Key? key, this.database}) : super(key: key);
   @override
   Widget build(BuildContext context) {
+    final DataBase database = Provider.of<DataBase>(context);
     return Expanded(
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -52,8 +54,10 @@ class DashBoardCards extends StatelessWidget {
                   title: 'Lectures',
                   icon: FontAwesomeIcons.book,
                   count: 1,
-                  onTap: () =>
-                      Navigator.pushNamed(context, LectureSelection.routeName),
+                  onTap: () => Navigator.pushNamed(
+                    context,
+                    LectureSelection.routeName,
+                  ),
                 ),
               ],
             ),

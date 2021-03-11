@@ -148,6 +148,7 @@ class _LectureSelectionState extends State<LectureSelection> {
               //   print('B');
               // }
               // print(_section);
+
               Navigator.of(context).push(
                 MaterialPageRoute(
                   builder: (context) => LectureScreen(
