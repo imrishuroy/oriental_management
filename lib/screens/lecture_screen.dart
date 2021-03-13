@@ -34,6 +34,7 @@ class LectureScreen extends StatelessWidget {
         Provider.of<AppDataBase>(context, listen: false);
     // print(database?.id);
     return Scaffold(
+      backgroundColor: Color.fromRGBO(29, 38, 40, 1),
       appBar: AppBar(
         backgroundColor: Color.fromRGBO(0, 141, 82, 1),
         centerTitle: true,
@@ -98,6 +99,7 @@ class LectureScreen extends StatelessWidget {
                         lectureList:
                             wednesday.length != 0 ? wednesday : defaultList,
                       ),
+                SizedBox(height: 20.0),
                 thursday == null
                     ? BuildOneLeactureDay(
                         lectureList: defaultList,

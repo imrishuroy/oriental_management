@@ -27,7 +27,10 @@ class BuildOneLeactureDay extends StatelessWidget {
               day != null
                   ? Text(
                       '$day',
-                      style: TextStyle(fontSize: 25.0),
+                      style: TextStyle(
+                        fontSize: 25.0,
+                        color: Colors.white,
+                      ),
                       textAlign: TextAlign.start,
                     )
                   : Text('-'),
@@ -36,6 +39,7 @@ class BuildOneLeactureDay extends StatelessWidget {
                   ? Text(
                       '$date',
                       style: TextStyle(
+                        color: Colors.white,
                         fontWeight: FontWeight.w600,
                       ),
                     )
