@@ -1,5 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+
 import 'package:oriental_management/services/app_database_service.dart';
 import 'package:oriental_management/widgets/leactures_card.dart';
 import 'package:provider/provider.dart';
@@ -67,32 +68,61 @@ class LectureScreen extends StatelessWidget {
             final List? thursday = data?['Thursday'];
             final List? friday = data?['Friday'];
             final List? saturday = data?['Saturday'];
+
             //  Text('${data?['Thursday']}'),
             return ListView(
               children: [
                 SizedBox(height: 20.0),
-                BuildOneLeactureDay(
-                  lectureList: monday?.length != 0 ? monday : defaultList,
-                ),
+                monday == null
+                    ? BuildOneLeactureDay(
+                        lectureList: defaultList,
+                      )
+                    : BuildOneLeactureDay(
+                        lectureList: monday.length != 0 ? monday : defaultList,
+                      ),
                 SizedBox(height: 20.0),
-                BuildOneLeactureDay(
-                  lectureList: tuesday?.length != 0 ? tuesday : defaultList,
-                ),
+                tuesday == null
+                    ? BuildOneLeactureDay(
+                        lectureList: defaultList,
+                      )
+                    : BuildOneLeactureDay(
+                        lectureList:
+                            tuesday.length != 0 ? tuesday : defaultList,
+                      ),
                 SizedBox(height: 20.0),
-                BuildOneLeactureDay(
-                  lectureList: wednesday?.length != 0 ? wednesday : defaultList,
-                ),
-                BuildOneLeactureDay(
-                  lectureList: thursday,
-                ),
+                wednesday == null
+                    ? BuildOneLeactureDay(
+                        lectureList: defaultList,
+                      )
+                    : BuildOneLeactureDay(
+                        lectureList:
+                            wednesday.length != 0 ? wednesday : defaultList,
+                      ),
+                thursday == null
+                    ? BuildOneLeactureDay(
+                        lectureList: defaultList,
+                      )
+                    : BuildOneLeactureDay(
+                        lectureList:
+                            thursday.length != 0 ? thursday : defaultList,
+                      ),
                 SizedBox(height: 20.0),
-                BuildOneLeactureDay(
-                  lectureList: friday?.length != 0 ? wednesday : defaultList,
-                ),
+                friday == null
+                    ? BuildOneLeactureDay(
+                        lectureList: defaultList,
+                      )
+                    : BuildOneLeactureDay(
+                        lectureList: friday.length != 0 ? friday : defaultList,
+                      ),
                 SizedBox(height: 20.0),
-                BuildOneLeactureDay(
-                  lectureList: saturday?.length != 0 ? saturday : defaultList,
-                ),
+                saturday == null
+                    ? BuildOneLeactureDay(
+                        lectureList: defaultList,
+                      )
+                    : BuildOneLeactureDay(
+                        lectureList:
+                            saturday.length != 0 ? saturday : defaultList,
+                      ),
               ],
             );
           }

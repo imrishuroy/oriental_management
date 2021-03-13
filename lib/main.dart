@@ -1,9 +1,12 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:oriental_management/screens/add_profile_screen.dart';
+import 'package:oriental_management/screens/announcement_details_screen.dart';
+import 'package:oriental_management/screens/announcements_screen.dart';
 import 'package:oriental_management/screens/attendance_screen.dart';
 import 'package:oriental_management/screens/homepage_screen.dart';
 import 'package:oriental_management/screens/lecture_selection_screen.dart';
+
 import 'package:oriental_management/screens/old_lectures_screen.dart';
 import 'package:oriental_management/screens/login_screen.dart';
 import 'package:oriental_management/screens/success_screen.dart';
@@ -44,6 +47,10 @@ class MyApp extends StatelessWidget {
           LeactureScreeen.routeName: (ctx) => LeactureScreeen(),
           AttendanceScreen.routeName: (ctx) => AttendanceScreen(),
           LectureSelection.routeName: (ctx) => LectureSelection(),
+          AnnouncemetScreen.routeName: (ctx) => AnnouncemetScreen(),
+          AnnouncementDetailsScreen.routeName: (ctx) =>
+              AnnouncementDetailsScreen(),
+          //   NewAttendanceScreen.routeName: (ctx) => NewAttendanceScreen(),
         },
       ),
     );

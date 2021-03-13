@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
+import 'package:oriental_management/screens/announcements_screen.dart';
 import 'package:oriental_management/screens/attendance_screen.dart';
 import 'package:oriental_management/screens/lecture_selection_screen.dart';
+
 import 'package:oriental_management/services/database_service.dart';
 import 'package:provider/provider.dart';
 
@@ -31,20 +33,26 @@ class DashBoardCards extends StatelessWidget {
                   title: 'Announcements',
                   icon: FontAwesomeIcons.bell,
                   count: 11,
+                  onTap: () {
+                    Navigator.pushNamed(context, AnnouncemetScreen.routeName);
+                  },
                 ),
                 OneCard(
-                    title: 'Attendence',
-                    icon: FontAwesomeIcons.calendarCheck,
-                    count: 57,
-                    onTap: () {
-                      // MaterialPageRoute(
-                      //   builder: (context) => AttendanceScreen(
-                      //     database: database,
-                      //   ),
-                      // );
-                      Navigator.pushNamed(context, AttendanceScreen.routeName,
-                          arguments: database);
-                    }),
+                  title: 'Attendence',
+                  icon: FontAwesomeIcons.calendarCheck,
+                  count: 57,
+                  onTap: () {
+                    // MaterialPageRoute(
+                    //   builder: (context) => AttendanceScreen(
+                    //     database: database,
+                    //   ),
+                    // );
+                    Navigator.pushNamed(context, AttendanceScreen.routeName,
+                        arguments: database);
+                    //  Navigator.pushNamed(context, NewAttendanceScreen.routeName,
+                    //       arguments: database);
+                  },
+                ),
                 OneCard(
                   title: 'Assignments',
                   icon: FontAwesomeIcons.clipboardList,
