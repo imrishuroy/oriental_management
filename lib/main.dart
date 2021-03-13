@@ -4,6 +4,7 @@ import 'package:oriental_management/screens/add_profile_screen.dart';
 
 import 'package:oriental_management/screens/announcements_details_screen.dart';
 import 'package:oriental_management/screens/announcements_screen.dart';
+import 'package:oriental_management/screens/assignments_screen.dart';
 import 'package:oriental_management/screens/attendance_screen.dart';
 import 'package:oriental_management/screens/homepage_screen.dart';
 import 'package:oriental_management/screens/lecture_selection_screen.dart';
@@ -51,6 +52,7 @@ class MyApp extends StatelessWidget {
           AnnouncemetScreen.routeName: (ctx) => AnnouncemetScreen(),
           AnnouncementDetailScreen.routeName: (ctx) =>
               AnnouncementDetailScreen(),
+          AssignmentScreen.routeName: (ctx) => AssignmentScreen(),
 
           //   NewAttendanceScreen.routeName: (ctx) => NewAttendanceScreen(),
         },

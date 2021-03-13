@@ -30,6 +30,7 @@ class BuildOneLeactureDay extends StatelessWidget {
                       style: TextStyle(
                         fontSize: 25.0,
                         color: Colors.white,
+                        // color: Color.fromRGBO(255, 203, 0, 1),
                       ),
                       textAlign: TextAlign.start,
                     )

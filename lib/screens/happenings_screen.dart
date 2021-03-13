@@ -5,6 +5,7 @@ class HappeningScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Color.fromRGBO(29, 38, 40, 1),
       appBar: AppBar(
         centerTitle: true,
         title: Text('Happenings'),

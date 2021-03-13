@@ -2,13 +2,13 @@ import 'package:flutter/material.dart';
 
 class AnnouncementDetailScreen extends StatelessWidget {
   static String routeName = '/announcement-detail-screen';
-  final String? appBarTitle;
-  final String? contents;
+  final String? title;
+  final String? message;
 
   const AnnouncementDetailScreen({
     Key? key,
-    this.appBarTitle,
-    this.contents,
+    this.title,
+    this.message,
   }) : super(key: key);
 
   @override
@@ -21,8 +21,48 @@ class AnnouncementDetailScreen extends StatelessWidget {
         title: Text('Details'),
       ),
       body: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          Text(contents!),
+          SizedBox(height: 10.0),
+          Padding(
+            padding:
+                const EdgeInsets.symmetric(horizontal: 20.0, vertical: 10.0),
+            child: Text(
+              '$title',
+              style: TextStyle(
+                fontSize: 22.0,
+                letterSpacing: 1.1,
+                fontWeight: FontWeight.w600,
+                color: Color.fromRGBO(255, 203, 0, 1),
+              ),
+            ),
+          ),
+          Padding(
+            padding:
+                const EdgeInsets.symmetric(horizontal: 20.0, vertical: 10.0),
+            child: Text(
+              message!,
+              style: TextStyle(
+                fontSize: 17.0,
+                color: Colors.white,
+                letterSpacing: 1.0,
+              ),
+            ),
+          ),
+          SizedBox(height: 30.0),
+          Padding(
+            padding:
+                const EdgeInsets.symmetric(horizontal: 20.0, vertical: 10.0),
+            child: Text(
+              'External Links',
+              style: TextStyle(
+                fontSize: 20.0,
+                letterSpacing: 1.1,
+                fontWeight: FontWeight.w500,
+                color: Color(0xffe48257),
+              ),
+            ),
+          )
         ],
       ),
     );

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:oriental_management/screens/announcements_screen.dart';
+import 'package:oriental_management/screens/assignments_screen.dart';
 import 'package:oriental_management/screens/attendance_screen.dart';
 import 'package:oriental_management/screens/lecture_selection_screen.dart';
 
@@ -57,6 +58,8 @@ class DashBoardCards extends StatelessWidget {
                   title: 'Assignments',
                   icon: FontAwesomeIcons.clipboardList,
                   count: 5,
+                  onTap: () =>
+                      Navigator.pushNamed(context, AssignmentScreen.routeName),
                 ),
                 OneCard(
                   title: 'Lectures',

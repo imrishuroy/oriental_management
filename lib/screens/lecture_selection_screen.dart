@@ -141,15 +141,6 @@ class _LectureSelectionState extends State<LectureSelection> {
           SizedBox(height: 20.0),
           ElevatedButton(
             onPressed: () {
-              // print(branchValue);
-              // print(semValue);
-              // if (_section == Section.a) {
-              //   print('A');
-              // } else {
-              //   print('B');
-              // }
-              // print(_section);
-
               Navigator.of(context).push(
                 MaterialPageRoute(
                   builder: (context) => LectureScreen(
@@ -166,7 +157,8 @@ class _LectureSelectionState extends State<LectureSelection> {
               child: Text(
                 'Check',
                 style: TextStyle(
-                  fontSize: 16.0,
+                  fontSize: 18.0,
+                  letterSpacing: 1.1,
                 ),
               ),
             ),
@@ -176,3 +168,12 @@ class _LectureSelectionState extends State<LectureSelection> {
     );
   }
 }
+
+// print(branchValue);
+// print(semValue);
+// if (_section == Section.a) {
+//   print('A');
+// } else {
+//   print('B');
+// }
+// print(_section);
