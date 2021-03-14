@@ -26,6 +26,7 @@ class Auth implements AuthServices {
         uid: user.uid,
         name: user.displayName,
         photUrl: user.photoURL,
+
         // isVerified: user.emailVerified,
       );
     }

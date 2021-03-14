@@ -20,15 +20,23 @@ abstract class DataBase {
 
   String? get id;
   Stream<QuerySnapshot> get profileDataSnapshot;
+  Future<DocumentSnapshot?> get currentUserData;
 }
 
 class FireStoreDataBase implements DataBase {
+  final usersRef = FirebaseFirestore.instance.collection('users');
+
   final String? uid;
 
   FireStoreDataBase({this.uid});
 
   @override
   String? get id => uid;
+
+  @override
+  Future<DocumentSnapshot?> get currentUserData async {
+    return await usersRef.doc(uid).get();
+  }
 
   @override
   Future<void> setData(

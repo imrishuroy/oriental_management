@@ -43,23 +43,18 @@ class DashBoardCards extends StatelessWidget {
                   icon: FontAwesomeIcons.calendarCheck,
                   count: 57,
                   onTap: () {
-                    // MaterialPageRoute(
-                    //   builder: (context) => AttendanceScreen(
-                    //     database: database,
-                    //   ),
-                    // );
                     Navigator.pushNamed(context, AttendanceScreen.routeName,
                         arguments: database);
-                    //  Navigator.pushNamed(context, NewAttendanceScreen.routeName,
-                    //       arguments: database);
                   },
                 ),
                 OneCard(
                   title: 'Assignments',
                   icon: FontAwesomeIcons.clipboardList,
                   count: 5,
-                  onTap: () =>
-                      Navigator.pushNamed(context, AssignmentScreen.routeName),
+                  onTap: () {
+                    Navigator.pushNamed(context, AssignmentScreen.routeName,
+                        arguments: database);
+                  },
                 ),
                 OneCard(
                   title: 'Lectures',
