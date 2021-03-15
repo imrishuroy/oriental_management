@@ -2,7 +2,8 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:oriental_management/models/app_user.dart';
 import 'package:oriental_management/screens/homepage_screen.dart';
-import 'package:oriental_management/screens/register_screen.dart';
+import 'package:oriental_management/screens/login_screen.dart';
+
 import 'package:oriental_management/services/auth_service.dart';
 import 'package:oriental_management/services/database_service.dart';
 
@@ -12,14 +13,6 @@ import 'package:firebase_auth/firebase_auth.dart';
 class AuthWrapper extends StatelessWidget {
   final firebaseAuth = FirebaseAuth.instance;
   final usersRef = FirebaseFirestore.instance.collection('users');
-
-  // updateUserProfile({String uid, BuildContext context}) async {
-  //   DocumentSnapshot doc = await usersRef.doc(uid).get();
-  //   if (!doc.exists) {
-  //     await Navigator.push(
-  //         context, MaterialPageRoute(builder: (context) => AddProfileScreen()));
-  //   }
-  // }
 
   Future<bool> checkAvailabledata(String uid) async {
     DocumentSnapshot doc = await usersRef.doc(uid).get();
@@ -42,7 +35,8 @@ class AuthWrapper extends StatelessWidget {
         if (snapshot.connectionState == ConnectionState.active) {
           AppUser? user = snapshot.data;
           if (user == null) {
-            return RegisterScreen();
+            return LoginScreen();
+            //   RegisterScreen();
             // } else if (!user.isVerified) {
             //   return EmailVerifyScreen();
           } else {

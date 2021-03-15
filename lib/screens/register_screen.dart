@@ -1,7 +1,8 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-import 'package:oriental_management/screens/login_screen.dart';
+import 'package:google_fonts/google_fonts.dart';
+
 import 'package:oriental_management/services/auth_service.dart';
 
 import 'dart:io';
@@ -9,6 +10,7 @@ import 'dart:io';
 import 'package:provider/provider.dart';
 
 class RegisterScreen extends StatefulWidget {
+  static String routeName = '/register-screen';
   @override
   _RegisterScreenState createState() => _RegisterScreenState();
 }
@@ -19,9 +21,11 @@ class _RegisterScreenState extends State<RegisterScreen> {
 
   TextEditingController _emailController = TextEditingController();
   TextEditingController _passwordController = TextEditingController();
+  TextEditingController _passwordController2 = TextEditingController();
 
   String? _email;
   String? _password;
+  String? _password2;
 
   bool _hidePassword = true;
   bool _isLoading = false;
@@ -29,6 +33,18 @@ class _RegisterScreenState extends State<RegisterScreen> {
   void _registerUser(BuildContext ctx) async {
     final form = _formKey.currentState!;
     FocusScope.of(context).unfocus();
+    // if (_password != _password2) {
+    //   ScaffoldMessenger.of(context).showSnackBar(
+    //     SnackBar(
+    //       content: Text(
+    //         'Password does not match :(',
+    //         textAlign: TextAlign.center,
+    //       ),
+    //       backgroundColor: Colors.redAccent,
+    //     ),
+    //   );
+    // }
+
     if (form.validate()) {
       form.save();
       try {
@@ -40,25 +56,14 @@ class _RegisterScreenState extends State<RegisterScreen> {
           email: _email,
           password: _password,
         );
-      }
-      //on FirebaseAuthException catch (error) {
-      //   setState(() {
-      //     _isLoading = false;
-      //   });
-      //   // _scaffoldKey.currentState
-      //   //     .showSnackBar(SnackBar(content: Text(error.message)));
-      //   print('ERROR MESSAGE ${error.message}');
-      // }
-
-      on FirebaseAuthException catch (error) {
+      } on FirebaseAuthException catch (error) {
         setState(() {
           _isLoading = false;
         });
         print(error.code);
 
         if (error.code == 'email-already-in-use') {
-          print('The account already exists for that email.');
-
+          //   print('The account already exists for that email.');
           ScaffoldMessenger.of(context).showSnackBar(
             SnackBar(
               content: Text(
@@ -115,112 +120,177 @@ class _RegisterScreenState extends State<RegisterScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Color.fromRGBO(29, 38, 40, 1),
       key: _scaffoldKey,
       appBar: AppBar(
         centerTitle: true,
         backgroundColor: Color.fromRGBO(0, 141, 82, 1),
-        title: Text('Register Screen'),
+        title: Text('Register User'),
       ),
-      body: Center(
-        child: Card(
-          margin: EdgeInsets.all(20.0),
-          elevation: 10.0,
-          //   color: Colors.yellow,
-          child: SingleChildScrollView(
-            child: Padding(
-              padding: const EdgeInsets.all(16.0),
-              child: Form(
-                key: _formKey,
-                child: Column(
-                  mainAxisSize: MainAxisSize.min,
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    Padding(
-                      padding: const EdgeInsets.symmetric(
-                        horizontal: 25.0,
-                        vertical: 15.0,
-                      ),
-                      child: TextFormField(
-                        key: ValueKey('email'),
-                        onSaved: (value) => _email = value,
-                        keyboardType: TextInputType.emailAddress,
-                        controller: _emailController,
-                        validator: (value) => !(value!.contains('@gmail.com'))
-                            ? 'Invalid Email'
-                            : null,
-                        decoration: InputDecoration(
-                          //icon: Icon(Icons.mail),
-                          prefixIcon: Icon(Icons.mail),
-                          labelText: 'Email',
-                          hintText: 'Enter your email',
-                          border: OutlineInputBorder(),
-                        ),
-                      ),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.symmetric(
-                        horizontal: 25.0,
-                        vertical: 15.0,
-                      ),
-                      child: TextFormField(
-                        key: ValueKey('password'),
-                        onSaved: (value) => _password = value,
-                        obscureText: _hidePassword,
-                        controller: _passwordController,
-                        validator: (value) =>
-                            value!.length < 6 ? 'Password too short' : null,
-                        decoration: InputDecoration(
-                          // icon: Icon(Icons.lock),
-                          prefixIcon: Icon(Icons.lock),
-                          suffixIcon: IconButton(
-                            icon: Icon(
-                              _hidePassword
-                                  ? Icons.visibility
-                                  : Icons.visibility_off,
+      body: SingleChildScrollView(
+        child: Column(
+          children: [
+            SizedBox(height: 70.0),
+            Text(
+              'Register',
+              style: GoogleFonts.rockSalt(
+                color: Color.fromRGBO(255, 203, 0, 1),
+                fontSize: 50.0,
+                fontStyle: FontStyle.italic,
+                fontWeight: FontWeight.w600,
+              ),
+            ),
+            SizedBox(height: 20.0),
+            Center(
+              child: Card(
+                margin: EdgeInsets.all(20.0),
+                elevation: 10.0,
+                //   color: Colors.yellow,
+                child: SingleChildScrollView(
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(vertical: 15),
+                    child: Form(
+                      key: _formKey,
+                      child: Column(
+                        mainAxisSize: MainAxisSize.min,
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Padding(
+                            padding: const EdgeInsets.symmetric(
+                              horizontal: 25.0,
+                              vertical: 15.0,
                             ),
-                            onPressed: () {
-                              setState(() {
-                                _hidePassword = !_hidePassword;
-                              });
-                            },
+                            child: TextFormField(
+                              key: ValueKey('email'),
+                              onSaved: (value) => _email = value,
+                              keyboardType: TextInputType.emailAddress,
+                              controller: _emailController,
+                              validator: (value) =>
+                                  !(value!.contains('@gmail.com'))
+                                      ? 'Invalid Email'
+                                      : null,
+                              decoration: InputDecoration(
+                                //icon: Icon(Icons.mail),
+                                prefixIcon: Icon(Icons.mail),
+                                labelText: 'Email',
+                                hintText: 'Enter your email',
+                                border: OutlineInputBorder(),
+                              ),
+                            ),
                           ),
-                          labelText: 'Password',
-                          hintText: 'Enter your password',
-                          border: OutlineInputBorder(),
-                        ),
+                          Padding(
+                            padding: const EdgeInsets.symmetric(
+                              horizontal: 25.0,
+                              vertical: 15.0,
+                            ),
+                            child: TextFormField(
+                              key: ValueKey('password'),
+                              onSaved: (value) => _password = value,
+                              obscureText: _hidePassword,
+                              controller: _passwordController,
+                              validator: (value) => value!.length < 6
+                                  ? 'Password too short'
+                                  : null,
+                              decoration: InputDecoration(
+                                // icon: Icon(Icons.lock),
+                                prefixIcon: Icon(Icons.lock),
+                                suffixIcon: IconButton(
+                                  icon: Icon(
+                                    _hidePassword
+                                        ? Icons.visibility
+                                        : Icons.visibility_off,
+                                  ),
+                                  onPressed: () {
+                                    setState(() {
+                                      _hidePassword = !_hidePassword;
+                                    });
+                                  },
+                                ),
+                                labelText: 'Password',
+                                hintText: 'Enter your password',
+                                border: OutlineInputBorder(),
+                              ),
+                            ),
+                          ),
+                          // Padding(
+                          //   padding: const EdgeInsets.symmetric(
+                          //     horizontal: 25.0,
+                          //     vertical: 15.0,
+                          //   ),
+                          //   child: TextFormField(
+                          //     key: ValueKey('password'),
+                          //     onSaved: (value) => _password2 = value,
+                          //     obscureText: _hidePassword,
+                          //     controller: _passwordController2,
+                          //     validator: (value) => value!.length < 6
+                          //         ? 'Password too short'
+                          //         : null,
+                          //     decoration: InputDecoration(
+                          //       // icon: Icon(Icons.lock),
+                          //       prefixIcon: Icon(Icons.lock),
+                          //       suffixIcon: IconButton(
+                          //         icon: Icon(
+                          //           _hidePassword
+                          //               ? Icons.visibility
+                          //               : Icons.visibility_off,
+                          //         ),
+                          //         onPressed: () {
+                          //           setState(() {
+                          //             _hidePassword = !_hidePassword;
+                          //           });
+                          //         },
+                          //       ),
+                          //       labelText: 'Password',
+                          //       hintText: 'Again enter your password',
+                          //       border: OutlineInputBorder(),
+                          //     ),
+                          //   ),
+                          // ),
+                          if (_isLoading) CircularProgressIndicator(),
+                          if (!_isLoading)
+                            ElevatedButton(
+                              style: ButtonStyle(
+                                  // backgroundColor:
+                                  //     MaterialStateProperty.all<Color>(
+                                  //   Color.fromRGBO(0, 141, 82, 1),
+                                  // ),
+                                  ),
+                              onPressed: () {
+                                _registerUser(context);
+                              },
+                              child: Padding(
+                                padding: const EdgeInsets.all(8.0),
+                                child: Text(
+                                  'Register',
+                                  style: TextStyle(
+                                    color: Colors.white,
+                                    fontSize: 17.0,
+                                    letterSpacing: 1.1,
+                                    fontWeight: FontWeight.w600,
+                                  ),
+                                ),
+                              ),
+                            ),
+                          if (!_isLoading)
+                            TextButton(
+                              onPressed: () {
+                                Navigator.of(context).pop();
+                              },
+                              child: Text(
+                                'Have an account? Login',
+                                style: TextStyle(
+                                  fontSize: 15.5,
+                                ),
+                              ),
+                            ),
+                        ],
                       ),
                     ),
-                    if (_isLoading) CircularProgressIndicator(),
-                    if (!_isLoading)
-                      ElevatedButton(
-                        style: ButtonStyle(
-                          backgroundColor: MaterialStateProperty.all<Color>(
-                            Color.fromRGBO(0, 141, 82, 1),
-                          ),
-                        ),
-                        onPressed: () {
-                          _registerUser(context);
-                        },
-                        child: Text(
-                          'Submit',
-                          style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 16.0,
-                          ),
-                        ),
-                      ),
-                    if (!_isLoading)
-                      TextButton(
-                        onPressed: () {
-                          Navigator.pushNamed(context, LoginScreen.routeName);
-                        },
-                        child: Text('Have an account? Login'),
-                      )
-                  ],
+                  ),
                 ),
               ),
             ),
-          ),
+          ],
         ),
       ),
     );

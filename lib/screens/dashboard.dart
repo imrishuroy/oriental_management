@@ -12,13 +12,7 @@ class DashBoard extends StatelessWidget {
     final DataBase database = Provider.of<DataBase>(context, listen: false);
     return Scaffold(
       drawer: AppDrawer(),
-      // floatingActionButton: FloatingActionButton(
-      //   backgroundColor: Color.fromRGBO(255, 203, 0, 1),
-      //   onPressed: () {},
-      // ),
 
-      // floatingActionButtonLocation: FloatingActionButtonLocation.centerDocked,
-      // main-color -
       backgroundColor: Color.fromRGBO(29, 38, 40, 1),
       //acent-color - backgroundColor: Color.fromRGBO(0, 141, 82, 1),
       //text-color - backgroundColor: Color.fromRGBO(255, 255, 250, 1),
