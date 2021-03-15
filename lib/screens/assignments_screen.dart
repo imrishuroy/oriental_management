@@ -1,8 +1,8 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:oriental_management/models/app_user.dart';
-
 import 'package:oriental_management/services/database_service.dart';
+import 'package:oriental_management/widgets/nothing_here.dart';
 import 'package:oriental_management/widgets/one_assignment_tile.dart';
 
 class AssignmentScreen extends StatelessWidget {
@@ -14,7 +14,6 @@ class AssignmentScreen extends StatelessWidget {
   Widget build(BuildContext context) {
     final DataBase? database =
         ModalRoute.of(context)?.settings.arguments as DataBase;
-    //   print(database?.id);
 
     return FutureBuilder<DocumentSnapshot?>(
       future: database?.currentUserData,
@@ -33,18 +32,20 @@ class AssignmentScreen extends StatelessWidget {
           );
         }
 
-        AppUser user = AppUser.fromDocument(snapshot.data!);
-        return StreamBuilder<DocumentSnapshot>(
-            stream:
-                //assignments.doc('CS').collection('4th').doc('B').snapshots(),
-                assignments
-                    .doc('${user.branch}')
-                    .collection('${user.sem}')
-                    .doc('${user.section}')
-                    .snapshots(),
+        if (snapshot.data?.exists == true) {
+          // checks weather user has added their profile
+          AppUser user = AppUser.fromDocument(snapshot.data!);
+
+          return StreamBuilder<DocumentSnapshot?>(
+            stream: database?.assignmentStream(
+                branch: '${user.branch}',
+                sem: '${user.sem}',
+                section: '${user.section}'),
             builder: (BuildContext context, assignmentSnapshot) {
-              if (snapshot.connectionState == ConnectionState.waiting) {
+              if (assignmentSnapshot.connectionState ==
+                  ConnectionState.waiting) {
                 return Scaffold(
+                  backgroundColor: Color.fromRGBO(29, 38, 40, 1),
                   body: Center(
                     child: CircularProgressIndicator(),
                   ),
@@ -53,6 +54,10 @@ class AssignmentScreen extends StatelessWidget {
 
               final int? lenghtOfAssignments =
                   assignmentSnapshot.data?.data()?['assignments']?.length;
+              print('Assignment Length $lenghtOfAssignments');
+              if (lenghtOfAssignments == null) {
+                return NothingHere();
+              }
               return Scaffold(
                 backgroundColor: Color.fromRGBO(29, 38, 40, 1),
                 appBar: AppBar(
@@ -72,10 +77,10 @@ class AssignmentScreen extends StatelessWidget {
                   ],
                   centerTitle: true,
                   backgroundColor: Color.fromRGBO(0, 141, 82, 1),
-                  title: Text('Assignment'),
+                  title: Text('Assignments'),
                 ),
                 body: ListView.builder(
-                  shrinkWrap: true,
+                  //  shrinkWrap: true,
                   itemCount: lenghtOfAssignments,
                   itemBuilder: (context, index) {
                     final String? subCode = assignmentSnapshot.data
@@ -98,7 +103,10 @@ class AssignmentScreen extends StatelessWidget {
                   },
                 ),
               );
-            });
+            },
+          );
+        }
+        return NothingHere();
       },
     );
   }

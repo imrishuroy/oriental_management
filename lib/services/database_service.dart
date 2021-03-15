@@ -14,17 +14,22 @@ abstract class DataBase {
     String? mobileNo,
     File? image,
     int? attendance,
-
-    //  String? documentId,
   });
 
   String? get id;
   Stream<QuerySnapshot> get profileDataSnapshot;
   Future<DocumentSnapshot?> get currentUserData;
+  Stream<DocumentSnapshot?> assignmentStream({
+    String? branch,
+    String? sem,
+    String? section,
+  });
 }
 
 class FireStoreDataBase implements DataBase {
   final usersRef = FirebaseFirestore.instance.collection('users');
+  final CollectionReference assignmentsRef =
+      FirebaseFirestore.instance.collection('assignments');
 
   final String? uid;
 
@@ -87,5 +92,14 @@ class FireStoreDataBase implements DataBase {
         .collection('users')
         .where('id', isEqualTo: uid)
         .snapshots();
+  }
+
+  @override
+  Stream<DocumentSnapshot?> assignmentStream({
+    String? branch,
+    String? sem,
+    String? section,
+  }) {
+    return assignmentsRef.doc(branch).collection(sem!).doc(section).snapshots();
   }
 }

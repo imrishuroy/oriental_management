@@ -52,6 +52,18 @@ class DashBoardCards extends StatelessWidget {
                   icon: FontAwesomeIcons.clipboardList,
                   count: 5,
                   onTap: () {
+                    //By using StateFull Widget
+
+                    // Navigator.push(
+                    //   context,
+                    //   MaterialPageRoute(
+                    //     builder: (context) => NewAssignmentScreen(
+                    //       database: database,
+                    //     ),
+                    //   ),
+                    // );
+
+                    // By using Future Builder and Stateless Widget
                     Navigator.pushNamed(context, AssignmentScreen.routeName,
                         arguments: database);
                   },
