@@ -11,6 +11,7 @@ import 'package:oriental_management/screens/lecture_selection_screen.dart';
 
 import 'package:oriental_management/screens/old_lectures_screen.dart';
 import 'package:oriental_management/screens/login_screen.dart';
+import 'package:oriental_management/screens/profile_screen.dart';
 import 'package:oriental_management/screens/success_screen.dart';
 import 'package:oriental_management/services/app_database_service.dart';
 import 'package:oriental_management/services/auth_service.dart';
@@ -42,6 +43,7 @@ class MyApp extends StatelessWidget {
         home: AuthWrapper(),
         routes: {
           HomeScreen.routeName: (ctx) => HomeScreen(),
+          ProfileScreen.routeName: (ctx) => ProfileScreen(),
           AddProfileScreen.routeName: (ctx) => AddProfileScreen(),
           LoginScreen.routeName: (ctx) => LoginScreen(),
           SuccusScreen.routeName: (ctx) => SuccusScreen(),

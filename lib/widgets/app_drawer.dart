@@ -1,10 +1,13 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
+import 'package:oriental_management/data/external_links_data.dart';
+
 import 'package:oriental_management/services/auth_service.dart';
 import 'package:oriental_management/services/database_service.dart';
 import 'package:oriental_management/widgets/display_image.dart';
 
 import 'package:provider/provider.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class AppDrawer extends StatefulWidget {
   @override
@@ -12,6 +15,19 @@ class AppDrawer extends StatefulWidget {
 }
 
 class _AppDrawerState extends State<AppDrawer> {
+  Future<void> _launchInBrowser(String url) async {
+    if (await canLaunch(url)) {
+      await launch(
+        url,
+        forceSafariVC: false,
+        forceWebView: false,
+        headers: <String, String>{'my_header_key': 'my_header_value'},
+      );
+    } else {
+      throw 'Could not launch $url';
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     final auth = Provider.of<AuthServices>(context, listen: false);
@@ -27,7 +43,7 @@ class _AppDrawerState extends State<AppDrawer> {
             child: CircularProgressIndicator(),
           );
         }
-        // if (snapshot.connectionState == ConnectionState.active) {
+
         if (snapshot.data?.size == 0) {
           return Drawer(
             child: ListView(
@@ -58,8 +74,10 @@ class _AppDrawerState extends State<AppDrawer> {
                 itemCount: snapshot.data?.size,
                 itemBuilder: (context, index) {
                   final name = snapshot.data?.docs[index]['name'];
-                  final fatherName = snapshot.data?.docs[index]['father_name'];
-                  final phoneNum = snapshot.data?.docs[index]['mobile_no'];
+                  final enrollNo = snapshot.data?.docs[index]['enrollNo'];
+                  final branch = snapshot.data?.docs[index]['branch'];
+                  final section = snapshot.data?.docs[index]['section'];
+                  final sem = snapshot.data?.docs[index]['sem'];
                   return Column(
                     crossAxisAlignment: CrossAxisAlignment.stretch,
                     children: [
@@ -72,56 +90,66 @@ class _AppDrawerState extends State<AppDrawer> {
                             DisplayImage(
                               database: database,
                             ),
-                            SizedBox(height: 20.0),
+                            SizedBox(height: 17.0),
                             Text(
                               '$name',
                               style: TextStyle(
                                 color: Colors.white,
-                                fontSize: 15.0,
+                                fontSize: 17.0,
+                                fontWeight: FontWeight.w600,
+                                letterSpacing: 1.1,
                               ),
                             ),
-                            SizedBox(height: 2.0),
+                            SizedBox(height: 6.0),
                             Text(
-                              '$fatherName',
+                              '$enrollNo',
                               style: TextStyle(
                                 color: Colors.white,
-                                fontSize: 15.0,
+                                fontSize: 16.0,
                               ),
                             ),
-                            SizedBox(height: 2.0),
+                            SizedBox(height: 3.0),
                             Text(
-                              '$phoneNum',
+                              '$branch $sem sem ($section)',
                               style: TextStyle(
                                 color: Colors.white,
-                                fontSize: 15.0,
+                                fontSize: 16.0,
                               ),
                             ),
-                            SizedBox(height: 30.0),
+                            SizedBox(height: 20.0),
                           ],
                         ),
                       ),
-                      ListTile(
-                        title: Text('Item 1'),
-                        onTap: () {
-                          // Update the state of the app.
-                          Navigator.pop(context);
-                        },
-                      ),
-                      ListTile(
-                        title: Text('Item 1'),
-                        onTap: () {},
-                      ),
-                      ListTile(
-                        title: Text('Item 2'),
-                        onTap: () {},
-                      ),
-                      ListTile(
-                        title: Text('Item 3'),
-                        onTap: () {},
-                      ),
-                      ListTile(
-                        title: Text('Item 4'),
-                        onTap: () {},
+                      SizedBox(
+                        height: 300.0,
+                        child: ListView.builder(
+                          itemCount: externalLink.length,
+                          itemBuilder: (context, index) {
+                            return Center(
+                              child: ListTile(
+                                leading: Icon(
+                                  externalLink[index]['icon'],
+                                  color: Color.fromRGBO(0, 141, 82, 1),
+                                ),
+                                title: Text(
+                                  '${externalLink[index]['title']}',
+                                  style: TextStyle(
+                                    color: Colors.black,
+                                    fontSize: 16.0,
+                                  ),
+                                ),
+                                trailing: IconButton(
+                                  onPressed: () => _launchInBrowser(
+                                      '${externalLink[index]['link']}'),
+                                  icon: Icon(
+                                    Icons.open_in_new_rounded,
+                                    color: Color.fromRGBO(0, 141, 82, 1),
+                                  ),
+                                ),
+                              ),
+                            );
+                          },
+                        ),
                       ),
                       SizedBox(height: 150.0),
                       Padding(
@@ -134,7 +162,10 @@ class _AppDrawerState extends State<AppDrawer> {
                           onPressed: () => auth.signOutUser(),
                           child: Text(
                             'Logout',
-                            style: TextStyle(color: Colors.black),
+                            style: TextStyle(
+                              color: Colors.black,
+                              fontSize: 16.0,
+                            ),
                           ),
                         ),
                       ),
