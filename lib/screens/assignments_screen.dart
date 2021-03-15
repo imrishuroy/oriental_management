@@ -56,7 +56,9 @@ class AssignmentScreen extends StatelessWidget {
                   assignmentSnapshot.data?.data()?['assignments']?.length;
               print('Assignment Length $lenghtOfAssignments');
               if (lenghtOfAssignments == null) {
-                return NothingHere();
+                return NothingHere(
+                  appBarTitle: 'Announcements',
+                );
               }
               return Scaffold(
                 backgroundColor: Color.fromRGBO(29, 38, 40, 1),

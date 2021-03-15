@@ -1,6 +1,12 @@
 import 'package:flutter/material.dart';
 
 class NothingHere extends StatelessWidget {
+  final String? appBarTitle;
+
+  const NothingHere({
+    Key? key,
+    this.appBarTitle: 'Assignments',
+  }) : super(key: key);
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -28,7 +34,7 @@ class NothingHere extends StatelessWidget {
         ],
         centerTitle: true,
         backgroundColor: Color.fromRGBO(0, 141, 82, 1),
-        title: Text('Assignments'),
+        title: Text('$appBarTitle'),
       ),
     );
   }

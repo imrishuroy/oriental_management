@@ -9,10 +9,14 @@ abstract class AppDataBase {
   });
 
   Stream<QuerySnapshot> galleryStream();
+  Stream<DocumentSnapshot> get announcementStream;
 }
 
 class FirebaseDataBase implements AppDataBase {
   CollectionReference doc = FirebaseFirestore.instance.collection('lectures');
+  final CollectionReference announcementsRef =
+      FirebaseFirestore.instance.collection('announcements');
+
   final CollectionReference? /*!*/ gallery =
       FirebaseFirestore.instance.collection('gallery');
   @override
@@ -27,5 +31,10 @@ class FirebaseDataBase implements AppDataBase {
   @override
   Stream<QuerySnapshot> galleryStream() {
     return gallery!.snapshots();
+  }
+
+  @override
+  Stream<DocumentSnapshot> get announcementStream {
+    return announcementsRef.doc('wZJSiOXKuJacCUViCz1B').snapshots();
   }
 }
