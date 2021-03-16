@@ -21,11 +21,9 @@ class _RegisterScreenState extends State<RegisterScreen> {
 
   TextEditingController _emailController = TextEditingController();
   TextEditingController _passwordController = TextEditingController();
-  TextEditingController _passwordController2 = TextEditingController();
 
   String? _email;
   String? _password;
-  String? _password2;
 
   bool _hidePassword = true;
   bool _isLoading = false;

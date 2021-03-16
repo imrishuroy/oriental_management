@@ -17,7 +17,7 @@ class SubjectAttendanceTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 25.0),
+      padding: const EdgeInsets.symmetric(horizontal: 17.0),
       child: Card(
         child: ListTile(
           contentPadding: EdgeInsets.fromLTRB(10.0, 7.0, 20.0, 7.0),

@@ -1,5 +1,5 @@
-import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:oriental_management/services/auth_service.dart';
 
 import 'package:oriental_management/services/database_service.dart';
 import 'package:oriental_management/widgets/display_image.dart';
@@ -17,19 +17,35 @@ class ProfileScreen extends StatefulWidget {
 class _ProfileScreenState extends State<ProfileScreen> {
   String documentId() => DateTime.now().toIso8601String();
 
-  final auth = FirebaseAuth.instance;
+  //final auth = FirebaseAuth.instance;
 
   @override
   Widget build(BuildContext context) {
     final database = Provider.of<DataBase>(context, listen: false);
+    final auth = Provider.of<AuthServices>(context, listen: false);
 
     return Scaffold(
+      backgroundColor: Color.fromRGBO(29, 38, 40, 1),
       appBar: AppBar(
         actions: [
-          IconButton(
-            icon: Icon(Icons.logout),
-            onPressed: () => auth.signOut(),
+          TextButton.icon(
+            onPressed: () => auth.signOutUser(),
+            icon: Icon(
+              Icons.logout,
+              color: Colors.white,
+            ),
+            label: Text(
+              'Logout',
+              style: TextStyle(
+                color: Colors.white,
+                fontSize: 17.5,
+              ),
+            ),
           ),
+          // IconButton(
+          //   icon: Icon(Icons.logout),
+          //   onPressed: () => auth.signOut(),
+          // ),
           SizedBox(width: 10.0),
         ],
         centerTitle: true,
@@ -50,6 +66,16 @@ class _ProfileScreenState extends State<ProfileScreen> {
       body: UserProfile(
         database: database,
       ),
+      //  Padding(
+      //   padding: const EdgeInsets.all(20.0),
+      //   child: Card(
+      //     shape:
+      //         RoundedRectangleBorder(borderRadius: BorderRadius.circular(25.0)),
+      //     child: UserProfile(
+      //       database: database,
+      //     ),
+      //   ),
+      // ),
     );
   }
 }

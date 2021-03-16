@@ -15,6 +15,7 @@ class AttendanceScreen extends StatelessWidget {
     final DataBase? database =
         ModalRoute.of(context)?.settings.arguments as DataBase;
     return Scaffold(
+      backgroundColor: Color.fromRGBO(29, 38, 40, 1),
       //backgroundColor: Color.fromRGBO(29, 38, 40, 1),
       appBar: AppBar(
         backgroundColor: Color.fromRGBO(0, 141, 82, 1),
@@ -62,6 +63,7 @@ class AttendanceScreen extends StatelessWidget {
               //  return Center(child: Text('$attendance'));
               return Column(
                 children: [
+                  SizedBox(height: 15.0),
                   DisplayTotalAttendanceCard(),
                   SizedBox(height: 10.0),
                   Text('As on 13/03/2021'),

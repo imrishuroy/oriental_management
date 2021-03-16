@@ -19,19 +19,27 @@ class DisplayImage extends StatelessWidget {
         }
         if (snapshot.data?.size == 0) {
           return CircleAvatar(
-            radius: 55.0,
+            radius: 60.0,
             backgroundColor: Colors.white,
-            child: Icon(
-              Icons.image,
-              color: Colors.green,
+            child: CircleAvatar(
+              radius: 55.0,
+              backgroundColor: Colors.white70,
+              child: Icon(
+                Icons.image,
+                color: Colors.green,
+              ),
             ),
           );
         }
         String? imageUrl = '${snapshot.data?.docs[0]['image_url']}';
         return CircleAvatar(
-          radius: 55.0,
-          backgroundColor: Colors.white,
-          backgroundImage: NetworkImage(imageUrl),
+          radius: 60.0,
+          backgroundColor: Colors.white70,
+          child: CircleAvatar(
+            radius: 55.0,
+            backgroundColor: Colors.white,
+            backgroundImage: NetworkImage(imageUrl),
+          ),
         );
       },
     );
