@@ -49,18 +49,19 @@ class UserProfile extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   SizedBox(height: 20.0),
-                  // Row(
-                  //   children: [
-                  //     _profileDomainCard(
-                  //         snapshot: snapshot, index: index, key: 'branch'),
-                  //     _profileDomainCard(
-                  //         snapshot: snapshot, index: index, key: 'sem'),
-                  //     _profileDomainCard(
-                  //         snapshot: snapshot, index: index, key: 'section'),
-                  //   ],
-                  // ),
+                  Row(
+                    children: [
+                      _profileDomainCard(
+                          snapshot: snapshot, index: index, key: 'branch'),
+                      _profileDomainCard(
+                          snapshot: snapshot, index: index, key: 'sem'),
+                      _profileDomainCard(
+                          snapshot: snapshot, index: index, key: 'section'),
+                    ],
+                  ),
                   SizedBox(height: 25.0),
                   _profileLabelText(label: 'Name'),
+                  SizedBox(height: 3.0),
                   Text(
                     '${snapshot.data?.docs[index]['name']}',
                     style: TextStyle(
@@ -71,24 +72,29 @@ class UserProfile extends StatelessWidget {
                   ),
                   SizedBox(height: 22.0),
                   _profileLabelText(label: 'Enrollment No'),
+                  SizedBox(height: 3.0),
                   Text(
                     '${snapshot.data?.docs[index]['enrollNo']}',
                     style: TextStyle(
                       fontSize: 18.0,
                       color: Colors.white,
+                      fontWeight: FontWeight.bold,
                     ),
                   ),
-                  SizedBox(height: 22.0),
-                  _profileLabelText(label: 'Domain'),
-                  Text(
-                    '${snapshot.data?.docs[index]['branch']} ${snapshot.data?.docs[index]['sem']} sem ${snapshot.data?.docs[index]['section']}',
-                    style: TextStyle(
-                      fontSize: 18.0,
-                      color: Colors.white,
-                    ),
-                  ),
+                  // SizedBox(height: 22.0),
+                  // _profileLabelText(label: 'Domain'),
+                  // SizedBox(height: 3.0),
+                  // Text(
+                  //   '${snapshot.data?.docs[index]['branch']} ${snapshot.data?.docs[index]['sem']} sem ${snapshot.data?.docs[index]['section']}',
+                  //   style: TextStyle(
+                  //     fontSize: 18.0,
+                  //     color: Colors.white,
+                  //     fontWeight: FontWeight.bold,
+                  //   ),
+                  // ),
                   SizedBox(height: 22.0),
                   _profileLabelText(label: "Father's Name"),
+                  SizedBox(height: 3.0),
                   Text(
                     '${snapshot.data?.docs[index]['father_name']}',
                     style: TextStyle(
@@ -99,6 +105,7 @@ class UserProfile extends StatelessWidget {
                   ),
                   SizedBox(height: 22.0),
                   _profileLabelText(label: 'Mother\'s Name'),
+                  SizedBox(height: 3.0),
                   Text(
                     '${snapshot.data?.docs[index]['mother_name']}',
                     style: TextStyle(
@@ -109,6 +116,7 @@ class UserProfile extends StatelessWidget {
                   ),
                   SizedBox(height: 22.0),
                   _profileLabelText(label: 'Mobile Number'),
+                  SizedBox(height: 3.0),
                   Text(
                     '${snapshot.data?.docs[index]['mobile_no']}',
                     style: TextStyle(
@@ -117,7 +125,7 @@ class UserProfile extends StatelessWidget {
                       fontWeight: FontWeight.bold,
                     ),
                   ),
-                  SizedBox(height: 50.0),
+                  SizedBox(height: 30.0),
                   Center(
                     child: ElevatedButton(
                       onPressed: () => Navigator.push(
@@ -148,7 +156,7 @@ class UserProfile extends StatelessWidget {
           style: TextStyle(
             fontSize: 16.0,
             // color: Color.fromRGBO(255, 203, 0, 1),
-            color: Colors.white70,
+            color: Color.fromRGBO(255, 203, 0, 1),
             letterSpacing: 1.1,
             fontWeight: FontWeight.bold,
           ),
