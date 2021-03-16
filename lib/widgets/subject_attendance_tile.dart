@@ -83,6 +83,10 @@ class SubjectIndicator extends StatelessWidget {
 }
 
 class DisplayTotalAttendanceCard extends StatelessWidget {
+  final int? totalAttendance;
+
+  const DisplayTotalAttendanceCard({Key? key, this.totalAttendance})
+      : super(key: key);
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -106,10 +110,11 @@ class DisplayTotalAttendanceCard extends StatelessWidget {
                 height: 32.0,
                 width: 63.0,
                 child: Text(
-                  '52 %',
+                  '$totalAttendance %',
                   style: TextStyle(
                     fontSize: 18.5,
-                    color: Colors.white,
+                    //  color: Colors.white,
+                    color: Colors.black87,
                     fontWeight: FontWeight.w600,
                   ),
                 ),

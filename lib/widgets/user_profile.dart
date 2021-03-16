@@ -49,62 +49,75 @@ class UserProfile extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   SizedBox(height: 20.0),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      _profileDomainCard(
-                        snapshot: snapshot,
-                        index: index,
-                        key: 'branch',
-                      ),
-                      _profileDomainCard(
-                        snapshot: snapshot,
-                        index: index,
-                        key: 'sem',
-                      ),
-                      _profileDomainCard(
-                        snapshot: snapshot,
-                        index: index,
-                        key: 'section',
-                      ),
-                    ],
-                  ),
+                  // Row(
+                  //   children: [
+                  //     _profileDomainCard(
+                  //         snapshot: snapshot, index: index, key: 'branch'),
+                  //     _profileDomainCard(
+                  //         snapshot: snapshot, index: index, key: 'sem'),
+                  //     _profileDomainCard(
+                  //         snapshot: snapshot, index: index, key: 'section'),
+                  //   ],
+                  // ),
                   SizedBox(height: 25.0),
                   _profileLabelText(label: 'Name'),
-                  _profileOneContainer(
-                    snapshot: snapshot,
-                    index: index,
-                    key: 'name',
+                  Text(
+                    '${snapshot.data?.docs[index]['name']}',
+                    style: TextStyle(
+                      fontSize: 18.0,
+                      color: Colors.white,
+                      fontWeight: FontWeight.bold,
+                    ),
                   ),
                   SizedBox(height: 22.0),
                   _profileLabelText(label: 'Enrollment No'),
-                  _profileOneContainer(
-                    snapshot: snapshot,
-                    index: index,
-                    key: 'enrollNo',
+                  Text(
+                    '${snapshot.data?.docs[index]['enrollNo']}',
+                    style: TextStyle(
+                      fontSize: 18.0,
+                      color: Colors.white,
+                    ),
+                  ),
+                  SizedBox(height: 22.0),
+                  _profileLabelText(label: 'Domain'),
+                  Text(
+                    '${snapshot.data?.docs[index]['branch']} ${snapshot.data?.docs[index]['sem']} sem ${snapshot.data?.docs[index]['section']}',
+                    style: TextStyle(
+                      fontSize: 18.0,
+                      color: Colors.white,
+                    ),
                   ),
                   SizedBox(height: 22.0),
                   _profileLabelText(label: "Father's Name"),
-                  _profileOneContainer(
-                    snapshot: snapshot,
-                    index: index,
-                    key: 'father_name',
+                  Text(
+                    '${snapshot.data?.docs[index]['father_name']}',
+                    style: TextStyle(
+                      fontSize: 18.0,
+                      color: Colors.white,
+                      fontWeight: FontWeight.bold,
+                    ),
                   ),
                   SizedBox(height: 22.0),
                   _profileLabelText(label: 'Mother\'s Name'),
-                  _profileOneContainer(
-                    snapshot: snapshot,
-                    index: index,
-                    key: 'mother_name',
+                  Text(
+                    '${snapshot.data?.docs[index]['mother_name']}',
+                    style: TextStyle(
+                      fontSize: 18.0,
+                      color: Colors.white,
+                      fontWeight: FontWeight.bold,
+                    ),
                   ),
                   SizedBox(height: 22.0),
                   _profileLabelText(label: 'Mobile Number'),
-                  _profileOneContainer(
-                    snapshot: snapshot,
-                    index: index,
-                    key: 'mobile_no',
+                  Text(
+                    '${snapshot.data?.docs[index]['mobile_no']}',
+                    style: TextStyle(
+                      fontSize: 18.0,
+                      color: Colors.white,
+                      fontWeight: FontWeight.bold,
+                    ),
                   ),
-                  SizedBox(height: 25.0),
+                  SizedBox(height: 50.0),
                   Center(
                     child: ElevatedButton(
                       onPressed: () => Navigator.push(
@@ -115,13 +128,7 @@ class UserProfile extends StatelessWidget {
                           ),
                         ),
                       ),
-                      child: Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 20.0),
-                        child: Text(
-                          'Edit Your Profile',
-                          style: TextStyle(fontSize: 17.0),
-                        ),
-                      ),
+                      child: Text('Edit Your Profile'),
                     ),
                   )
                 ],
@@ -130,6 +137,24 @@ class UserProfile extends StatelessWidget {
           },
         );
       },
+    );
+  }
+
+  Widget _profileLabelText({String? label}) {
+    return Column(
+      children: [
+        Text(
+          '$label',
+          style: TextStyle(
+            fontSize: 16.0,
+            // color: Color.fromRGBO(255, 203, 0, 1),
+            color: Colors.white70,
+            letterSpacing: 1.1,
+            fontWeight: FontWeight.bold,
+          ),
+        ),
+        SizedBox(height: 6.5),
+      ],
     );
   }
 
@@ -156,48 +181,6 @@ class UserProfile extends StatelessWidget {
           ),
         ),
       ),
-    );
-  }
-
-  Container _profileOneContainer(
-      {AsyncSnapshot<QuerySnapshot>? snapshot, int? index, String? key}) {
-    return Container(
-      height: 50.0,
-      width: 500.0,
-      decoration: BoxDecoration(
-        border: Border.all(
-          color: Color.fromRGBO(0, 141, 82, 1),
-          width: 2.5,
-        ),
-      ),
-      child: Center(
-        child: Text(
-          '${snapshot?.data?.docs[index!]['$key']}',
-          style: TextStyle(
-            fontSize: 18.0,
-            fontWeight: FontWeight.bold,
-            letterSpacing: 1.1,
-            color: Colors.white,
-          ),
-        ),
-      ),
-    );
-  }
-
-  Widget _profileLabelText({String? label}) {
-    return Column(
-      children: [
-        Text(
-          '$label',
-          style: TextStyle(
-            fontSize: 15.5,
-            color: Color.fromRGBO(255, 203, 0, 1),
-            letterSpacing: 1.1,
-            fontWeight: FontWeight.bold,
-          ),
-        ),
-        SizedBox(height: 6.5),
-      ],
     );
   }
 }
@@ -253,73 +236,62 @@ class UserProfile extends StatelessWidget {
 //                 crossAxisAlignment: CrossAxisAlignment.start,
 //                 children: [
 //                   SizedBox(height: 20.0),
-//                   Card(
-//                     child: Row(
-//                       children: [
-//                         Container(
-//                           height: 40,
-//                         ),
-//                         Container(
-//                           height: 40,
-//                         )
-//                       ],
-//                     ),
+//                   Row(
+//                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
+//                     children: [
+//                       _profileDomainCard(
+//                         snapshot: snapshot,
+//                         index: index,
+//                         key: 'branch',
+//                       ),
+//                       _profileDomainCard(
+//                         snapshot: snapshot,
+//                         index: index,
+//                         key: 'sem',
+//                       ),
+//                       _profileDomainCard(
+//                         snapshot: snapshot,
+//                         index: index,
+//                         key: 'section',
+//                       ),
+//                     ],
 //                   ),
 //                   SizedBox(height: 25.0),
 //                   _profileLabelText(label: 'Name'),
-//                   Text(
-//                     '${snapshot.data?.docs[index]['name']}',
-//                     style: TextStyle(
-//                       fontSize: 18.0,
-//                       color: Colors.white,
-//                     ),
+//                   _profileOneContainer(
+//                     snapshot: snapshot,
+//                     index: index,
+//                     key: 'name',
 //                   ),
 //                   SizedBox(height: 22.0),
 //                   _profileLabelText(label: 'Enrollment No'),
-//                   Text(
-//                     '${snapshot.data?.docs[index]['enrollNo']}',
-//                     style: TextStyle(
-//                       fontSize: 18.0,
-//                       color: Colors.white,
-//                     ),
-//                   ),
-//                   SizedBox(height: 22.0),
-//                   _profileLabelText(label: 'Domain'),
-//                   Text(
-//                     '${snapshot.data?.docs[index]['branch']} ${snapshot.data?.docs[index]['sem']} sem ${snapshot.data?.docs[index]['section']}',
-//                     style: TextStyle(
-//                       fontSize: 18.0,
-//                       color: Colors.white,
-//                     ),
+//                   _profileOneContainer(
+//                     snapshot: snapshot,
+//                     index: index,
+//                     key: 'enrollNo',
 //                   ),
 //                   SizedBox(height: 22.0),
 //                   _profileLabelText(label: "Father's Name"),
-//                   Text(
-//                     '${snapshot.data?.docs[index]['father_name']}',
-//                     style: TextStyle(
-//                       fontSize: 18.0,
-//                       color: Colors.white,
-//                     ),
+//                   _profileOneContainer(
+//                     snapshot: snapshot,
+//                     index: index,
+//                     key: 'father_name',
 //                   ),
 //                   SizedBox(height: 22.0),
 //                   _profileLabelText(label: 'Mother\'s Name'),
-//                   Text(
-//                     '${snapshot.data?.docs[index]['mother_name']}',
-//                     style: TextStyle(
-//                       fontSize: 18.0,
-//                       color: Colors.white,
-//                     ),
+//                   _profileOneContainer(
+//                     snapshot: snapshot,
+//                     index: index,
+//                     key: 'mother_name',
 //                   ),
 //                   SizedBox(height: 22.0),
 //                   _profileLabelText(label: 'Mobile Number'),
-//                   Text(
-//                     '${snapshot.data?.docs[index]['mobile_no']}',
-//                     style: TextStyle(
-//                       fontSize: 18.0,
-//                       color: Colors.white,
-//                     ),
+//                   _profileOneContainer(
+//                     snapshot: snapshot,
+//                     index: index,
+//                     key: 'mobile_no',
 //                   ),
-//                   SizedBox(height: 50.0),
+//                   SizedBox(height: 25.0),
 //                   Center(
 //                     child: ElevatedButton(
 //                       onPressed: () => Navigator.push(
@@ -330,7 +302,13 @@ class UserProfile extends StatelessWidget {
 //                           ),
 //                         ),
 //                       ),
-//                       child: Text('Edit Your Profile'),
+//                       child: Padding(
+//                         padding: const EdgeInsets.symmetric(horizontal: 20.0),
+//                         child: Text(
+//                           'Edit Your Profile',
+//                           style: TextStyle(fontSize: 17.0),
+//                         ),
+//                       ),
 //                     ),
 //                   )
 //                 ],
@@ -342,13 +320,64 @@ class UserProfile extends StatelessWidget {
 //     );
 //   }
 
+//   Widget _profileDomainCard({
+//     AsyncSnapshot<QuerySnapshot>? snapshot,
+//     int? index,
+//     String? key,
+//   }) {
+//     return Expanded(
+//       child: Card(
+//         color: Colors.white,
+//         child: Padding(
+//           padding: const EdgeInsets.all(20.0),
+//           child: Center(
+//             child: Text(
+//               '${snapshot?.data?.docs[index!]['$key']}',
+//               style: TextStyle(
+//                 //color: Color.fromRGBO(255, 203, 0, 1),
+//                 color: Color.fromRGBO(0, 141, 82, 1),
+//                 fontSize: 25.0,
+//                 fontWeight: FontWeight.bold,
+//               ),
+//             ),
+//           ),
+//         ),
+//       ),
+//     );
+//   }
+
+//   Container _profileOneContainer(
+//       {AsyncSnapshot<QuerySnapshot>? snapshot, int? index, String? key}) {
+//     return Container(
+//       height: 50.0,
+//       width: 500.0,
+//       decoration: BoxDecoration(
+//         border: Border.all(
+//           color: Color.fromRGBO(0, 141, 82, 1),
+//           width: 2.5,
+//         ),
+//       ),
+//       child: Center(
+//         child: Text(
+//           '${snapshot?.data?.docs[index!]['$key']}',
+//           style: TextStyle(
+//             fontSize: 18.0,
+//             fontWeight: FontWeight.bold,
+//             letterSpacing: 1.1,
+//             color: Colors.white,
+//           ),
+//         ),
+//       ),
+//     );
+//   }
+
 //   Widget _profileLabelText({String? label}) {
 //     return Column(
 //       children: [
 //         Text(
 //           '$label',
 //           style: TextStyle(
-//             fontSize: 16.0,
+//             fontSize: 15.5,
 //             color: Color.fromRGBO(255, 203, 0, 1),
 //             letterSpacing: 1.1,
 //             fontWeight: FontWeight.bold,
