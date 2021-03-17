@@ -7,8 +7,22 @@ class HappeningScreen extends StatelessWidget {
     return Scaffold(
       backgroundColor: Color.fromRGBO(29, 38, 40, 1),
       appBar: AppBar(
+        backgroundColor: Color.fromRGBO(0, 141, 82, 1),
         centerTitle: true,
         title: Text('Happenings'),
+        actions: [
+          CircleAvatar(
+            radius: 14.0,
+            backgroundColor: Colors.white,
+            child: Text(
+              '3',
+              style: TextStyle(
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+          ),
+          SizedBox(width: 10.0),
+        ],
       ),
       body: Column(
         children: [
