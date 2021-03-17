@@ -125,171 +125,171 @@ class _RegisterScreenState extends State<RegisterScreen> {
         backgroundColor: Color.fromRGBO(0, 141, 82, 1),
         title: Text('Register User'),
       ),
-      body: SingleChildScrollView(
-        child: Column(
-          children: [
-            SizedBox(height: 70.0),
-            Text(
-              'Register',
-              style: GoogleFonts.rockSalt(
-                color: Color.fromRGBO(255, 203, 0, 1),
-                fontSize: 50.0,
-                fontStyle: FontStyle.italic,
-                fontWeight: FontWeight.w600,
-              ),
-            ),
-            SizedBox(height: 20.0),
-            Center(
-              child: Card(
-                margin: EdgeInsets.all(20.0),
-                elevation: 10.0,
-                //   color: Colors.yellow,
-                child: SingleChildScrollView(
-                  child: Padding(
-                    padding: const EdgeInsets.symmetric(vertical: 15),
-                    child: Form(
-                      key: _formKey,
-                      child: Column(
-                        mainAxisSize: MainAxisSize.min,
-                        mainAxisAlignment: MainAxisAlignment.center,
-                        children: [
-                          Padding(
-                            padding: const EdgeInsets.symmetric(
-                              horizontal: 25.0,
-                              vertical: 15.0,
-                            ),
-                            child: TextFormField(
-                              key: ValueKey('email'),
-                              onSaved: (value) => _email = value,
-                              keyboardType: TextInputType.emailAddress,
-                              controller: _emailController,
-                              validator: (value) =>
-                                  !(value!.contains('@gmail.com'))
-                                      ? 'Invalid Email'
-                                      : null,
-                              decoration: InputDecoration(
-                                //icon: Icon(Icons.mail),
-                                prefixIcon: Icon(Icons.mail),
-                                labelText: 'Email',
-                                hintText: 'Enter your email',
-                                border: OutlineInputBorder(),
-                              ),
-                            ),
-                          ),
-                          Padding(
-                            padding: const EdgeInsets.symmetric(
-                              horizontal: 25.0,
-                              vertical: 15.0,
-                            ),
-                            child: TextFormField(
-                              key: ValueKey('password'),
-                              onSaved: (value) => _password = value,
-                              obscureText: _hidePassword,
-                              controller: _passwordController,
-                              validator: (value) => value!.length < 6
-                                  ? 'Password too short'
-                                  : null,
-                              decoration: InputDecoration(
-                                // icon: Icon(Icons.lock),
-                                prefixIcon: Icon(Icons.lock),
-                                suffixIcon: IconButton(
-                                  icon: Icon(
-                                    _hidePassword
-                                        ? Icons.visibility
-                                        : Icons.visibility_off,
-                                  ),
-                                  onPressed: () {
-                                    setState(() {
-                                      _hidePassword = !_hidePassword;
-                                    });
-                                  },
-                                ),
-                                labelText: 'Password',
-                                hintText: 'Enter your password',
-                                border: OutlineInputBorder(),
-                              ),
-                            ),
-                          ),
-                          // Padding(
-                          //   padding: const EdgeInsets.symmetric(
-                          //     horizontal: 25.0,
-                          //     vertical: 15.0,
-                          //   ),
-                          //   child: TextFormField(
-                          //     key: ValueKey('password'),
-                          //     onSaved: (value) => _password2 = value,
-                          //     obscureText: _hidePassword,
-                          //     controller: _passwordController2,
-                          //     validator: (value) => value!.length < 6
-                          //         ? 'Password too short'
-                          //         : null,
-                          //     decoration: InputDecoration(
-                          //       // icon: Icon(Icons.lock),
-                          //       prefixIcon: Icon(Icons.lock),
-                          //       suffixIcon: IconButton(
-                          //         icon: Icon(
-                          //           _hidePassword
-                          //               ? Icons.visibility
-                          //               : Icons.visibility_off,
-                          //         ),
-                          //         onPressed: () {
-                          //           setState(() {
-                          //             _hidePassword = !_hidePassword;
-                          //           });
-                          //         },
-                          //       ),
-                          //       labelText: 'Password',
-                          //       hintText: 'Again enter your password',
-                          //       border: OutlineInputBorder(),
-                          //     ),
-                          //   ),
-                          // ),
-                          if (_isLoading) CircularProgressIndicator(),
-                          if (!_isLoading)
-                            ElevatedButton(
-                              style: ButtonStyle(
-                                  // backgroundColor:
-                                  //     MaterialStateProperty.all<Color>(
-                                  //   Color.fromRGBO(0, 141, 82, 1),
-                                  // ),
-                                  ),
-                              onPressed: () {
-                                _registerUser(context);
-                              },
-                              child: Padding(
-                                padding: const EdgeInsets.all(8.0),
-                                child: Text(
-                                  'Register',
-                                  style: TextStyle(
-                                    color: Colors.white,
-                                    fontSize: 17.0,
-                                    letterSpacing: 1.1,
-                                    fontWeight: FontWeight.w600,
-                                  ),
-                                ),
-                              ),
-                            ),
-                          if (!_isLoading)
-                            TextButton(
-                              onPressed: () {
-                                Navigator.of(context).pop();
-                              },
-                              child: Text(
-                                'Have an account? Login',
-                                style: TextStyle(
-                                  fontSize: 15.5,
-                                ),
-                              ),
-                            ),
-                        ],
+      body: Center(
+        child: Card(
+          margin: EdgeInsets.all(20.0),
+          elevation: 10.0,
+          //   color: Colors.yellow,
+          child: SingleChildScrollView(
+            child: Padding(
+              padding: const EdgeInsets.symmetric(vertical: 15),
+              child: Form(
+                key: _formKey,
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    SizedBox(height: 7.0),
+                    Container(
+                      height: 65,
+                      width: 65,
+                      child: Image.asset(
+                        'assets/register-user.png',
+                        fit: BoxFit.cover,
                       ),
                     ),
-                  ),
+                    SizedBox(height: 10.0),
+                    Text(
+                      'Welcome, Register here !',
+                      style: TextStyle(
+                        fontSize: 16.0,
+                      ),
+                    ),
+                    SizedBox(height: 5.0),
+                    Padding(
+                      padding: const EdgeInsets.symmetric(
+                        horizontal: 25.0,
+                        vertical: 15.0,
+                      ),
+                      child: TextFormField(
+                        key: ValueKey('email'),
+                        onSaved: (value) => _email = value,
+                        keyboardType: TextInputType.emailAddress,
+                        controller: _emailController,
+                        validator: (value) => !(value!.contains('@gmail.com'))
+                            ? 'Invalid Email'
+                            : null,
+                        decoration: InputDecoration(
+                          //icon: Icon(Icons.mail),
+                          prefixIcon: Icon(Icons.mail),
+                          labelText: 'Email',
+                          hintText: 'Enter your email',
+                          border: OutlineInputBorder(),
+                        ),
+                      ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsets.symmetric(
+                        horizontal: 25.0,
+                        vertical: 15.0,
+                      ),
+                      child: TextFormField(
+                        key: ValueKey('password'),
+                        onSaved: (value) => _password = value,
+                        obscureText: _hidePassword,
+                        controller: _passwordController,
+                        validator: (value) =>
+                            value!.length < 6 ? 'Password too short' : null,
+                        decoration: InputDecoration(
+                          // icon: Icon(Icons.lock),
+                          prefixIcon: Icon(Icons.lock),
+                          suffixIcon: IconButton(
+                            icon: Icon(
+                              _hidePassword
+                                  ? Icons.visibility
+                                  : Icons.visibility_off,
+                            ),
+                            onPressed: () {
+                              setState(() {
+                                _hidePassword = !_hidePassword;
+                              });
+                            },
+                          ),
+                          labelText: 'Password',
+                          hintText: 'Enter your password',
+                          border: OutlineInputBorder(),
+                        ),
+                      ),
+                    ),
+                    // Padding(
+                    //   padding: const EdgeInsets.symmetric(
+                    //     horizontal: 25.0,
+                    //     vertical: 15.0,
+                    //   ),
+                    //   child: TextFormField(
+                    //     key: ValueKey('password'),
+                    //     onSaved: (value) => _password2 = value,
+                    //     obscureText: _hidePassword,
+                    //     controller: _passwordController2,
+                    //     validator: (value) => value!.length < 6
+                    //         ? 'Password too short'
+                    //         : null,
+                    //     decoration: InputDecoration(
+                    //       // icon: Icon(Icons.lock),
+                    //       prefixIcon: Icon(Icons.lock),
+                    //       suffixIcon: IconButton(
+                    //         icon: Icon(
+                    //           _hidePassword
+                    //               ? Icons.visibility
+                    //               : Icons.visibility_off,
+                    //         ),
+                    //         onPressed: () {
+                    //           setState(() {
+                    //             _hidePassword = !_hidePassword;
+                    //           });
+                    //         },
+                    //       ),
+                    //       labelText: 'Password',
+                    //       hintText: 'Again enter your password',
+                    //       border: OutlineInputBorder(),
+                    //     ),
+                    //   ),
+                    // ),
+                    if (_isLoading) CircularProgressIndicator(),
+                    if (!_isLoading)
+                      ElevatedButton(
+                        style: ButtonStyle(
+                            // backgroundColor:
+                            //     MaterialStateProperty.all<Color>(
+                            //   Color.fromRGBO(0, 141, 82, 1),
+                            // ),
+                            ),
+                        onPressed: () {
+                          _registerUser(context);
+                        },
+                        child: Padding(
+                          padding: const EdgeInsets.all(8.0),
+                          child: Text(
+                            'Register',
+                            style: TextStyle(
+                              color: Colors.white,
+                              fontSize: 17.0,
+                              letterSpacing: 1.1,
+                              fontWeight: FontWeight.w600,
+                            ),
+                          ),
+                        ),
+                      ),
+                    if (!_isLoading)
+                      TextButton(
+                        onPressed: () {
+                          Navigator.of(context).pop();
+                        },
+                        child: Text(
+                          'Have an account? Login',
+                          style: TextStyle(
+                            fontSize: 15.5,
+                          ),
+                        ),
+                      ),
+                  ],
                 ),
               ),
             ),
-          ],
+            // ),
+          ),
         ),
+        //  ],
       ),
     );
   }
