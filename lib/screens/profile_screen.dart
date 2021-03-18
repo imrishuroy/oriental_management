@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:oriental_management/services/auth_service.dart';
-
 import 'package:oriental_management/services/database_service.dart';
 import 'package:oriental_management/widgets/display_image.dart';
 import 'package:oriental_management/widgets/user_profile.dart';
-
 import 'package:provider/provider.dart';
 
 class ProfileScreen extends StatefulWidget {
@@ -42,10 +40,6 @@ class _ProfileScreenState extends State<ProfileScreen> {
               ),
             ),
           ),
-          // IconButton(
-          //   icon: Icon(Icons.logout),
-          //   onPressed: () => auth.signOut(),
-          // ),
           SizedBox(width: 10.0),
         ],
         centerTitle: true,
@@ -66,16 +60,6 @@ class _ProfileScreenState extends State<ProfileScreen> {
       body: UserProfile(
         database: database,
       ),
-      //  Padding(
-      //   padding: const EdgeInsets.all(20.0),
-      //   child: Card(
-      //     shape:
-      //         RoundedRectangleBorder(borderRadius: BorderRadius.circular(25.0)),
-      //     child: UserProfile(
-      //       database: database,
-      //     ),
-      //   ),
-      // ),
     );
   }
 }

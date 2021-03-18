@@ -12,20 +12,11 @@ class DashBoard extends StatelessWidget {
     final DataBase database = Provider.of<DataBase>(context, listen: false);
     return Scaffold(
       drawer: AppDrawer(),
-
       backgroundColor: Color.fromRGBO(29, 38, 40, 1),
-      //acent-color - backgroundColor: Color.fromRGBO(0, 141, 82, 1),
-      //text-color - backgroundColor: Color.fromRGBO(255, 255, 250, 1),
       appBar: AppBar(
         backgroundColor: Color.fromRGBO(0, 141, 82, 1),
         centerTitle: true,
         title: Text('DashBoard'),
-        // leading: IconButton(
-        //   icon: Icon(
-        //     Icons.notes,
-        //   ),
-        //   onPressed: () => Scaffold.of(context).openDrawer(),
-        // ),
         actions: [
           IconButton(
             icon: Icon(

@@ -11,12 +11,9 @@ import 'package:provider/provider.dart';
 import 'onecard.dart';
 
 class DashBoardCards extends StatelessWidget {
-  // final DataBase? database;
-
-  // const DashBoardCards({Key? key, this.database}) : super(key: key);
   @override
   Widget build(BuildContext context) {
-    final DataBase database = Provider.of<DataBase>(context);
+    final DataBase database = Provider.of<DataBase>(context, listen: false);
     return Expanded(
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -33,7 +30,6 @@ class DashBoardCards extends StatelessWidget {
                 OneCard(
                   title: 'Announcements',
                   icon: FontAwesomeIcons.bell,
-                  count: 11,
                   onTap: () {
                     Navigator.pushNamed(context, AnnouncemetScreen.routeName);
                   },
@@ -41,7 +37,6 @@ class DashBoardCards extends StatelessWidget {
                 OneCard(
                   title: 'Attendence',
                   icon: FontAwesomeIcons.calendarCheck,
-                  count: 57,
                   onTap: () {
                     Navigator.pushNamed(context, AttendanceScreen.routeName,
                         arguments: database);
@@ -50,20 +45,7 @@ class DashBoardCards extends StatelessWidget {
                 OneCard(
                   title: 'Assignments',
                   icon: FontAwesomeIcons.clipboardList,
-                  count: 5,
                   onTap: () {
-                    //By using StateFull Widget
-
-                    // Navigator.push(
-                    //   context,
-                    //   MaterialPageRoute(
-                    //     builder: (context) => NewAssignmentScreen(
-                    //       database: database,
-                    //     ),
-                    //   ),
-                    // );
-
-                    // By using Future Builder and Stateless Widget
                     Navigator.pushNamed(context, AssignmentScreen.routeName,
                         arguments: database);
                   },
@@ -71,7 +53,6 @@ class DashBoardCards extends StatelessWidget {
                 OneCard(
                   title: 'Lectures',
                   icon: FontAwesomeIcons.book,
-                  count: 1,
                   onTap: () => Navigator.pushNamed(
                     context,
                     LectureSelection.routeName,

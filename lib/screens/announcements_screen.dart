@@ -36,9 +36,14 @@ class AnnouncemetScreen extends StatelessWidget {
             title: Text('Announcements'),
             actions: [
               CircleAvatar(
-                radius: 13.5,
-                backgroundColor: Colors.black45,
-                child: Text('$announcementLength'),
+                radius: 14.0,
+                backgroundColor: Colors.white,
+                child: Text(
+                  '$announcementLength',
+                  style: TextStyle(
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
               ),
               SizedBox(width: 20.0),
             ],

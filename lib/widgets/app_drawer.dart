@@ -2,7 +2,6 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:oriental_management/data/external_links_data.dart';
 
-import 'package:oriental_management/services/auth_service.dart';
 import 'package:oriental_management/services/database_service.dart';
 import 'package:oriental_management/widgets/display_image.dart';
 
@@ -30,7 +29,6 @@ class _AppDrawerState extends State<AppDrawer> {
 
   @override
   Widget build(BuildContext context) {
-    final auth = Provider.of<AuthServices>(context, listen: false);
     final database = Provider.of<DataBase>(context, listen: false);
     return StreamBuilder<QuerySnapshot>(
       stream: database.profileDataSnapshot,
@@ -63,124 +61,106 @@ class _AppDrawerState extends State<AppDrawer> {
                       ),
                     ],
                   ),
-                )
+                ),
+                _buildDrawerContents(),
               ],
             ),
           );
         } else {
           return Drawer(
             child: ListView.builder(
-                padding: EdgeInsets.zero,
-                itemCount: snapshot.data?.size,
-                itemBuilder: (context, index) {
-                  final name = snapshot.data?.docs[index]['name'];
-                  final enrollNo = snapshot.data?.docs[index]['enrollNo'];
-                  final branch = snapshot.data?.docs[index]['branch'];
-                  final section = snapshot.data?.docs[index]['section'];
-                  final sem = snapshot.data?.docs[index]['sem'];
-                  return Column(
-                    crossAxisAlignment: CrossAxisAlignment.stretch,
-                    children: [
-                      Container(
-                        color: Color.fromRGBO(0, 141, 82, 1),
-                        child: Column(
-                          mainAxisSize: MainAxisSize.min,
-                          children: [
-                            SizedBox(height: 50.0),
-                            DisplayImage(
-                              database: database,
-                            ),
-                            SizedBox(height: 17.0),
-                            Text(
-                              '$name',
-                              style: TextStyle(
-                                color: Colors.white,
-                                fontSize: 17.0,
-                                fontWeight: FontWeight.w600,
-                                letterSpacing: 1.1,
-                              ),
-                            ),
-                            SizedBox(height: 6.0),
-                            Text(
-                              '$enrollNo',
-                              style: TextStyle(
-                                color: Colors.white,
-                                fontSize: 16.0,
-                              ),
-                            ),
-                            SizedBox(height: 3.0),
-                            Text(
-                              '$branch $sem sem ($section)',
-                              style: TextStyle(
-                                color: Colors.white,
-                                fontSize: 16.0,
-                              ),
-                            ),
-                            SizedBox(height: 20.0),
-                          ],
-                        ),
-                      ),
-                      SizedBox(
-                        height: 300.0,
-                        child: ListView.builder(
-                          itemCount: externalLink.length,
-                          itemBuilder: (context, index) {
-                            return Center(
-                              child: ListTile(
-                                leading: Icon(
-                                  externalLink[index]['icon'],
-                                  color: Color.fromRGBO(0, 141, 82, 1),
-                                ),
-                                title: Text(
-                                  '${externalLink[index]['title']}',
-                                  style: TextStyle(
-                                    color: Colors.black,
-                                    fontSize: 16.0,
-                                  ),
-                                ),
-                                trailing: IconButton(
-                                  onPressed: () => _launchInBrowser(
-                                      '${externalLink[index]['link']}'),
-                                  icon: Icon(
-                                    Icons.open_in_new_rounded,
-                                    color: Color.fromRGBO(0, 141, 82, 1),
-                                  ),
-                                ),
-                              ),
-                            );
-                          },
-                        ),
-                      ),
-                      SizedBox(height: 150.0),
-                      Padding(
-                        padding: const EdgeInsets.symmetric(horizontal: 35.0),
-                        child: ElevatedButton(
-                          style: ButtonStyle(
-                            backgroundColor: MaterialStateProperty.all<Color>(
-                                Color.fromRGBO(255, 203, 0, 1)),
+              padding: EdgeInsets.zero,
+              itemCount: snapshot.data?.size,
+              itemBuilder: (context, index) {
+                final name = snapshot.data?.docs[index]['name'];
+                final enrollNo = snapshot.data?.docs[index]['enrollNo'];
+                final branch = snapshot.data?.docs[index]['branch'];
+                final section = snapshot.data?.docs[index]['section'];
+                final sem = snapshot.data?.docs[index]['sem'];
+                return Column(
+                  crossAxisAlignment: CrossAxisAlignment.stretch,
+                  children: [
+                    Container(
+                      color: Color.fromRGBO(0, 141, 82, 1),
+                      child: Column(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          SizedBox(height: 50.0),
+                          DisplayImage(
+                            database: database,
                           ),
-                          onPressed: () => auth.signOutUser(),
-                          child: Text(
-                            'Logout',
+                          SizedBox(height: 17.0),
+                          Text(
+                            '$name',
                             style: TextStyle(
-                              color: Colors.black,
+                              color: Colors.white,
+                              fontSize: 17.0,
+                              fontWeight: FontWeight.w600,
+                              letterSpacing: 1.1,
+                            ),
+                          ),
+                          SizedBox(height: 6.0),
+                          Text(
+                            '$enrollNo',
+                            style: TextStyle(
+                              color: Colors.white,
                               fontSize: 16.0,
                             ),
                           ),
-                        ),
+                          SizedBox(height: 3.0),
+                          Text(
+                            '$branch $sem sem ($section)',
+                            style: TextStyle(
+                              color: Colors.white,
+                              fontSize: 16.0,
+                            ),
+                          ),
+                          SizedBox(height: 20.0),
+                        ],
                       ),
-                    ],
-                  );
-                }),
+                    ),
+                    _buildDrawerContents(),
+                  ],
+                );
+              },
+            ),
           );
         }
-        //   } else {
-        //     return Center(
-        //       child: CircularProgressIndicator(),
-        //     );
-        //   }
-        // },
       },
+    );
+  }
+
+  SizedBox _buildDrawerContents() {
+    return SizedBox(
+      height: 500.0,
+      child: ListView.builder(
+        itemCount: externalLink.length,
+        itemBuilder: (context, index) {
+          return Center(
+            child: ListTile(
+              leading: Icon(
+                externalLink[index]['icon'],
+                color: Color.fromRGBO(0, 141, 82, 1),
+              ),
+              title: Text(
+                '${externalLink[index]['title']}',
+                style: TextStyle(
+                  color: Colors.black,
+                  fontSize: 16.0,
+                ),
+              ),
+              trailing: IconButton(
+                onPressed: () =>
+                    _launchInBrowser('${externalLink[index]['link']}'),
+                icon: Icon(
+                  Icons.open_in_new_rounded,
+                  color: Color.fromRGBO(0, 141, 82, 1),
+                ),
+              ),
+            ),
+          );
+        },
+      ),
     );
   }
 }

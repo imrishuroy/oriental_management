@@ -20,13 +20,12 @@ class NothingHere extends StatelessWidget {
       appBar: AppBar(
         actions: [
           CircleAvatar(
-            radius: 14.4,
-            backgroundColor: Colors.grey,
+            radius: 14.0,
+            backgroundColor: Colors.white,
             child: Text(
               '0',
               style: TextStyle(
-                color: Colors.white,
-                fontWeight: FontWeight.w600,
+                fontWeight: FontWeight.bold,
               ),
             ),
           ),
@@ -34,7 +33,9 @@ class NothingHere extends StatelessWidget {
         ],
         centerTitle: true,
         backgroundColor: Color.fromRGBO(0, 141, 82, 1),
-        title: Text('$appBarTitle'),
+        title: Text(
+          '$appBarTitle',
+        ),
       ),
     );
   }

@@ -65,13 +65,12 @@ class AssignmentScreen extends StatelessWidget {
                 appBar: AppBar(
                   actions: [
                     CircleAvatar(
-                      radius: 14.5,
-                      backgroundColor: Colors.black45,
+                      radius: 14.0,
+                      backgroundColor: Colors.white,
                       child: Text(
                         '$lenghtOfAssignments',
                         style: TextStyle(
-                          color: Colors.white,
-                          fontWeight: FontWeight.w600,
+                          fontWeight: FontWeight.bold,
                         ),
                       ),
                     ),

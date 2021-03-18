@@ -21,7 +21,7 @@ class HappeningScreen extends StatelessWidget {
               ),
             ),
           ),
-          SizedBox(width: 10.0),
+          SizedBox(width: 20.0),
         ],
       ),
       body: Column(

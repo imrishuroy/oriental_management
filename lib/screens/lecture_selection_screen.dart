@@ -20,6 +20,7 @@ class _LectureSelectionState extends State<LectureSelection> {
     return Scaffold(
       backgroundColor: Color.fromRGBO(29, 38, 40, 1),
       appBar: AppBar(
+        backgroundColor: Color.fromRGBO(0, 141, 82, 1),
         centerTitle: true,
         title: Text('Lectures'),
       ),

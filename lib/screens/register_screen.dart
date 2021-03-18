@@ -30,17 +30,6 @@ class _RegisterScreenState extends State<RegisterScreen> {
   void _registerUser(BuildContext ctx) async {
     final form = _formKey.currentState!;
     FocusScope.of(context).unfocus();
-    // if (_password != _password2) {
-    //   ScaffoldMessenger.of(context).showSnackBar(
-    //     SnackBar(
-    //       content: Text(
-    //         'Password does not match :(',
-    //         textAlign: TextAlign.center,
-    //       ),
-    //       backgroundColor: Colors.redAccent,
-    //     ),
-    //   );
-    // }
 
     if (form.validate()) {
       form.save();
@@ -50,9 +39,10 @@ class _RegisterScreenState extends State<RegisterScreen> {
         });
         await Provider.of<AuthServices>(context, listen: false)
             .createUserWithEmailAndPassword(
-          email: _email,
-          password: _password,
-        );
+              email: _email,
+              password: _password,
+            )
+            .then((value) => Navigator.pushNamed(context, '/'));
       } on FirebaseAuthException catch (error) {
         setState(() {
           _isLoading = false;
@@ -210,40 +200,6 @@ class _RegisterScreenState extends State<RegisterScreen> {
                         ),
                       ),
                     ),
-                    // Padding(
-                    //   padding: const EdgeInsets.symmetric(
-                    //     horizontal: 25.0,
-                    //     vertical: 15.0,
-                    //   ),
-                    //   child: TextFormField(
-                    //     key: ValueKey('password'),
-                    //     onSaved: (value) => _password2 = value,
-                    //     obscureText: _hidePassword,
-                    //     controller: _passwordController2,
-                    //     validator: (value) => value!.length < 6
-                    //         ? 'Password too short'
-                    //         : null,
-                    //     decoration: InputDecoration(
-                    //       // icon: Icon(Icons.lock),
-                    //       prefixIcon: Icon(Icons.lock),
-                    //       suffixIcon: IconButton(
-                    //         icon: Icon(
-                    //           _hidePassword
-                    //               ? Icons.visibility
-                    //               : Icons.visibility_off,
-                    //         ),
-                    //         onPressed: () {
-                    //           setState(() {
-                    //             _hidePassword = !_hidePassword;
-                    //           });
-                    //         },
-                    //       ),
-                    //       labelText: 'Password',
-                    //       hintText: 'Again enter your password',
-                    //       border: OutlineInputBorder(),
-                    //     ),
-                    //   ),
-                    // ),
                     if (_isLoading) CircularProgressIndicator(),
                     if (!_isLoading)
                       ElevatedButton(

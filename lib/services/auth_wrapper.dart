@@ -36,24 +36,7 @@ class AuthWrapper extends StatelessWidget {
           AppUser? user = snapshot.data;
           if (user == null) {
             return LoginScreen();
-            //   RegisterScreen();
-            // } else if (!user.isVerified) {
-            //   return EmailVerifyScreen();
           } else {
-            //  updateUserProfile(uid: user.uid, context: context);
-            //   if (checkAvailabledata(user.uid) == true) {
-            //  return   Navigator.push(
-            //       context,
-            //       MaterialPageRoute(
-            //         builder: (context) {
-            //           return Provider<DataBase>(
-            //               create: (context) => FireStoreDataBase(uid: user.uid),
-            //               child: AddProfileScreen());
-            //         },
-            //       ),
-            //     );
-            //   } else {
-
             return Provider<DataBase>(
               create: (context) => FireStoreDataBase(uid: user.uid),
               child: HomeScreen(

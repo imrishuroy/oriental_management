@@ -42,8 +42,6 @@ class MyApp extends StatelessWidget {
           HomeScreen.routeName: (ctx) => HomeScreen(),
           RegisterScreen.routeName: (ctx) => RegisterScreen(),
           ProfileScreen.routeName: (ctx) => ProfileScreen(),
-          AddProfileScreen.routeName: (ctx) => AddProfileScreen(),
-
           SuccusScreen.routeName: (ctx) => SuccusScreen(),
           AddProfileScreen.routeName: (ctx) => AddProfileScreen(),
           LeactureScreeen.routeName: (ctx) => LeactureScreeen(),
