@@ -1,5 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:flutter/services.dart';
 import 'package:oriental_management/models/app_user.dart';
+import 'package:google_sign_in/google_sign_in.dart';
 
 abstract class AuthServices {
   Stream<AppUser?> get onAuthChanges;
@@ -12,6 +14,7 @@ abstract class AuthServices {
     String? email,
     String? password,
   });
+  Future<AppUser?> signInWithGoogle();
   Future<void> signOutUser();
 }
 
@@ -78,7 +81,37 @@ class Auth implements AuthServices {
   }
 
   @override
+  Future<AppUser?> signInWithGoogle() async {
+    final googleSignIn = GoogleSignIn();
+    final googleUser = await googleSignIn.signIn();
+    if (googleUser != null) {
+      final googleAuth = await googleUser.authentication;
+      if (googleAuth.idToken != null) {
+        final userCredential =
+            await _auth.signInWithCredential(GoogleAuthProvider.credential(
+          idToken: googleAuth.idToken,
+          accessToken: googleAuth.accessToken,
+        ));
+        print(userCredential.user?.photoURL);
+        return _appUser(userCredential.user);
+      } else {
+        throw PlatformException(
+          code: 'ERROR_MISSING_GOOGLE_ID_TOKEN',
+          message: 'Missing Google ID Token',
+        );
+      }
+    } else {
+      throw PlatformException(
+        code: 'ERROR_ABORTED_BY_USER',
+        message: 'Sign in aborted by user',
+      );
+    }
+  }
+
+  @override
   Future<void> signOutUser() async {
+    final googleSignIn = GoogleSignIn();
+    await googleSignIn.signOut();
     await _auth.signOut();
   }
 }

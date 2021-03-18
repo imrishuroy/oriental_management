@@ -38,6 +38,7 @@ dependencies:
   firebase_messaging: any
 
 
+
   url_launcher: ^6.0.2
 
 dev_dependencies:
