@@ -2,6 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
 import 'package:oriental_management/screens/register_screen.dart';
+import 'package:oriental_management/services/auth_service.dart';
+import 'package:provider/provider.dart';
 
 class LoginScreen extends StatefulWidget {
   static String routeName = '/login-screen';
@@ -22,7 +24,7 @@ class _LoginScreenState extends State<LoginScreen> {
   bool _hidePassword = true;
   bool _isLoading = false;
 
-  void _login() async {
+  void _login(BuildContext ctx) async {
     final form = _formKey.currentState!;
     FocusScope.of(context).unfocus();
     if (form.validate()) {
@@ -32,12 +34,13 @@ class _LoginScreenState extends State<LoginScreen> {
           _isLoading = true;
         });
         // UserCredential userCredential =
-        await FirebaseAuth.instance.signInWithEmailAndPassword(
+        await Provider.of<AuthServices>(context, listen: false)
+            .signInWithEmailAndPassword(
           email: _email!,
           password: _password!,
         );
         // print(userCredential);
-        Navigator.pushReplacementNamed(context, '/');
+        // Navigator.pushReplacementNamed(context, '/');
       } on FirebaseAuthException catch (error) {
         setState(() {
           _isLoading = false;
@@ -181,7 +184,7 @@ class _LoginScreenState extends State<LoginScreen> {
                       ElevatedButton(
                         //  color: Color.fromRGBO(0, 141, 82, 1),
                         onPressed: () {
-                          _login();
+                          _login(context);
                         },
                         child: Padding(
                           padding: const EdgeInsets.all(8.0),

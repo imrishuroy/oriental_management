@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class OneAssignmentTile extends StatelessWidget {
   final String? subCode;
@@ -14,12 +15,25 @@ class OneAssignmentTile extends StatelessWidget {
     this.downloadLink,
   }) : super(key: key);
 
+  Future<void> _launchInBrowser(String url) async {
+    if (await canLaunch(url)) {
+      await launch(
+        url,
+        forceSafariVC: false,
+        forceWebView: false,
+        headers: <String, String>{'my_header_key': 'my_header_value'},
+      );
+    } else {
+      throw 'Could not launch $url';
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     return Padding(
       padding: const EdgeInsets.symmetric(
         horizontal: 10.0,
-        vertical: 5.0,
+        // vertical: 5.0,
       ),
       child: Card(
         child: ListTile(
@@ -48,7 +62,7 @@ class OneAssignmentTile extends StatelessWidget {
           trailing: Padding(
             padding: const EdgeInsets.only(right: 10.0),
             child: ElevatedButton(
-              onPressed: () {},
+              onPressed: () => _launchInBrowser(downloadLink!),
               child: Text(
                 'Download',
                 style: TextStyle(

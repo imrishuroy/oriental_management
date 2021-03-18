@@ -13,13 +13,23 @@ const List externalLink = [
     'link': 'https://www.rgpv.ac.in',
   },
   {
-    'title': 'SBI Online',
+    'title': 'SBI Collect',
     'icon': Icons.payment,
-    'link': 'https://www.onlinesbi.com',
+    'link': 'https://www.onlinesbi.com/sbicollect/icollecthome.htm',
   },
   {
-    'title': 'About Us',
-    'icon': Icons.group,
-    'link': '',
-  }
+    'title': 'Collage Hepline',
+    'icon': Icons.call,
+    'link': 'https://www.oistbpl.com/contact.php',
+  },
+  {
+    'title': 'Results',
+    'icon': FontAwesomeIcons.chartLine,
+    'link': 'http://result.rgpv.ac.in/Result/ProgramSelect.aspx',
+  },
+  // {
+  //   'title': 'About Us',
+  //   'icon': Icons.group,
+  //   'link': '',
+  // }
 ];

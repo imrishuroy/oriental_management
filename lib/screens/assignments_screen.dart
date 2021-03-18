@@ -19,8 +19,8 @@ class AssignmentScreen extends StatelessWidget {
       future: database?.currentUserData,
       builder: (context, snapshot) {
         if (snapshot.hasError) {
-          return Center(
-            child: Text('Something went wrong...try Again!'),
+          return NothingHere(
+            appBarTitle: 'Assignments',
           );
         }
         if (snapshot.connectionState == ConnectionState.waiting) {
@@ -54,7 +54,7 @@ class AssignmentScreen extends StatelessWidget {
 
               final int? lenghtOfAssignments =
                   assignmentSnapshot.data?.data()?['assignments']?.length;
-              print('Assignment Length $lenghtOfAssignments');
+              // print('Assignment Length $lenghtOfAssignments');
               if (lenghtOfAssignments == null) {
                 return NothingHere(
                   appBarTitle: 'Announcements',
@@ -65,8 +65,8 @@ class AssignmentScreen extends StatelessWidget {
                 appBar: AppBar(
                   actions: [
                     CircleAvatar(
-                      radius: 14.4,
-                      backgroundColor: Colors.grey,
+                      radius: 14.5,
+                      backgroundColor: Colors.black45,
                       child: Text(
                         '$lenghtOfAssignments',
                         style: TextStyle(
@@ -91,6 +91,8 @@ class AssignmentScreen extends StatelessWidget {
                         ?.data()?['assignments'][index]['subName'];
                     final String? assignmentName = assignmentSnapshot.data
                         ?.data()?['assignments'][index]['assignmentName'];
+                    final String? downloadLink = assignmentSnapshot.data
+                        ?.data()?['assignments'][index]['link'];
                     return Column(
                       children: [
                         SizedBox(height: 12.0),
@@ -98,6 +100,7 @@ class AssignmentScreen extends StatelessWidget {
                           subCode: subCode,
                           subName: subName,
                           assignmentName: assignmentName,
+                          downloadLink: downloadLink,
                         ),
                         // SizedBox(height: 7.0),
                       ],
@@ -108,7 +111,9 @@ class AssignmentScreen extends StatelessWidget {
             },
           );
         }
-        return NothingHere();
+        return NothingHere(
+          appBarTitle: 'Assignments',
+        );
       },
     );
   }
