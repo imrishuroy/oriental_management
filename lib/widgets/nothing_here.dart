@@ -13,7 +13,10 @@ class NothingHere extends StatelessWidget {
       body: Center(
         child: Text(
           'Nothing Here :(',
-          style: TextStyle(fontSize: 20.0, color: Colors.white),
+          style: TextStyle(
+            fontSize: 20.0,
+            color: Colors.white,
+          ),
         ),
       ),
       backgroundColor: Color.fromRGBO(29, 38, 40, 1),

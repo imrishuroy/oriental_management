@@ -4,19 +4,22 @@ class BuildOneLeactureDay extends StatelessWidget {
   // final String? day;
   // final String? lectureDate;
   final List? lectureList;
+  final String? day;
 
   const BuildOneLeactureDay({
     Key? key,
     // this.day,
     // this.lectureDate,
     this.lectureList,
+    this.day,
   }) : super(key: key);
   @override
   Widget build(BuildContext context) {
     // final String? day = '${lectureList?[0]['day']}' ?? null;
     // final String? date = '${lectureList?[0]['date']}' ?? null;
-    final String? day = lectureList?[0]['day'] ?? null;
-    final String? date = lectureList?[0]['date'] ?? null;
+    // final String? day = lectureList?[0]['day'] ?? null;
+
+    // final String? date = lectureList?[0]['date'] ?? null;
     return Column(
       children: [
         Container(
@@ -36,15 +39,15 @@ class BuildOneLeactureDay extends StatelessWidget {
                     )
                   : Text('-'),
               SizedBox(width: 4.0),
-              date != null
-                  ? Text(
-                      '$date',
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontWeight: FontWeight.w600,
-                      ),
-                    )
-                  : Text('-'),
+              // date != null
+              //     ? Text(
+              //         '$date',
+              //         style: TextStyle(
+              //           color: Colors.white,
+              //           fontWeight: FontWeight.w600,
+              //         ),
+              //       )
+              //     : Text('-'),
             ],
           ),
         ),
@@ -109,20 +112,27 @@ class OneLeactureCard extends StatelessWidget {
                   ),
                 ),
                 SizedBox(height: 10.0),
-                Text('$subCode', style: TextStyle(fontSize: 16.0)),
+                Text(
+                  '$subCode',
+                  style: TextStyle(fontSize: 16.0),
+                  overflow: TextOverflow.ellipsis,
+                ),
                 SizedBox(height: 5.0),
                 Text(
-                  subName!,
+                  '$subName',
                   style: TextStyle(fontWeight: FontWeight.bold),
+                  overflow: TextOverflow.ellipsis,
                 ),
                 SizedBox(height: 8.0),
                 Text(
                   '$profName',
                   style: TextStyle(
                     color: Colors.orange,
-                    fontWeight: FontWeight.w600,
+                    fontSize: 15.0,
+                    fontWeight: FontWeight.bold,
                     letterSpacing: 1.1,
                   ),
+                  overflow: TextOverflow.ellipsis,
                 )
               ],
             ),

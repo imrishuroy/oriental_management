@@ -11,7 +11,7 @@ class LectureSelection extends StatefulWidget {
 }
 
 class _LectureSelectionState extends State<LectureSelection> {
-  String branchValue = 'CS';
+  String branchValue = 'CSE';
   String semValue = '2nd';
   Section? _section = Section.a;
 
@@ -61,8 +61,14 @@ class _LectureSelectionState extends State<LectureSelection> {
                             //   print(branchValue);
                           });
                         },
-                        items: <String>['CS', 'IT', 'ECE', 'CIVIL']
-                            .map<DropdownMenuItem<String>>(
+                        items: <String>[
+                          'CSE',
+                          'IT',
+                          'ECE',
+                          'EE',
+                          'CE',
+                          'ME',
+                        ].map<DropdownMenuItem<String>>(
                           (String value) {
                             return DropdownMenuItem<String>(
                               value: value,
