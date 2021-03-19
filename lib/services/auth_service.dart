@@ -16,6 +16,7 @@ abstract class AuthServices {
   });
   Future<AppUser?> signInWithGoogle();
   Future<void> signOutUser();
+  Future<void>? forgotPassword({String? email});
 }
 
 class Auth implements AuthServices {
@@ -113,5 +114,17 @@ class Auth implements AuthServices {
     final googleSignIn = GoogleSignIn();
     await googleSignIn.signOut();
     await _auth.signOut();
+  }
+
+  @override
+  Future<void>? forgotPassword({String? email}) async {
+    try {
+      await _auth.sendPasswordResetEmail(email: email!);
+    } catch (error) {
+      throw FirebaseAuthException(
+        code: 'user-not-found',
+        message: 'User not found',
+      );
+    }
   }
 }

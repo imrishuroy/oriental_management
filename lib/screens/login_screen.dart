@@ -1,6 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:oriental_management/screens/forgot_password_screen.dart';
 import 'package:oriental_management/screens/register_screen.dart';
 import 'package:oriental_management/services/auth_service.dart';
 import 'package:oriental_management/widgets/greeting_widget.dart';
@@ -196,7 +197,10 @@ class _LoginScreenState extends State<LoginScreen> {
                             alignment: Alignment(1.0, 0.0),
                             padding: EdgeInsets.only(top: 15.0, left: 20.0),
                             child: InkWell(
-                              onTap: () {},
+                              onTap: () => Navigator.pushNamed(
+                                context,
+                                ForgotPaswordScreen.routeName,
+                              ),
                               child: Text(
                                 'Forgot Password',
                                 style: TextStyle(
