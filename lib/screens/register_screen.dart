@@ -1,11 +1,10 @@
+import 'dart:io';
+
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
-
 import 'package:oriental_management/services/auth_service.dart';
-
-import 'dart:io';
-
+import 'package:oriental_management/widgets/greeting_widget.dart';
 import 'package:provider/provider.dart';
 
 class RegisterScreen extends StatefulWidget {
@@ -16,7 +15,6 @@ class RegisterScreen extends StatefulWidget {
 
 class _RegisterScreenState extends State<RegisterScreen> {
   final _formKey = GlobalKey<FormState>();
-  final _scaffoldKey = GlobalKey<ScaffoldState>();
 
   TextEditingController _emailController = TextEditingController();
   TextEditingController _passwordController = TextEditingController();
@@ -26,6 +24,19 @@ class _RegisterScreenState extends State<RegisterScreen> {
 
   bool _hidePassword = true;
   bool _isLoading = false;
+
+  void showSnackBar({BuildContext? context, String? title}) {
+    ScaffoldMessenger.of(context!).showSnackBar(
+      SnackBar(
+        duration: Duration(seconds: 3),
+        content: Text(
+          '$title',
+          textAlign: TextAlign.center,
+        ),
+        backgroundColor: Colors.redAccent,
+      ),
+    );
+  }
 
   void _registerUser(BuildContext ctx) async {
     final form = _formKey.currentState!;
@@ -42,7 +53,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
               email: _email,
               password: _password,
             )
-            .then((value) => Navigator.pushNamed(context, '/'));
+            .then((value) => Navigator.pushReplacementNamed(context, '/'));
       } on FirebaseAuthException catch (error) {
         setState(() {
           _isLoading = false;
@@ -51,56 +62,44 @@ class _RegisterScreenState extends State<RegisterScreen> {
 
         if (error.code == 'email-already-in-use') {
           //   print('The account already exists for that email.');
-          ScaffoldMessenger.of(context).showSnackBar(
-            SnackBar(
-              content: Text(
-                'Email already in use',
-                textAlign: TextAlign.center,
-              ),
-              backgroundColor: Colors.redAccent,
-            ),
-          );
+          showSnackBar(context: context, title: 'Email already in use');
         }
         if (error.code == 'invalid-email') {
-          ScaffoldMessenger.of(context).showSnackBar(
-            SnackBar(
-              content: Text(
-                'Invalid Email',
-                textAlign: TextAlign.center,
-              ),
-              backgroundColor: Colors.redAccent,
-            ),
-          );
+          showSnackBar(context: context, title: 'Invalid Email');
         }
       } on SocketException catch (error) {
         print(error);
         setState(() {
           _isLoading = false;
         });
-        ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(
-            content: Text(
-              'Something went wrong, try again!',
-              textAlign: TextAlign.center,
-            ),
-            backgroundColor: Colors.redAccent,
-          ),
-        );
+        showSnackBar(
+            context: context, title: 'Something went wrong, try again!');
       } catch (error) {
         setState(() {
           _isLoading = false;
         });
         print('Register Error : $error');
-        ScaffoldMessenger.of(context).showSnackBar(
-          SnackBar(
-            content: Text(
-              'An unexpected error occured',
-              textAlign: TextAlign.center,
-            ),
-            backgroundColor: Colors.redAccent,
-          ),
-        );
+        showSnackBar(
+            context: context, title: 'Something went wrong, Try Again,');
       }
+    }
+  }
+
+  Future googleSignIn(BuildContext context) async {
+    final AuthServices auth = Provider.of(context, listen: false);
+    try {
+      setState(() {
+        _isLoading = true;
+      });
+      await auth
+          .signInWithGoogle()
+          .then((value) => Navigator.pushReplacementNamed(context, '/'));
+    } on PlatformException catch (error) {
+      setState(() {
+        _isLoading = false;
+      });
+      print(error);
+      showSnackBar(context: context, title: error.message);
     }
   }
 
@@ -108,150 +107,192 @@ class _RegisterScreenState extends State<RegisterScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Color.fromRGBO(29, 38, 40, 1),
-      key: _scaffoldKey,
-      appBar: AppBar(
-        centerTitle: true,
-        backgroundColor: Color.fromRGBO(0, 141, 82, 1),
-        title: Text('Register User'),
-      ),
-      body: Center(
-        child: Card(
-          margin: EdgeInsets.all(20.0),
-          elevation: 10.0,
-          //   color: Colors.yellow,
-          child: SingleChildScrollView(
-            child: Padding(
-              padding: const EdgeInsets.symmetric(vertical: 15),
+      body: _isLoading == true
+          ? Padding(
+              padding: const EdgeInsets.only(top: 25.0),
+              child: Center(
+                child: CircularProgressIndicator(),
+              ),
+            )
+          : SingleChildScrollView(
               child: Form(
                 key: _formKey,
                 child: Column(
-                  mainAxisSize: MainAxisSize.min,
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    SizedBox(height: 7.0),
+                  children: <Widget>[
+                    greetingWidget(),
                     Container(
-                      height: 65,
-                      width: 65,
-                      child: Image.asset(
-                        'assets/register-user.png',
-                        fit: BoxFit.cover,
+                      padding:
+                          EdgeInsets.only(top: 35.0, left: 20.0, right: 20.0),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.stretch,
+                        children: [
+                          TextFormField(
+                            style:
+                                TextStyle(color: Colors.white, fontSize: 16.0),
+                            key: ValueKey('email'),
+                            onSaved: (value) => _email = value,
+                            keyboardType: TextInputType.emailAddress,
+                            controller: _emailController,
+                            validator: (value) =>
+                                !(value!.contains('@gmail.com'))
+                                    ? 'Invalid Email'
+                                    : null,
+                            decoration: InputDecoration(
+                              enabledBorder: OutlineInputBorder(
+                                borderSide: BorderSide(
+                                  color: Colors.green,
+                                  width: 2.0,
+                                ),
+                              ),
+                              //icon: Icon(Icons.mail),
+                              prefixIcon: Icon(
+                                Icons.mail,
+                                color: Colors.green,
+                              ),
+                              labelText: 'EMAIL',
+                              labelStyle: TextStyle(color: Colors.green),
+                              hintText: 'Enter Your Email',
+                              border: OutlineInputBorder(),
+                            ),
+                          ),
+                          SizedBox(height: 25.0),
+                          TextFormField(
+                            style:
+                                TextStyle(color: Colors.white, fontSize: 16.0),
+                            key: ValueKey('password'),
+                            onSaved: (value) => _password = value,
+                            obscureText: _hidePassword,
+                            controller: _passwordController,
+                            validator: (value) =>
+                                value!.length < 6 ? 'Password too short' : null,
+                            decoration: InputDecoration(
+                              enabledBorder: OutlineInputBorder(
+                                borderSide: BorderSide(
+                                  color: Colors.green,
+                                  width: 2.0,
+                                ),
+                              ),
+                              labelStyle: TextStyle(color: Colors.green),
+                              prefixIcon: Icon(
+                                Icons.lock,
+                                color: Colors.green,
+                              ),
+                              suffixIcon: IconButton(
+                                color: Colors.green,
+                                icon: Icon(
+                                  _hidePassword
+                                      ? Icons.visibility
+                                      : Icons.visibility_off,
+                                ),
+                                onPressed: () {
+                                  setState(() {
+                                    _hidePassword = !_hidePassword;
+                                  });
+                                },
+                              ),
+                              labelText: 'PASSWORD',
+                              hintStyle: TextStyle(color: Colors.white),
+                              hintText: 'Enter Your Password',
+                              border: OutlineInputBorder(),
+                            ),
+                          ),
+                          SizedBox(height: 35.0),
+                          ElevatedButton(
+                            onPressed: () => _registerUser(context),
+                            child: Padding(
+                              padding: const EdgeInsets.all(11.5),
+                              child: Text(
+                                'Register',
+                                style: TextStyle(
+                                  fontSize: 16.5,
+                                  letterSpacing: 1.0,
+                                  fontWeight: FontWeight.bold,
+                                  fontFamily: 'Montserrat',
+                                ),
+                              ),
+                            ),
+                          ),
+                        ],
                       ),
                     ),
-                    SizedBox(height: 10.0),
+                    SizedBox(height: 20.0),
                     Text(
-                      'Welcome, Register here !',
+                      'OR',
                       style: TextStyle(
-                        fontSize: 16.0,
+                        color: Colors.white,
                       ),
+                      textAlign: TextAlign.center,
                     ),
-                    SizedBox(height: 5.0),
+                    SizedBox(height: 20.0),
                     Padding(
-                      padding: const EdgeInsets.symmetric(
-                        horizontal: 25.0,
-                        vertical: 15.0,
-                      ),
-                      child: TextFormField(
-                        key: ValueKey('email'),
-                        onSaved: (value) => _email = value,
-                        keyboardType: TextInputType.emailAddress,
-                        controller: _emailController,
-                        validator: (value) => !(value!.contains('@gmail.com'))
-                            ? 'Invalid Email'
-                            : null,
-                        decoration: InputDecoration(
-                          //icon: Icon(Icons.mail),
-                          prefixIcon: Icon(Icons.mail),
-                          labelText: 'Email',
-                          hintText: 'Enter your email',
-                          border: OutlineInputBorder(),
+                      padding: const EdgeInsets.symmetric(horizontal: 20.0),
+                      child: ElevatedButton(
+                        style: ElevatedButton.styleFrom(
+                          primary: Colors.white, // background
+                          onPrimary: Colors.white, // foreground
                         ),
-                      ),
-                    ),
-                    Padding(
-                      padding: const EdgeInsets.symmetric(
-                        horizontal: 25.0,
-                        vertical: 15.0,
-                      ),
-                      child: TextFormField(
-                        key: ValueKey('password'),
-                        onSaved: (value) => _password = value,
-                        obscureText: _hidePassword,
-                        controller: _passwordController,
-                        validator: (value) =>
-                            value!.length < 6 ? 'Password too short' : null,
-                        decoration: InputDecoration(
-                          // icon: Icon(Icons.lock),
-                          prefixIcon: Icon(Icons.lock),
-                          suffixIcon: IconButton(
-                            icon: Icon(
-                              _hidePassword
-                                  ? Icons.visibility
-                                  : Icons.visibility_off,
-                            ),
-                            onPressed: () {
-                              setState(() {
-                                _hidePassword = !_hidePassword;
-                              });
-                            },
-                          ),
-                          labelText: 'Password',
-                          hintText: 'Enter your password',
-                          border: OutlineInputBorder(),
-                        ),
-                      ),
-                    ),
-                    if (_isLoading) CircularProgressIndicator(),
-                    if (!_isLoading)
-                      ElevatedButton(
-                        style: ButtonStyle(
-                            // backgroundColor:
-                            //     MaterialStateProperty.all<Color>(
-                            //   Color.fromRGBO(0, 141, 82, 1),
-                            // ),
-                            ),
-                        onPressed: () {
-                          _registerUser(context);
-                        },
+                        onPressed: () => googleSignIn(context),
                         child: Padding(
-                          padding: const EdgeInsets.all(8.0),
+                          padding: const EdgeInsets.all(7.5),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Center(
+                                child: Container(
+                                  height: 30.0,
+                                  width: 30.0,
+                                  child: Image.asset('assets/google.png'),
+                                ),
+                              ),
+                              SizedBox(width: 10.0),
+                              Center(
+                                child: Text(
+                                  'Register with Google',
+                                  style: TextStyle(
+                                    fontWeight: FontWeight.bold,
+                                    color: Colors.blue,
+                                    fontSize: 16.0,
+                                    letterSpacing: 1.0,
+                                    fontFamily: 'Montserrat',
+                                  ),
+                                ),
+                              )
+                            ],
+                          ),
+                        ),
+                      ),
+                    ),
+                    SizedBox(height: 25.0),
+                    Row(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        Text(
+                          'Have an Account?',
+                          style: TextStyle(
+                            color: Colors.white,
+                            fontSize: 15.0,
+                          ),
+                        ),
+                        SizedBox(width: 5.0),
+                        GestureDetector(
+                          onTap: () => Navigator.of(context).pop(),
                           child: Text(
-                            'Register',
+                            'Login',
                             style: TextStyle(
-                              color: Colors.white,
-                              fontSize: 17.0,
-                              letterSpacing: 1.1,
+                              color: Colors.green,
+                              fontSize: 16.0,
+                              letterSpacing: 1.0,
                               fontWeight: FontWeight.w600,
+                              decoration: TextDecoration.underline,
                             ),
                           ),
-                        ),
-                      ),
-                    if (!_isLoading)
-                      TextButton(
-                        onPressed: () {
-                          Navigator.of(context).pop();
-                        },
-                        child: Text(
-                          'Have an account? Login',
-                          style: TextStyle(
-                            fontSize: 15.5,
-                          ),
-                        ),
-                      ),
+                        )
+                      ],
+                    )
                   ],
                 ),
               ),
             ),
-            // ),
-          ),
-        ),
-        //  ],
-      ),
     );
   }
 }
-
-// E/flutter (30026): There are several ways to avoid this problem. The simplest is to use a Builder to get a context that is "under" the Scaffold. For an example of this, please see the documentation for Scaffold.of():
-// E/flutter (30026):   https://api.flutter.dev/flutter/material/Scaffold/of.html
-// E/flutter (30026): A more efficient solution is to split your build function into several widgets. This introduces a new context from which you can obtain the Scaffold. In this solution, you would have an outer widget that creates the Scaffold populated by instances of your new inner widgets, and then in these inner widgets you would use Scaffold.of().
-// E/flutter (30026): A less elegant but more expedient solution is assign a GlobalKey to the Scaffold, then use the key.currentState property to obtain the ScaffoldState rather than using the Scaffold.of() function.
-// E/flutter (30026): The context used was:

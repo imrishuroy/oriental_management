@@ -103,7 +103,7 @@ class Auth implements AuthServices {
     } else {
       throw PlatformException(
         code: 'ERROR_ABORTED_BY_USER',
-        message: 'Sign in aborted by user',
+        message: 'Sign In aborted',
       );
     }
   }

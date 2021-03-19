@@ -21,13 +21,14 @@ class AuthWrapper extends StatelessWidget {
     } else {
       return false;
     }
-    // return false;
-    // bool availableData = !doc.exists;
-    // return availableData;
   }
 
   @override
   Widget build(BuildContext context) {
+    // User? user = FirebaseAuth.instance.currentUser;
+    // final authF = FirebaseAuth.instance;
+    // authF.sendPasswordResetEmail(email: email)
+
     final auth = Provider.of<AuthServices>(context);
     return StreamBuilder<AppUser?>(
       stream: auth.onAuthChanges,
@@ -44,42 +45,6 @@ class AuthWrapper extends StatelessWidget {
               ),
             );
           }
-
-          // MultiProvider(
-          //   providers: [
-          //     Provider<DataBase>(
-          //       create: (context) => FireStoreDataBase(uid: user.uid),
-          //     ),
-          //     //  Provider<DataBase>(create: (context) => AddProfileScreen(),)
-          //   ],
-          //   child: HomeScreen(
-          //     uid: user.uid,
-          //   ),
-          // );
-
-          // Provider<DataBase>(
-          //   create: (context) => FireStoreDataBase(uid: user.uid),
-          //   child: HomeScreen(
-          //     uid: user.uid,
-          //   ),
-          // child: AddProfileScreen(
-          //   uid: user.uid,
-          // ),
-          // child: AddProfileScreen(
-          //   uid: user.uid,
-          // ),
-
-          // firebaseAuth.currentUser.reload();
-          // if (firebaseAuth.currentUser.emailVerified) {
-          //   return Provider<DataBase>(
-          //     create: (context) => FireStoreDataBase(uid: user.uid),
-          //     child: HomeScreen(),
-          //     // child: EmailVerifyScreen(),
-          //   );
-          // } else {
-          //   return EmailVerifyScreen();
-          // }
-          //}
         } else {
           return Scaffold(
             body: Center(

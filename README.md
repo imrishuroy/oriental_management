@@ -112,3 +112,37 @@ SHA256: E8:FC:2D:7B:6D:AE:4F:D1:F9:F5:A3:25:DF:20:E0:29:2B:A6:0F:5E:81:C1:78:02:
   }
   ```
  -->
+
+<!-- 
+ TextField(
+                    decoration: InputDecoration(
+                      labelText: 'EMAIL',
+                      labelStyle: TextStyle(
+                        //fontFamily: 'Montserrat',
+                        fontWeight: FontWeight.bold,
+                        color: Colors.grey,
+                      ),
+                      focusedBorder: UnderlineInputBorder(
+                        borderSide: BorderSide(
+                          color: Colors.green,
+                        ),
+                      ),
+                    ),
+                  ),
+                  SizedBox(height: 20.0),
+                  TextField(
+                    decoration: InputDecoration(
+                      labelText: 'PASSWORD',
+                      labelStyle: TextStyle(
+                        //  fontFamily: 'Montserrat',
+                        fontWeight: FontWeight.bold,
+                        color: Colors.grey,
+                      ),
+                      focusedBorder: UnderlineInputBorder(
+                        borderSide: BorderSide(
+                          color: Colors.green,
+                        ),
+                      ),
+                    ),
+                    obscureText: true,
+                  ), -->
