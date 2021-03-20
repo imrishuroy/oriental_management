@@ -31,7 +31,8 @@ class DashBoardCards extends StatelessWidget {
                   title: 'Announcements',
                   icon: FontAwesomeIcons.bell,
                   onTap: () {
-                    Navigator.pushNamed(context, AnnouncemetScreen.routeName);
+                    Navigator.pushNamed(context, AnnouncemetScreen.routeName,
+                        arguments: database);
                   },
                 ),
                 OneCard(

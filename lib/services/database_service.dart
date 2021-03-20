@@ -24,12 +24,18 @@ abstract class DataBase {
     String? sem,
     String? section,
   });
+  Stream<DocumentSnapshot?> announcementStream({
+    String? branch,
+    String? sem,
+  });
 }
 
 class FireStoreDataBase implements DataBase {
   final usersRef = FirebaseFirestore.instance.collection('users');
   final CollectionReference assignmentsRef =
       FirebaseFirestore.instance.collection('assignments');
+  final CollectionReference announcementsRef =
+      FirebaseFirestore.instance.collection('announcements');
 
   final String? uid;
 
@@ -101,5 +107,13 @@ class FireStoreDataBase implements DataBase {
     String? section,
   }) {
     return assignmentsRef.doc(branch).collection(sem!).doc(section).snapshots();
+  }
+
+  @override
+  Stream<DocumentSnapshot?> announcementStream({
+    String? branch,
+    String? sem,
+  }) {
+    return announcementsRef.doc(branch).collection(sem!).doc('A&B').snapshots();
   }
 }

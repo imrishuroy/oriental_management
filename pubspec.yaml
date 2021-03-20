@@ -23,19 +23,20 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
+  carousel_slider: ^4.0.0-nullsafety.0
   cloud_firestore: ^1.0.0
   cupertino_icons: ^1.0.2
   firebase_auth: ^1.0.0
   firebase_core: ^1.0.0
+  firebase_messaging: any
   firebase_storage: ^8.0.0
   fl_chart: ^0.20.1
   font_awesome_flutter: ^9.0.0-nullsafety
+  google_fonts: ^2.0.0
   google_sign_in: ^5.0.0
   image_picker: ^0.7.2
   intl: ^0.17.0
   provider: ^5.0.0
-  carousel_slider: ^4.0.0-nullsafety.0
-  firebase_messaging: any
   url_launcher: ^6.0.2
 
 dev_dependencies:
@@ -68,7 +69,6 @@ flutter:
     - family: Montserrat
       fonts:
         - asset: assets/fonts/Montserrat-Regular.ttf
-      
   #   - family: Trajan Pro
   #     fonts:
   #       - asset: fonts/TrajanPro.ttf
