@@ -105,6 +105,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
 
   @override
   Widget build(BuildContext context) {
+    final height = MediaQuery.of(context).size.height;
     return Scaffold(
       backgroundColor: Color.fromRGBO(29, 38, 40, 1),
       body: _isLoading == true
@@ -119,7 +120,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                 key: _formKey,
                 child: Column(
                   children: <Widget>[
-                    greetingWidget(),
+                    greetingWidget(height),
                     Container(
                       padding:
                           EdgeInsets.only(top: 35.0, left: 20.0, right: 20.0),
