@@ -5,7 +5,7 @@ class NothingHere extends StatelessWidget {
 
   const NothingHere({
     Key? key,
-    this.appBarTitle: 'Assignments',
+    this.appBarTitle,
   }) : super(key: key);
   @override
   Widget build(BuildContext context) {

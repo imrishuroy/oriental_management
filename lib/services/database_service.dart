@@ -14,6 +14,7 @@ abstract class DataBase {
     String? mobileNo,
     File? image,
     int? attendance,
+    String? branch,
   });
 
   String? get id;
@@ -28,6 +29,11 @@ abstract class DataBase {
     String? branch,
     String? sem,
   });
+  Stream<DocumentSnapshot?> attendaceStream({
+    String? branch,
+    String? sem,
+    String? enrollNo,
+  });
 }
 
 class FireStoreDataBase implements DataBase {
@@ -36,6 +42,8 @@ class FireStoreDataBase implements DataBase {
       FirebaseFirestore.instance.collection('assignments');
   final CollectionReference announcementsRef =
       FirebaseFirestore.instance.collection('announcements');
+  final CollectionReference attendanceRef =
+      FirebaseFirestore.instance.collection('attendance');
 
   final String? uid;
 
@@ -59,6 +67,7 @@ class FireStoreDataBase implements DataBase {
       String? mobileNo,
       File? image,
       String? section,
+      String? branch,
       int? attendance
       //String? documentId,
       // adding new documents
@@ -87,7 +96,8 @@ class FireStoreDataBase implements DataBase {
         'mother_name': motherName,
         'mobile_no': mobileNo,
         'id': uid,
-        'attendance': 0
+        'attendance': 0,
+        'branch': branch,
       },
     );
   }
@@ -107,6 +117,15 @@ class FireStoreDataBase implements DataBase {
     String? section,
   }) {
     return assignmentsRef.doc(branch).collection(sem!).doc(section).snapshots();
+  }
+
+  @override
+  Stream<DocumentSnapshot?> attendaceStream({
+    String? branch,
+    String? sem,
+    String? enrollNo,
+  }) {
+    return attendanceRef.doc(branch).collection(sem!).doc(enrollNo).snapshots();
   }
 
   @override

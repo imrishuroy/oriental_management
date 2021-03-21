@@ -8,8 +8,6 @@ import 'package:oriental_management/widgets/subject_attendance_tile.dart';
 
 class AttendanceScreen extends StatelessWidget {
   static String routeName = '/attendance-screen';
-  final CollectionReference attendanceRef =
-      FirebaseFirestore.instance.collection('attendance');
 
   @override
   Widget build(BuildContext context) {
@@ -36,13 +34,13 @@ class AttendanceScreen extends StatelessWidget {
         if (snapshot.data?.exists == true) {
           // checks weather user has added their profile
           AppUser user = AppUser.fromDocument(snapshot.data!);
-          //return Text('${user.branch}');
-          return StreamBuilder<DocumentSnapshot>(
-            stream: attendanceRef
-                .doc('${user.branch}')
-                .collection('${user.sem}')
-                .doc('${user.enrollNo}')
-                .snapshots(),
+
+          return StreamBuilder<DocumentSnapshot?>(
+            stream: database?.attendaceStream(
+              branch: user.branch,
+              sem: user.sem,
+              enrollNo: user.enrollNo,
+            ),
             builder: (BuildContext context, attendanceSnapshot) {
               if (attendanceSnapshot.connectionState ==
                   ConnectionState.waiting) {
@@ -55,11 +53,16 @@ class AttendanceScreen extends StatelessWidget {
               }
               final Map? data = attendanceSnapshot.data?.data();
               final List? attendanceList = data?['attendance'];
+              final totalAttendance = data?['totalAttendance'];
+              final lastUpdated = data?['lastUpdated'];
               // print(attendance);
               final int? lenghtOfAttendance =
                   attendanceSnapshot.data?.data()?['attendance']?.length;
-              print('Assignment Length $lenghtOfAttendance');
-              if (lenghtOfAttendance == null) {
+              //  print('Assignment Length $lenghtOfAttendance');
+              if (lenghtOfAttendance == null ||
+                  lenghtOfAttendance == 0 ||
+                  totalAttendance == null ||
+                  lastUpdated == '') {
                 return NothingHere(
                   appBarTitle: 'Attendance',
                 );
@@ -138,15 +141,6 @@ class AttendanceScreen extends StatelessWidget {
                     ],
                   ),
                 ),
-                //  ListView.builder(
-                //     itemCount: lenghtOfAttendance,
-                //     itemBuilder: (context, index) {
-                //       return Column(
-                //         children: [
-
-                //         ],
-                //       );
-                //     }),
               );
             },
           );

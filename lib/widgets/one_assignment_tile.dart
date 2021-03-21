@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-class OneAssignmentTile extends StatelessWidget {
+class AssignmentTile extends StatelessWidget {
   final String? subCode;
   final String? subName;
   final String? assignmentName;
   final String? downloadLink;
 
-  const OneAssignmentTile({
+  const AssignmentTile({
     Key? key,
     this.subCode,
     this.subName,
@@ -15,16 +15,35 @@ class OneAssignmentTile extends StatelessWidget {
     this.downloadLink,
   }) : super(key: key);
 
-  Future<void> _launchInBrowser(String url) async {
-    if (await canLaunch(url)) {
-      await launch(
-        url,
-        forceSafariVC: false,
-        forceWebView: false,
-        headers: <String, String>{'my_header_key': 'my_header_value'},
+  Future<void> _launchInBrowser({String? url, BuildContext? context}) async {
+    try {
+      if (await canLaunch(url!)) {
+        await launch(
+          url,
+          forceSafariVC: false,
+          forceWebView: false,
+          headers: <String, String>{'my_header_key': 'my_header_value'},
+        );
+      } else {
+        throw 'Could not launch $url';
+      }
+    } catch (error) {
+      // print(error);
+      ScaffoldMessenger.of(context!).showSnackBar(
+        SnackBar(
+          backgroundColor: Colors.red,
+          content: Text(
+            'No file available',
+            style: TextStyle(
+              color: Colors.white,
+              fontWeight: FontWeight.w600,
+              fontSize: 16.0,
+              letterSpacing: 1.0,
+            ),
+            textAlign: TextAlign.center,
+          ),
+        ),
       );
-    } else {
-      throw 'Could not launch $url';
     }
   }
 
@@ -62,7 +81,8 @@ class OneAssignmentTile extends StatelessWidget {
           trailing: Padding(
             padding: const EdgeInsets.only(right: 10.0),
             child: ElevatedButton(
-              onPressed: () => _launchInBrowser(downloadLink!),
+              onPressed: () =>
+                  _launchInBrowser(url: downloadLink!, context: context),
               child: Text(
                 'Download',
                 style: TextStyle(

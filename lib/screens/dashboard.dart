@@ -31,7 +31,7 @@ class DashBoard extends StatelessWidget {
       body: Column(
         children: [
           DashBoardCards(),
-          SizedBox(height: 10.0),
+          // SizedBox(height: 10.0),
           TodaysLectures(
             database: database,
           ),

@@ -105,7 +105,7 @@ class _NewAssignmentScreenState extends State<NewAssignmentScreen> {
                       return Column(
                         children: [
                           SizedBox(height: 12.0),
-                          OneAssignmentTile(
+                          AssignmentTile(
                             subCode: subCode,
                             subName: subName,
                             assignmentName: assignmentName,

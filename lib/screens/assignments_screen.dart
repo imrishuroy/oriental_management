@@ -57,7 +57,7 @@ class AssignmentScreen extends StatelessWidget {
               // print('Assignment Length $lenghtOfAssignments');
               if (lenghtOfAssignments == null) {
                 return NothingHere(
-                  appBarTitle: 'Announcements',
+                  appBarTitle: 'Assignments',
                 );
               }
               return Scaffold(
@@ -95,7 +95,7 @@ class AssignmentScreen extends StatelessWidget {
                     return Column(
                       children: [
                         SizedBox(height: 12.0),
-                        OneAssignmentTile(
+                        AssignmentTile(
                           subCode: subCode,
                           subName: subName,
                           assignmentName: assignmentName,

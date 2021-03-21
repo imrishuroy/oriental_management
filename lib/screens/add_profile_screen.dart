@@ -39,7 +39,7 @@ class _ProfileScreenState extends State<AddProfileScreen> {
   String? _enrollNo;
 
   bool _isSubmiting = false;
-  String branchValue = 'CS';
+  String branchValue = 'CSE';
   String semValue = '2nd';
 
   void _submit(BuildContext context) async {
@@ -72,6 +72,7 @@ class _ProfileScreenState extends State<AddProfileScreen> {
               mobileNo: _mobileNo,
               image: _image,
               section: _section == Section.a ? 'A' : 'B',
+              branch: branchValue,
             )
             .then((value) => Navigator.of(context).pop());
       }
@@ -187,7 +188,7 @@ class _ProfileScreenState extends State<AddProfileScreen> {
                                       //   print(branchValue);
                                     });
                                   },
-                                  items: <String>['CS', 'IT', 'ECE', 'CIVIL']
+                                  items: <String>['CSE', 'IT', 'ECE', 'CIVIL']
                                       .map<DropdownMenuItem<String>>(
                                     (String value) {
                                       return DropdownMenuItem<String>(

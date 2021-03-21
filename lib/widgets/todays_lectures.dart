@@ -118,13 +118,14 @@ class _TodaysLecturesState extends State<TodaysLectures> {
                               ),
                             );
                           }
-
                           return ListView.builder(
                             itemCount: today.length,
                             itemBuilder: (ctx, index) {
                               return Padding(
                                 padding: const EdgeInsets.symmetric(
-                                    horizontal: 20.0, vertical: 7.0),
+                                  horizontal: 20.0,
+                                  vertical: 7.0,
+                                ),
                                 child: Card(
                                   color: Color.fromRGBO(255, 255, 250, 1),
                                   child: Padding(
@@ -137,11 +138,30 @@ class _TodaysLecturesState extends State<TodaysLectures> {
                                           CrossAxisAlignment.start,
                                       children: [
                                         //  Text('${lectures[index]['sub-code']}'),
-                                        Text(
-                                          '${today[index]['subCode']}',
-                                          style: TextStyle(
-                                            fontWeight: FontWeight.w600,
-                                          ),
+
+                                        Row(
+                                          mainAxisAlignment:
+                                              MainAxisAlignment.spaceBetween,
+                                          children: [
+                                            Text(
+                                              '${today[index]['subCode']}',
+                                              style: TextStyle(
+                                                fontWeight: FontWeight.w600,
+                                              ),
+                                            ),
+                                            Container(
+                                              alignment: Alignment.bottomCenter,
+                                              child: Text(
+                                                'Join',
+                                                style: TextStyle(
+                                                  color: Colors.blue,
+                                                  fontSize: 18.0,
+                                                  letterSpacing: 1.0,
+                                                  fontWeight: FontWeight.bold,
+                                                ),
+                                              ),
+                                            ),
+                                          ],
                                         ),
                                         SizedBox(height: 2.0),
                                         Text(
