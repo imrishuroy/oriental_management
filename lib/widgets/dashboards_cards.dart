@@ -14,6 +14,7 @@ class DashBoardCards extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final DataBase database = Provider.of<DataBase>(context, listen: false);
+    final height = MediaQuery.of(context).size.height;
     return Expanded(
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -21,7 +22,8 @@ class DashBoardCards extends StatelessWidget {
           SizedBox(height: 20.0),
           Expanded(
             child: GridView.count(
-              childAspectRatio: 1.28,
+              //  childAspectRatio: 1.28,
+              childAspectRatio: height < 750 ? 1.5 : 1.28,
               padding: EdgeInsets.symmetric(
                 horizontal: 15.0,
               ),

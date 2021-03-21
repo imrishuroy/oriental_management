@@ -15,17 +15,18 @@ class OneCard extends StatelessWidget {
   }) : super(key: key);
   @override
   Widget build(BuildContext context) {
+    final height = MediaQuery.of(context).size.height;
     return GestureDetector(
       onTap: onTap as void Function()?,
       child: Card(
-        color: Color.fromRGBO(255, 255, 250, 1),
+        // color: Color.fromRGBO(255, 255, 250, 1),
         child: Column(
           //mainAxisAlignment: MainAxisAlignment.center,
           mainAxisSize: MainAxisSize.min,
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
-            SizedBox(height: 30.0),
-            Icon(icon, size: 40),
+            SizedBox(height: height < 750 ? 20.0 : 30.0),
+            Icon(icon, size: height < 750 ? 30.0 : 40),
             SizedBox(height: 12.0),
             Text(
               title!,
@@ -34,7 +35,7 @@ class OneCard extends StatelessWidget {
                 fontSize: 18.0,
               ),
             ),
-            SizedBox(height: 30.0),
+            SizedBox(height: height < 750 ? 15.0 : 30.0),
           ],
         ),
       ),
