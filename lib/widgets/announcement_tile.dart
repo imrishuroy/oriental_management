@@ -34,8 +34,9 @@ class AnnouncementTile extends StatelessWidget {
               },
               contentPadding: EdgeInsets.all(10.0),
               title: Text(
-                title!,
+                '$title',
                 style: TextStyle(fontWeight: FontWeight.w600, fontSize: 17.0),
+                overflow: TextOverflow.ellipsis,
               ),
               subtitle: Text('${message!.substring(0, 74)}...'),
               trailing: Icon(
@@ -63,6 +64,7 @@ class AnnouncementTile extends StatelessWidget {
                   color: Colors.black,
                   fontWeight: FontWeight.w600,
                 ),
+                overflow: TextOverflow.ellipsis,
               ),
             ),
           ),
@@ -71,19 +73,3 @@ class AnnouncementTile extends StatelessWidget {
     );
   }
 }
-
-// ExpansionTile(
-//   title:
-//   subtitle: Text('There is no more online classes from 15 March'),
-//   // childrenPadding:
-//     EdgeInsets.symmetric(horizontal: 20.0, vertical: 5.0),
-// children: [
-//   Text(
-//     'In publishing and graphic design, Lorem ipsum is a placeholder text commonly used to demonstrate the visual form of a document or a typeface without relying on meaningful content. Lorem ipsum may be used as a placeholder before final copy is available. It is also used to temporarily replace text in a process called greeking, which allows designers to consider the form of a webpage or publication, without the meaning of the text influencing the design.',
-//   )
-// ],
-//  ),
-
-// Dear students,
-// For balancing both the sections some changes are being done,
-// So from now roll no. 69 to 76 will be shifted to section A.

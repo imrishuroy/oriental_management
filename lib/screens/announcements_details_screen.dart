@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class AnnouncementDetailScreen extends StatelessWidget {
   static String routeName = '/announcement-detail-screen';
@@ -20,50 +21,53 @@ class AnnouncementDetailScreen extends StatelessWidget {
         backgroundColor: Color.fromRGBO(0, 141, 82, 1),
         title: Text('Details'),
       ),
-      body: Column(
-        crossAxisAlignment: CrossAxisAlignment.start,
-        children: [
-          SizedBox(height: 10.0),
-          Padding(
-            padding:
-                const EdgeInsets.symmetric(horizontal: 20.0, vertical: 10.0),
-            child: Text(
-              '$title',
-              style: TextStyle(
-                fontSize: 22.0,
-                letterSpacing: 1.1,
-                fontWeight: FontWeight.w600,
-                color: Color.fromRGBO(255, 203, 0, 1),
+      body: SingleChildScrollView(
+        child: Column(
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: [
+            SizedBox(height: 10.0),
+            Padding(
+              padding:
+                  const EdgeInsets.symmetric(horizontal: 20.0, vertical: 10.0),
+              child: Text(
+                '$title',
+                style: TextStyle(
+                  fontSize: 22.0,
+                  letterSpacing: 1.1,
+                  fontWeight: FontWeight.w600,
+                  color: Color.fromRGBO(255, 203, 0, 1),
+                ),
               ),
             ),
-          ),
-          Padding(
-            padding:
-                const EdgeInsets.symmetric(horizontal: 20.0, vertical: 10.0),
-            child: Text(
-              message!,
-              style: TextStyle(
-                fontSize: 17.0,
-                color: Colors.white,
-                letterSpacing: 1.0,
+            Padding(
+              padding:
+                  // const EdgeInsets.symmetric(horizontal: 20.0, vertical: 10.0),
+                  const EdgeInsets.only(top: 10.0, left: 20.0, right: 14.0),
+              child: Text(
+                message!,
+                style: GoogleFonts.notoSerif(
+                  color: Colors.white,
+                  fontSize: 18.0,
+                  letterSpacing: 1.0,
+                ),
               ),
             ),
-          ),
-          SizedBox(height: 30.0),
-          Padding(
-            padding:
-                const EdgeInsets.symmetric(horizontal: 20.0, vertical: 10.0),
-            child: Text(
-              'External Links',
-              style: TextStyle(
-                fontSize: 20.0,
-                letterSpacing: 1.1,
-                fontWeight: FontWeight.w500,
-                color: Color(0xffe48257),
-              ),
-            ),
-          )
-        ],
+            SizedBox(height: 30.0),
+            // Padding(
+            //   padding:
+            //       const EdgeInsets.symmetric(horizontal: 20.0, vertical: 10.0),
+            //   child: Text(
+            //     'External Links',
+            //     style: TextStyle(
+            //       fontSize: 20.0,
+            //       letterSpacing: 1.1,
+            //       fontWeight: FontWeight.w500,
+            //       color: Color(0xffe48257),
+            //     ),
+            //   ),
+            // )
+          ],
+        ),
       ),
     );
   }
