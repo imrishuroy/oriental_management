@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:oriental_management/data/external_links_data.dart';
+import 'package:oriental_management/screens/downloads_screen.dart';
 
 import 'package:oriental_management/services/database_service.dart';
 import 'package:oriental_management/widgets/display_image.dart';
@@ -62,7 +63,7 @@ class _AppDrawerState extends State<AppDrawer> {
                     ],
                   ),
                 ),
-                _buildDrawerContents(),
+                _buildDrawerContents(context),
               ],
             ),
           );
@@ -119,7 +120,7 @@ class _AppDrawerState extends State<AppDrawer> {
                         ],
                       ),
                     ),
-                    _buildDrawerContents(),
+                    _buildDrawerContents(context),
                   ],
                 );
               },
@@ -130,7 +131,7 @@ class _AppDrawerState extends State<AppDrawer> {
     );
   }
 
-  SizedBox _buildDrawerContents() {
+  SizedBox _buildDrawerContents(BuildContext context) {
     return SizedBox(
       height: 500.0,
       child: ListView.builder(
@@ -150,8 +151,12 @@ class _AppDrawerState extends State<AppDrawer> {
                 ),
               ),
               trailing: IconButton(
-                onPressed: () =>
-                    _launchInBrowser('${externalLink[index]['link']}'),
+                onPressed: () {
+                  externalLink[index]['navigateToScreen'] == true
+                      ? Navigator.pushNamed(
+                          context, externalLink[index]['link'])
+                      : _launchInBrowser('${externalLink[index]['link']}');
+                },
                 icon: Icon(
                   Icons.open_in_new_rounded,
                   color: Color.fromRGBO(0, 141, 82, 1),

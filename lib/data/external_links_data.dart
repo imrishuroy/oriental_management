@@ -27,10 +27,10 @@ const List externalLink = [
     'icon': FontAwesomeIcons.chartLine,
     'link': 'http://result.rgpv.ac.in/Result/ProgramSelect.aspx',
   },
-
-  // {
-  //   'title': 'About Us',
-  //   'icon': Icons.group,
-  //   'link': '',
-  // }
+  {
+    'title': 'Downloads',
+    'icon': Icons.download_rounded,
+    'link': '/downloads-screen',
+    'navigateToScreen': true,
+  }
 ];
