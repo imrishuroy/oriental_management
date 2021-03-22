@@ -15,6 +15,11 @@ const List downloads = [
     'title': 'Shapath - Patra',
     'link': 'https://github.com/imrishuroy/Images/raw/main/shapath-patra.pdf'
   },
+  {
+    'title': 'Semester No Dues Form',
+    'link':
+        'https://github.com/imrishuroy/Images/raw/main/Semester%20No%20Dues%20Certificat(4)-1.pdf',
+  },
 ];
 
 class DownloadScreen extends StatelessWidget {
