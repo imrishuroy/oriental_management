@@ -139,22 +139,22 @@ class _RegisterScreenState extends State<RegisterScreen> {
                                     ? 'Invalid Email'
                                     : null,
                             decoration: InputDecoration(
-                              enabledBorder: OutlineInputBorder(
-                                borderSide: BorderSide(
-                                  color: Colors.green,
-                                  width: 2.0,
+                                enabledBorder: OutlineInputBorder(
+                                  borderSide: BorderSide(
+                                    color: Colors.green,
+                                    width: 2.0,
+                                  ),
                                 ),
-                              ),
-                              //icon: Icon(Icons.mail),
-                              prefixIcon: Icon(
-                                Icons.mail,
-                                color: Colors.green,
-                              ),
-                              labelText: 'EMAIL',
-                              labelStyle: TextStyle(color: Colors.green),
-                              hintText: 'Enter Your Email',
-                              border: OutlineInputBorder(),
-                            ),
+                                //icon: Icon(Icons.mail),
+                                prefixIcon: Icon(
+                                  Icons.mail,
+                                  color: Colors.green,
+                                ),
+                                labelText: 'EMAIL',
+                                labelStyle: TextStyle(color: Colors.green),
+                                hintText: 'Enter Your Email',
+                                border: OutlineInputBorder(),
+                                hintStyle: TextStyle(color: Colors.white)),
                           ),
                           SizedBox(height: 25.0),
                           TextFormField(

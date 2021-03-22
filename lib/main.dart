@@ -8,6 +8,7 @@ import 'package:oriental_management/screens/attendance_screen.dart';
 import 'package:oriental_management/screens/forgot_password_screen.dart';
 import 'package:oriental_management/screens/homepage_screen.dart';
 import 'package:oriental_management/screens/lecture_selection_screen.dart';
+import 'package:oriental_management/screens/new_attendance_screen.dart';
 import 'package:oriental_management/screens/old_lectures_screen.dart';
 import 'package:oriental_management/screens/profile_screen.dart';
 import 'package:oriental_management/screens/register_screen.dart';
@@ -55,8 +56,7 @@ class MyApp extends StatelessWidget {
           AssignmentScreen.routeName: (ctx) => AssignmentScreen(),
           ForgotPaswordScreen.routeName: (ctx) => ForgotPaswordScreen(),
           DownloadScreen.routeName: (ctx) => DownloadScreen(),
-
-          //   NewAttendanceScreen.routeName: (ctx) => NewAttendanceScreen(),
+          NewAttendanceScreen.routeName: (ctx) => NewAttendanceScreen(),
         },
       ),
     );
