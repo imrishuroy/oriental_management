@@ -17,7 +17,7 @@ class SubjectAttendanceTile extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Padding(
-      padding: const EdgeInsets.symmetric(horizontal: 17.0),
+      padding: const EdgeInsets.symmetric(horizontal: 17.0, vertical: 2.0),
       child: Card(
         child: ListTile(
           contentPadding: EdgeInsets.fromLTRB(10.0, 7.0, 20.0, 7.0),
@@ -25,15 +25,15 @@ class SubjectAttendanceTile extends StatelessWidget {
             '$subCode',
             style: TextStyle(fontWeight: FontWeight.w600, letterSpacing: 1.1),
           ),
-          subtitle: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              SizedBox(height: 5.0),
-              Text('Subject - $subName'),
-              SizedBox(height: 1.0),
-              Text('Faculty - $facultyName')
-            ],
-          ),
+          // subtitle: Column(
+          //   crossAxisAlignment: CrossAxisAlignment.start,
+          //   children: [
+          //     SizedBox(height: 5.0),
+          //     Text('Subject - $subName'),
+          //     SizedBox(height: 1.0),
+          //     //  Text('Faculty - $facultyName')
+          //   ],
+          // ),
           trailing: CircleAvatar(
             radius: 15.0,
             backgroundColor: color,

@@ -44,7 +44,11 @@ class DashBoardCards extends StatelessWidget {
                   onTap: () {
                     // Navigator.pushNamed(context, AttendanceScreen.routeName,
                     //     arguments: database);
-                    Navigator.pushNamed(context, NewAttendanceScreen.routeName);
+                    Navigator.pushNamed(
+                      context,
+                      NewAttendanceScreen.routeName,
+                      arguments: database,
+                    );
                   },
                 ),
                 OneCard(

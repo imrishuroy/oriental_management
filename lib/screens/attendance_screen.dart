@@ -104,7 +104,7 @@ class AttendanceScreen extends StatelessWidget {
                         ),
                       ),
                       SizedBox(height: 120.0),
-                      AttendancePieChart(attendanceList: attendanceList),
+                      //  AttendancePieChart(attendanceList: attendanceList),
                       SizedBox(height: 150),
                       SizedBox(
                         height: 400,
