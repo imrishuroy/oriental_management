@@ -32,5 +32,11 @@ const List externalLink = [
     'icon': Icons.download_rounded,
     'link': '/downloads-screen',
     'navigateToScreen': true,
+  },
+  {
+    'title': 'About Us',
+    'icon': Icons.info_outline,
+    'link': '/about-us-screen',
+    'navigateToScreen': true,
   }
 ];

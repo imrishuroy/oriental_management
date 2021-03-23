@@ -14,6 +14,7 @@ import 'package:oriental_management/screens/profile_screen.dart';
 import 'package:oriental_management/screens/register_screen.dart';
 import 'package:oriental_management/screens/success_screen.dart';
 import 'package:oriental_management/screens/downloads_screen.dart';
+import 'package:oriental_management/screens/about_us_screen.dart';
 import 'package:oriental_management/services/app_database_service.dart';
 import 'package:oriental_management/services/auth_service.dart';
 import 'package:oriental_management/services/auth_wrapper.dart';
@@ -57,6 +58,7 @@ class MyApp extends StatelessWidget {
           ForgotPaswordScreen.routeName: (ctx) => ForgotPaswordScreen(),
           DownloadScreen.routeName: (ctx) => DownloadScreen(),
           NewAttendanceScreen.routeName: (ctx) => NewAttendanceScreen(),
+          AboutUsScreen.routeName: (ctx) => AboutUsScreen(),
         },
       ),
     );
