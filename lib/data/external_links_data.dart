@@ -23,6 +23,17 @@ const List externalLink = [
     'link': 'https://www.oistbpl.com/contact.php',
   },
   {
+    'title': 'Training and Placement',
+    'icon': FontAwesomeIcons.landmark,
+    'link': '/tnp-screen',
+    'navigateToScreen': true,
+  },
+  {
+    'title': 'Study Material',
+    'icon': FontAwesomeIcons.book,
+    'link': 'https://www.rgpvnotes.in/',
+  },
+  {
     'title': 'Results',
     'icon': FontAwesomeIcons.chartLine,
     'link': 'http://result.rgpv.ac.in/Result/ProgramSelect.aspx',
@@ -38,5 +49,5 @@ const List externalLink = [
     'icon': Icons.info_outline,
     'link': '/about-us-screen',
     'navigateToScreen': true,
-  }
+  },
 ];
