@@ -1,11 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:url_launcher/url_launcher.dart';
+import '../services/utility_functions.dart';
 
 const List downloads = [
-  {
-    'title': 'Anti-Ragging Affidavit for IIIrd Sem Students',
-    'link': 'https://github.com/imrishuroy/Images/raw/main/affidavit.pdf',
-  },
   {
     'title': 'Leave Application Form',
     'link':
@@ -20,6 +16,10 @@ const List downloads = [
     'link':
         'https://github.com/imrishuroy/Images/raw/main/Semester%20No%20Dues%20Certificat(4)-1.pdf',
   },
+  {
+    'title': 'Anti-Ragging Affidavit for 3rd Sem Students',
+    'link': 'https://github.com/imrishuroy/Images/raw/main/affidavit.pdf',
+  },
 ];
 
 class DownloadScreen extends StatelessWidget {
@@ -32,11 +32,24 @@ class DownloadScreen extends StatelessWidget {
         backgroundColor: Color.fromRGBO(0, 141, 82, 1),
         centerTitle: true,
         title: Text('Downloads'),
+        actions: [
+          CircleAvatar(
+            radius: 14.0,
+            backgroundColor: Colors.white,
+            child: Text(
+              '${downloads.length}',
+              style: TextStyle(
+                fontWeight: FontWeight.bold,
+              ),
+            ),
+          ),
+          SizedBox(width: 20.0),
+        ],
       ),
       body: ListView.builder(
         itemCount: downloads.length,
         itemBuilder: (context, index) {
-          return OneHappeningCard(
+          return DownloadsTile(
             title: downloads[index]['title'],
             link: downloads[index]['link'],
           );
@@ -46,28 +59,20 @@ class DownloadScreen extends StatelessWidget {
   }
 }
 
-class OneHappeningCard extends StatelessWidget {
+class DownloadsTile extends StatelessWidget {
   final String? title;
   final String? link;
 
-  const OneHappeningCard({Key? key, this.title, this.link}) : super(key: key);
-  Future<void> _launchInBrowser(String url) async {
-    if (await canLaunch(url)) {
-      await launch(
-        url,
-        forceSafariVC: false,
-        forceWebView: false,
-        headers: <String, String>{'my_header_key': 'my_header_value'},
-      );
-    } else {
-      throw 'Could not launch $url';
-    }
-  }
+  const DownloadsTile({Key? key, this.title, this.link}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    // UtilityFunctions utilityFunctions = UtilityFunctions();
+    //final  utility = Utility;lity
+    UtilityFunctions utility = UtilityFunctions();
+
     return Padding(
-      padding: const EdgeInsets.symmetric(),
+      padding: const EdgeInsets.symmetric(horizontal: 10.0, vertical: 2.0),
       child: Card(
         child: ListTile(
           contentPadding: EdgeInsets.all(10),
@@ -79,9 +84,9 @@ class OneHappeningCard extends StatelessWidget {
             ),
           ),
           trailing: Padding(
-            padding: const EdgeInsets.only(right: 10.0),
+            padding: const EdgeInsets.only(right: 3.0),
             child: ElevatedButton(
-              onPressed: () => _launchInBrowser('$link'),
+              onPressed: () => utility.launchInBrowser('$link'),
               child: Text(
                 'Download',
                 style: TextStyle(

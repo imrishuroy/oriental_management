@@ -5,6 +5,7 @@ import 'package:intl/intl.dart';
 import 'package:oriental_management/models/app_user.dart';
 import 'package:oriental_management/services/app_database_service.dart';
 import 'package:oriental_management/services/database_service.dart';
+import 'package:oriental_management/services/utility_functions.dart';
 import 'package:provider/provider.dart';
 
 class TodaysLectures extends StatefulWidget {
@@ -58,6 +59,7 @@ class _TodaysLecturesState extends State<TodaysLectures> {
     final AppDataBase appDataBase = Provider.of(context, listen: false);
 
     String day = DateFormat.EEEE().format(date!);
+    UtilityFunctions utility = UtilityFunctions();
     //  print(day);
 
     return Expanded(
@@ -151,13 +153,19 @@ class _TodaysLecturesState extends State<TodaysLectures> {
                                             ),
                                             Container(
                                               alignment: Alignment.bottomCenter,
-                                              child: Text(
-                                                'Join',
-                                                style: TextStyle(
-                                                  color: Colors.blue,
-                                                  fontSize: 18.0,
-                                                  letterSpacing: 1.0,
-                                                  fontWeight: FontWeight.bold,
+                                              child: GestureDetector(
+                                                onTap: () {
+                                                  utility.launchInBrowser(
+                                                      '${today[index]['link']}');
+                                                },
+                                                child: Text(
+                                                  'Join',
+                                                  style: TextStyle(
+                                                    color: Colors.blue,
+                                                    fontSize: 18.0,
+                                                    letterSpacing: 1.0,
+                                                    fontWeight: FontWeight.bold,
+                                                  ),
                                                 ),
                                               ),
                                             ),
