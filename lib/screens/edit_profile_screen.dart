@@ -145,7 +145,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
   Widget build(BuildContext context) {
     // print(widget.database.id);
     return Scaffold(
-      //   backgroundColor: Color.fromRGBO(29, 38, 40, 1),
+      backgroundColor: Color.fromRGBO(29, 38, 40, 1),
       key: _scaffoldKey,
       appBar: AppBar(
         backgroundColor: Color.fromRGBO(0, 141, 82, 1),
@@ -214,9 +214,16 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                               style: TextStyle(
                                 fontSize: 19.0,
                                 fontWeight: FontWeight.w500,
+                                color: Colors.white,
                               ),
                               controller: _nameController,
                               decoration: InputDecoration(
+                                enabledBorder: UnderlineInputBorder(
+                                  borderSide: BorderSide(
+                                    color: Colors.white,
+                                    width: 1.7,
+                                  ),
+                                ),
                                 hintText: 'Update your name',
                                 errorText:
                                     _nameValid ? null : 'Name is too short',
@@ -233,11 +240,18 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                             ),
                             TextField(
                               style: TextStyle(
+                                color: Colors.white,
                                 fontSize: 19.0,
                                 fontWeight: FontWeight.w500,
                               ),
                               controller: _fatherNameController,
                               decoration: InputDecoration(
+                                enabledBorder: UnderlineInputBorder(
+                                  borderSide: BorderSide(
+                                    color: Colors.white,
+                                    width: 1.7,
+                                  ),
+                                ),
                                 hintText: 'Update your name',
                                 errorText: _nameValid
                                     ? null
@@ -253,13 +267,21 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                                 fontSize: 16.0,
                               ),
                             ),
+                            SizedBox(height: 15.0),
                             TextField(
                               style: TextStyle(
+                                color: Colors.white,
                                 fontSize: 19.0,
                                 fontWeight: FontWeight.w500,
                               ),
                               controller: _motherNameController,
                               decoration: InputDecoration(
+                                enabledBorder: UnderlineInputBorder(
+                                  borderSide: BorderSide(
+                                    color: Colors.white,
+                                    width: 1.7,
+                                  ),
+                                ),
                                 hintText: 'Update your name',
                                 errorText:
                                     _nameValid ? null : 'Name is too short',
@@ -276,11 +298,18 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                             ),
                             TextField(
                               style: TextStyle(
+                                color: Colors.white,
                                 fontSize: 19.0,
                                 fontWeight: FontWeight.w500,
                               ),
                               controller: _mobileNoController,
                               decoration: InputDecoration(
+                                enabledBorder: UnderlineInputBorder(
+                                  borderSide: BorderSide(
+                                    color: Colors.white,
+                                    width: 1.7,
+                                  ),
+                                ),
                                 hintText: 'Update your number',
                                 errorText:
                                     _nameValid ? null : 'Name is too short',

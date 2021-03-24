@@ -19,7 +19,7 @@ class AnnouncemetScreen extends StatelessWidget {
       builder: (context, snapshot) {
         if (snapshot.hasError) {
           return NothingHere(
-            appBarTitle: 'Assignments',
+            appBarTitle: 'Announcements',
           );
         }
         if (snapshot.connectionState == ConnectionState.waiting) {
@@ -79,7 +79,7 @@ class AnnouncemetScreen extends StatelessWidget {
                   ],
                   centerTitle: true,
                   backgroundColor: Color.fromRGBO(0, 141, 82, 1),
-                  title: Text('Assignments'),
+                  title: Text('Announcements'),
                 ),
                 body: ListView.builder(
                   //  shrinkWrap: true,
@@ -111,7 +111,7 @@ class AnnouncemetScreen extends StatelessWidget {
           );
         }
         return NothingHere(
-          appBarTitle: 'Assignments',
+          appBarTitle: 'Announcements',
         );
       },
     );
