@@ -22,6 +22,8 @@ import 'package:oriental_management/services/auth_service.dart';
 import 'package:oriental_management/services/auth_wrapper.dart';
 import 'package:provider/provider.dart';
 
+import 'screens/tnp_screen.dart';
+
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await Firebase.initializeApp();
@@ -62,6 +64,7 @@ class MyApp extends StatelessWidget {
           NewAttendanceScreen.routeName: (ctx) => NewAttendanceScreen(),
           AboutUsScreen.routeName: (ctx) => AboutUsScreen(),
           AttendanceScreen3.routeName: (ctx) => AttendanceScreen3(),
+          TnpScreen.routeName: (ctx) => TnpScreen(),
         },
       ),
     );
