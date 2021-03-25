@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:oriental_management/screens/attendance_screen3.dart';
+import 'package:oriental_management/screens/new_attendance_screen.dart';
 
 import 'package:oriental_management/services/database_service.dart';
 
@@ -23,7 +25,14 @@ class DashBoard extends StatelessWidget {
             icon: Icon(
               Icons.message,
             ),
-            onPressed: () {},
+            onPressed: () {
+              Navigator.pushNamed(
+                context,
+                AttendanceScreen3.routeName,
+                // NewAttendanceScreen.routeName,
+                // arguments: database,
+              );
+            },
           ),
           SizedBox(width: 7.0),
         ],

@@ -153,7 +153,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
         title: Text('Edit Profile'),
         actions: [
           TextButton(
-            onPressed: () => Navigator.pop(context),
+            onPressed: () => Navigator.of(context).pop(),
             child: Text(
               'Done',
               style: TextStyle(
@@ -208,6 +208,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                                 color: Colors.orange,
                                 fontWeight: FontWeight.w600,
                                 fontSize: 16.0,
+                                letterSpacing: 1.2,
                               ),
                             ),
                             TextField(
@@ -220,7 +221,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                               decoration: InputDecoration(
                                 enabledBorder: UnderlineInputBorder(
                                   borderSide: BorderSide(
-                                    color: Colors.white,
+                                    color: Colors.white70,
                                     width: 1.7,
                                   ),
                                 ),
@@ -234,6 +235,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                               "Father Name",
                               style: TextStyle(
                                 color: Colors.orange,
+                                letterSpacing: 1.2,
                                 fontWeight: FontWeight.w600,
                                 fontSize: 16.0,
                               ),
@@ -248,7 +250,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                               decoration: InputDecoration(
                                 enabledBorder: UnderlineInputBorder(
                                   borderSide: BorderSide(
-                                    color: Colors.white,
+                                    color: Colors.white70,
                                     width: 1.7,
                                   ),
                                 ),
@@ -265,9 +267,9 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                                 color: Colors.orange,
                                 fontWeight: FontWeight.w600,
                                 fontSize: 16.0,
+                                letterSpacing: 1.2,
                               ),
                             ),
-                            SizedBox(height: 15.0),
                             TextField(
                               style: TextStyle(
                                 color: Colors.white,
@@ -278,7 +280,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                               decoration: InputDecoration(
                                 enabledBorder: UnderlineInputBorder(
                                   borderSide: BorderSide(
-                                    color: Colors.white,
+                                    color: Colors.white70,
                                     width: 1.7,
                                   ),
                                 ),
@@ -292,6 +294,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                               'Mobile Number',
                               style: TextStyle(
                                 color: Colors.orange,
+                                letterSpacing: 1.2,
                                 fontWeight: FontWeight.w600,
                                 fontSize: 16.0,
                               ),
@@ -306,7 +309,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                               decoration: InputDecoration(
                                 enabledBorder: UnderlineInputBorder(
                                   borderSide: BorderSide(
-                                    color: Colors.white,
+                                    color: Colors.white70,
                                     width: 1.7,
                                   ),
                                 ),
@@ -333,6 +336,7 @@ class _EditProfileScreenState extends State<EditProfileScreen> {
                                         color: Colors.white,
                                         fontWeight: FontWeight.w600,
                                         fontSize: 17.0,
+                                        letterSpacing: 1.0,
                                       ),
                                     ),
                                   ),

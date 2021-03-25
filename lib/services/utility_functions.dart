@@ -1,9 +1,14 @@
+import 'package:oriental_management/models/attendance_model.dart';
 import 'package:url_launcher/url_launcher.dart';
 import 'package:flutter/material.dart';
+import 'package:http/http.dart' as http;
+import 'dart:convert' as convert;
 
 abstract class Utility {
   Future<void> launchInBrowser(String url);
   void showSnackBar({BuildContext? context});
+  void getAttendance(
+      {String? subjectName, int? totalClassHeld, int? totalClassAttended});
 }
 
 class UtilityFunctions implements Utility {
@@ -37,5 +42,40 @@ class UtilityFunctions implements Utility {
         ),
       ),
     );
+  }
+
+  @override
+  void getAttendance(
+      {String? subjectName,
+      int? totalClassHeld,
+      int? totalClassAttended}) async {
+    // setState(() {
+    //   _isLoading = true;
+    // });
+
+    var url = Uri.parse(
+        'https://script.googleusercontent.com/macros/echo?user_content_key=bcRBfUvS6-zaxOK25ziqk1JdvGOW0S2npqbdyk5L05a12YwVQFO2VivrIfZKps_utq_Sxu5XWxM5opznckRITpMiQhT_ljYfm5_BxDlH2jW0nuo2oDemN9CCS2h10ox_1xSncGQajx_ryfhECjZEnIrr7AD1kDdWsnCLvVUDN_IYBkN0pTYImHmhKjYQ1RMslJysqyxdsS2WuUpLkZO0VR1RNf1Vcw8c--JOz4nXxNZWmITZWfXDtw&lib=MsvI444TSp283wZTVBAU2SnImAf41yL87');
+
+    var response = await http.get(url);
+
+    List jsonFeedback = convert.jsonDecode(response.body);
+    subjectName = jsonFeedback[0]['sn_no'];
+    totalClassHeld = jsonFeedback[0]['total_attendance'];
+    jsonFeedback.removeAt(0);
+
+    jsonFeedback.forEach((element) {
+      AttendanceModel attendanceModel = AttendanceModel();
+      if (element['enrollment_no'] == '0105CS191091') {
+        attendanceModel.name = element['name'];
+        attendanceModel.enrollNo = element['enrollment_no'];
+        attendanceModel.totalAttendance = element['total_attendance'];
+        // currentSubject.add(attendanceModel);
+        totalClassAttended = attendanceModel.totalAttendance!;
+      }
+    });
+
+    // setState(() {
+    //   _isLoading = false;
+    // });
   }
 }

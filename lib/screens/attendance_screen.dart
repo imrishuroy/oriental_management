@@ -2,9 +2,19 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:oriental_management/models/app_user.dart';
 import 'package:oriental_management/services/database_service.dart';
-import 'package:oriental_management/widgets/attendance_pie_chart.dart';
+
 import 'package:oriental_management/widgets/nothing_here.dart';
+import 'package:oriental_management/widgets/pie_chart.dart';
+import 'package:oriental_management/widgets/students_attendance_tile_old.dart';
 import 'package:oriental_management/widgets/subject_attendance_tile.dart';
+
+const List<Color> color = [
+  Color(0xff845bef),
+  Color(0xff0293ee),
+  Color(0xfff8b400),
+  Color(0xff13d38e),
+  Color(0xffd2e603),
+];
 
 class AttendanceScreen extends StatelessWidget {
   static String routeName = '/attendance-screen';
@@ -105,6 +115,7 @@ class AttendanceScreen extends StatelessWidget {
                       ),
                       SizedBox(height: 120.0),
                       //  AttendancePieChart(attendanceList: attendanceList),
+                      AttendancePieChartOld(attendanceList: attendanceList),
                       SizedBox(height: 150),
                       SizedBox(
                         height: 400,
@@ -113,7 +124,7 @@ class AttendanceScreen extends StatelessWidget {
                           itemBuilder: (context, index) {
                             return Column(
                               children: [
-                                SubjectAttendanceTile(
+                                SubjectAttendanceTileOld(
                                   subCode:
                                       '${attendanceList?[index]['subCode']}',
                                   subName:

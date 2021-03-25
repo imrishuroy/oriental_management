@@ -42,13 +42,13 @@ class DashBoardCards extends StatelessWidget {
                   title: 'Attendence',
                   icon: FontAwesomeIcons.calendarCheck,
                   onTap: () {
-                    // Navigator.pushNamed(context, AttendanceScreen.routeName,
-                    //     arguments: database);
-                    Navigator.pushNamed(
-                      context,
-                      NewAttendanceScreen.routeName,
-                      arguments: database,
-                    );
+                    Navigator.pushNamed(context, AttendanceScreen.routeName,
+                        arguments: database);
+                    // Navigator.pushNamed(
+                    //   context,
+                    //   NewAttendanceScreen.routeName,
+                    //   arguments: database,
+                    // );
                   },
                 ),
                 OneCard(

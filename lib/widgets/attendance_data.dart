@@ -52,9 +52,9 @@ class _AttendanceDataState extends State<AttendanceData> {
 
   List<AttendanceModel> attendance = <AttendanceModel>[];
 
-  List<AttendanceModel> sub5 = <AttendanceModel>[];
+  // List<AttendanceModel> sub5 = <AttendanceModel>[];
   List<AttendanceModel> allSubjects = <AttendanceModel>[];
-  List subjectsName = [];
+  // List subjectsName = [];
   List<Map> subjects = [];
   int totalClass = 0;
   int totalClassAttended = 0;
@@ -76,7 +76,8 @@ class _AttendanceDataState extends State<AttendanceData> {
       var response = await http.get(url);
       //  print(response.body);
       List jsonFeedback = convert.jsonDecode(response.body);
-      subjectsName.add(jsonFeedback[0]['sn_no']);
+      // subjectsName.add(jsonFeedback[0]['sn_no']);
+      // subjects list is giving us all the subjects of user
       subjects.add(
         {
           'name': jsonFeedback[0]['sn_no'],
@@ -110,8 +111,14 @@ class _AttendanceDataState extends State<AttendanceData> {
 
   @override
   Widget build(BuildContext context) {
-    print(allSubjects.length);
-    print(subjectsName);
+    print('All Subjects $subjects');
+    // print(allSubjects.length);
+    // print(subjectsName);
+    for (int i = 0; i < allSubjects.length; i++) {
+      print('Attendance ${allSubjects[i].totalAttendance}');
+    }
+
+    //   print('All Subjects Attendance $allSubjects);
     for (int i = 0; i < subjects.length; i++) {
       totalClass += subjects[i]['totalClass'] as int;
       totalClassAttended += allSubjects[i].totalAttendance!;
@@ -153,7 +160,7 @@ class _AttendanceDataState extends State<AttendanceData> {
                 ),
                 SizedBox(height: 10.0),
                 Text(
-                  'As on 22/03/21',
+                  'As on 24/03/21',
                   style: TextStyle(
                     color: Colors.white,
                   ),

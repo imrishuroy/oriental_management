@@ -1,6 +1,5 @@
 import 'package:fl_chart/fl_chart.dart';
 import 'package:flutter/material.dart';
-import 'package:oriental_management/models/attendance_model.dart';
 
 const List<Color> color = [
   Color(0xff845bef),
@@ -10,20 +9,16 @@ const List<Color> color = [
   Color(0xffd2e603),
 ];
 
-class AttendancePieChart extends StatefulWidget {
-  final List<AttendanceModel?>? attendanceList;
-  final List<Map>? subjects;
+class AttendancePieChartOld extends StatefulWidget {
+  final List? attendanceList;
 
-  const AttendancePieChart({
-    Key? key,
-    this.attendanceList,
-    this.subjects,
-  }) : super(key: key);
+  const AttendancePieChartOld({Key? key, this.attendanceList})
+      : super(key: key);
   @override
-  _AttendancePieChartState createState() => _AttendancePieChartState();
+  _AttendancePieChartOldState createState() => _AttendancePieChartOldState();
 }
 
-class _AttendancePieChartState extends State<AttendancePieChart> {
+class _AttendancePieChartOldState extends State<AttendancePieChartOld> {
   int? touchedIndex = 0;
 
   // List<PieChartSectionData> showSections(int touchIndex) {
@@ -62,21 +57,18 @@ class _AttendancePieChartState extends State<AttendancePieChart> {
           final isTouched = index == touchIndex;
           final double fontSize = isTouched ? 25 : 16;
           final double radius = isTouched ? 60 : 50;
-          var attendance = ((widget.attendanceList![index]!.totalAttendance! /
-                      widget.subjects?[index]['totalClass']) *
-                  100)
-              .round();
-
           final value = PieChartSectionData(
             // color: data.color,
             color: color[index],
             // value: data.percent,
-            value: (widget.attendanceList?[index]?.totalAttendance)?.toDouble(),
+            value: (widget.attendanceList?[index]['attendance']).toDouble(),
+            // (widget.attendanceList?[index]).toDouble(),
+            //  (widget.attendanceList?[index]['attendance']).toDouble(),
             // value: 10.0,
             radius: radius,
             // title: '${data.percent}%',
-            // title: '${(widget.attendanceList?[index]?.totalAttendance / widget.subjects?[index]['totalClass']  ) * 100)?.round()}%',
-            title: '$attendance%',
+            title: '${widget.attendanceList?[index]['attendance']}%',
+            //  title: '${widget.attendanceList?[index]}%',
             titleStyle: TextStyle(
               fontSize: fontSize,
               fontWeight: FontWeight.bold,
@@ -96,8 +88,8 @@ class _AttendancePieChartState extends State<AttendancePieChart> {
     List<int> newList = [];
 
     for (var item in widget.attendanceList!) {
-      allAttendance.add(item!.totalAttendance!);
-      newList.add(item.totalAttendance!);
+      allAttendance.add(item['attendance']);
+      newList.add(item['attendance']);
     }
     print('All Attendance $allAttendance');
     //  newList = allAttendance;
@@ -143,73 +135,3 @@ class _AttendancePieChartState extends State<AttendancePieChart> {
     );
   }
 }
-
-// List<PieChartSectionData> showingSections(int touchIndex) {
-//   return List.generate(
-//     5,
-//     (i) {
-//       final isTouched = i == touchedIndex;
-//       final double fontSize = isTouched ? 25 : 16;
-//       final double radius = isTouched ? 60 : 50;
-//       switch (i) {
-//         case 0:
-//           return PieChartSectionData(
-//             color: const Color(0xff0293ee),
-//             value: 40,
-//             title: '40%',
-//             radius: radius,
-//             titleStyle: TextStyle(
-//                 fontSize: fontSize,
-//                 fontWeight: FontWeight.bold,
-//                 color: const Color(0xffffffff)),
-//           );
-//         case 1:
-//           return PieChartSectionData(
-//             color: const Color(0xfff8b250),
-//             value: 30,
-//             title: '30%',
-//             radius: radius,
-//             titleStyle: TextStyle(
-//                 fontSize: fontSize,
-//                 fontWeight: FontWeight.bold,
-//                 color: const Color(0xffffffff)),
-//           );
-//         case 2:
-//           return PieChartSectionData(
-//             color: const Color(0xff845bef),
-//             value: 15,
-//             title: '10%',
-//             radius: radius,
-//             titleStyle: TextStyle(
-//                 fontSize: fontSize,
-//                 fontWeight: FontWeight.bold,
-//                 color: const Color(0xffffffff)),
-//           );
-//         case 3:
-//           return PieChartSectionData(
-//             color: const Color(0xff13d38e),
-//             value: 15,
-//             title: '10%',
-//             radius: radius,
-//             titleStyle: TextStyle(
-//                 fontSize: fontSize,
-//                 fontWeight: FontWeight.bold,
-//                 color: const Color(0xffffffff)),
-//           );
-//         case 4:
-//           return PieChartSectionData(
-//             color: Colors.red[200],
-//             value: 15,
-//             title: '10%',
-//             radius: radius,
-//             titleStyle: TextStyle(
-//                 fontSize: fontSize,
-//                 fontWeight: FontWeight.bold,
-//                 color: const Color(0xffffffff)),
-//           );
-//         default:
-//           return PieChartSectionData();
-//       }
-//     },
-//   );
-// }
