@@ -6,9 +6,11 @@ class AssignmentTile extends StatelessWidget {
   final String? subName;
   final String? assignmentName;
   final String? downloadLink;
+  final String? date;
 
   const AssignmentTile({
     Key? key,
+    this.date,
     this.subCode,
     this.subName,
     this.assignmentName,
@@ -77,7 +79,19 @@ class AssignmentTile extends StatelessWidget {
               color: Colors.black,
             ),
           ),
-          subtitle: Text('$assignmentName'),
+          subtitle: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Text('$assignmentName'),
+              SizedBox(height: 3.0),
+              Text(
+                '$date',
+                style: TextStyle(
+                  fontWeight: FontWeight.w600,
+                ),
+              ),
+            ],
+          ),
           trailing: Padding(
             padding: const EdgeInsets.only(right: 10.0),
             child: ElevatedButton(

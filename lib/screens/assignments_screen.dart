@@ -92,6 +92,9 @@ class AssignmentScreen extends StatelessWidget {
                         ?.data()?['assignments'][index]['assignmentName'];
                     final String? downloadLink = assignmentSnapshot.data
                         ?.data()?['assignments'][index]['link'];
+                    final String? date = assignmentSnapshot.data
+                        ?.data()?['assignments'][index]['date'];
+
                     return Column(
                       children: [
                         SizedBox(height: 12.0),
@@ -100,6 +103,7 @@ class AssignmentScreen extends StatelessWidget {
                           subName: subName,
                           assignmentName: assignmentName,
                           downloadLink: downloadLink,
+                          date: date,
                         ),
                         // SizedBox(height: 7.0),
                       ],

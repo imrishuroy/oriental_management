@@ -26,12 +26,12 @@ class DashBoard extends StatelessWidget {
               Icons.message,
             ),
             onPressed: () {
-              Navigator.pushNamed(
-                context,
-                AttendanceScreen3.routeName,
-                // NewAttendanceScreen.routeName,
-                // arguments: database,
-              );
+              // Navigator.pushNamed(
+              //   context,
+              //   AttendanceScreen3.routeName,
+              //   // NewAttendanceScreen.routeName,
+              //   // arguments: database,
+              // );
             },
           ),
           SizedBox(width: 7.0),
