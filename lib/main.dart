@@ -16,6 +16,7 @@ import 'package:oriental_management/screens/register_screen.dart';
 import 'package:oriental_management/screens/success_screen.dart';
 import 'package:oriental_management/screens/downloads_screen.dart';
 import 'package:oriental_management/screens/about_us_screen.dart';
+import 'package:oriental_management/screens/tnp_screen.dart';
 import 'package:oriental_management/services/app_database_service.dart';
 import 'package:oriental_management/services/auth_service.dart';
 import 'package:oriental_management/services/auth_wrapper.dart';
@@ -60,7 +61,11 @@ class MyApp extends StatelessWidget {
           DownloadScreen.routeName: (ctx) => DownloadScreen(),
           NewAttendanceScreen.routeName: (ctx) => NewAttendanceScreen(),
           AboutUsScreen.routeName: (ctx) => AboutUsScreen(),
+<<<<<<< HEAD
           AttendanceScreen3.routeName: (ctx) => AttendanceScreen3(),
+=======
+          TnpScreen.routeName: (ctx) => TnpScreen(),
+>>>>>>> 63898d8ed5617512c621d079d58c7dcab7834ad6
         },
       ),
     );
