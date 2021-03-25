@@ -21,9 +21,11 @@ class _OneSubjectPieChartState extends State<OneSubjectPieChart> {
       2,
       (i) {
         final isTouched = i == touchedIndex;
-        final double fontSize = isTouched ? 25 : 16;
+        final double fontSize = isTouched ? 25 : 18;
 
-        final double radius = isTouched ? 50 : 60;
+        //final double radius = isTouched ? 50 : 60;
+        //final double radius = isTouched ? 47 : 62;
+        final double radius = isTouched ? 25 : 42;
 
         switch (i) {
           case 0:
@@ -40,7 +42,8 @@ class _OneSubjectPieChartState extends State<OneSubjectPieChart> {
           case 1:
             return PieChartSectionData(
               //color: Color(0xfff2edd7),
-              color: Color(0xfffbecec),
+              //color: Color(0xfffbecec),
+              color: Colors.black45,
               value: 100 - (widget.attendance)!.toDouble(),
               title: '',
               radius: radius,
@@ -75,7 +78,7 @@ class _OneSubjectPieChartState extends State<OneSubjectPieChart> {
           show: false,
         ),
         sectionsSpace: 0,
-        centerSpaceRadius: 40,
+        centerSpaceRadius: 20,
         sections: showingSections(),
       ),
     );

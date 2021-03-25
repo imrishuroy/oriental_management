@@ -4,6 +4,7 @@ import 'package:oriental_management/attendance/sub_three_attendance.dart';
 import 'package:oriental_management/attendance/sub_two_attendance.dart';
 import 'package:oriental_management/attendance/subject_five_attendance.dart';
 import 'package:oriental_management/attendance/subject_four_attendance.dart';
+import 'package:oriental_management/attendance/total_attendance_calculator.dart';
 
 class AttendanceScreen3 extends StatelessWidget {
   static String routeName = 'attendance-screen3';
@@ -21,6 +22,8 @@ class AttendanceScreen3 extends StatelessWidget {
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
+            SizedBox(height: 10.0),
+            DisplayTotalAttendace2(),
             SizedBox(height: 10.0),
             SubjectOne(),
             SizedBox(height: 120.0),

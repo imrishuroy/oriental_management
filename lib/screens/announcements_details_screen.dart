@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 
 class AnnouncementDetailScreen extends StatelessWidget {
   static String routeName = '/announcement-detail-screen';
@@ -45,7 +44,8 @@ class AnnouncementDetailScreen extends StatelessWidget {
                   const EdgeInsets.only(top: 10.0, left: 20.0, right: 14.0),
               child: Text(
                 message!,
-                style: GoogleFonts.notoSerif(
+                style: TextStyle(
+                  fontFamily: 'NotoSerif',
                   color: Colors.white,
                   fontSize: 18.0,
                   letterSpacing: 1.0,
@@ -53,19 +53,6 @@ class AnnouncementDetailScreen extends StatelessWidget {
               ),
             ),
             SizedBox(height: 30.0),
-            // Padding(
-            //   padding:
-            //       const EdgeInsets.symmetric(horizontal: 20.0, vertical: 10.0),
-            //   child: Text(
-            //     'External Links',
-            //     style: TextStyle(
-            //       fontSize: 20.0,
-            //       letterSpacing: 1.1,
-            //       fontWeight: FontWeight.w500,
-            //       color: Color(0xffe48257),
-            //     ),
-            //   ),
-            // )
           ],
         ),
       ),

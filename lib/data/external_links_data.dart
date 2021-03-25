@@ -23,13 +23,13 @@ const List externalLink = [
     'link': 'https://www.oistbpl.com/contact.php',
   },
   {
-    'title': 'Training and Placement',
-    'icon': FontAwesomeIcons.landmark,
+    'title': 'T & P',
+    'icon': Icons.apartment,
     'link': '/tnp-screen',
     'navigateToScreen': true,
   },
   {
-    'title': 'Study Material',
+    'title': 'Study Materials',
     'icon': FontAwesomeIcons.book,
     'link': 'https://www.rgpvnotes.in/',
   },
@@ -45,7 +45,7 @@ const List externalLink = [
     'navigateToScreen': true,
   },
   {
-    'title': 'About Us',
+    'title': 'About',
     'icon': Icons.info_outline,
     'link': '/about-us-screen',
     'navigateToScreen': true,

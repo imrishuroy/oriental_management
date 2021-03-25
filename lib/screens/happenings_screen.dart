@@ -3,24 +3,24 @@ import 'package:oriental_management/screens/happenings_details_screen.dart';
 
 const List happenings = [
   {
-    'imageUrl':
-        'https://i.pinimg.com/originals/ca/76/0b/ca760b70976b52578da88e06973af542.jpg',
-    'title': 'Solution Challenge DSC OIST',
-    'description': 'Solution challenge is one the awesome events of dsc',
-  },
-  {
-    'imageUrl': 'https://static.toiimg.com/photo/72975551.cms',
-    'title': 'Exam is over!',
-    'description': 'Let\'s go to home and enjoy our vacations',
-  },
-  {
-    'imageUrl':
-        'https://s35691.pcdn.co/wp-content/uploads/2020/06/7-things-that-worked.jpg',
-    'title': '4th sem classed from monday',
-    // 'subTitle': 'For ofline classed bring your negative corna test',
-
+    'imageUrl': 'https://i.ndtvimg.com/i/2018-01/holi_650x400_51516870691.jpg',
+    'title': 'Wish you a happy and safe Holi !',
     'description':
-        'In publishing and graphic design, Lorem ipsum is a placeholder text commonly used to demonstrate the visual form of a document or a typeface without relying on meaningful content. Lorem ipsum may be used as a placeholder before final copy is available. It is also used to temporarily replace text in a process called greeking, which allows designers to consider the form of a webpage or publication, without the meaning of the text influencing the design',
+        'May God gift you all the colours of life, colours of joy, colours of happiness, colours of friendship, colours of love and all other colours you want to paint your life in.\n\nHappy Holi.',
+  },
+  {
+    'imageUrl':
+        'https://developers.google.com/community/images/dsc-solution-challange/dsc_2021_header.png',
+    'title': 'Solution Challenge DSC OIST',
+    'description':
+        'The 2021 Solution Challenge mission is to solve for one or more of the United Nations 17 Sustainable Development Goals using Google technology.\nCreated by the United Nations in 2015 to be achieved by 2030, the 17 Sustainable Development Goals (SDGs) agreed upon by all 193 United Nations Member States aim to end poverty, ensure prosperity, and protect the planet.',
+  },
+  {
+    'imageUrl':
+        'https://medicaldialogues.in/h-upload/2020/05/18/128964-online-classes.webp',
+    'title': 'Online classes till 31 March',
+    'description':
+        'As the corona cases are increasing offline classes are terminated we are organizing online classes till 31 march.\nThe new timetable will you provided on your respective WhatsApp group. Make sure to contact your TG for any queries. Please be at home and take care.',
   },
 ];
 

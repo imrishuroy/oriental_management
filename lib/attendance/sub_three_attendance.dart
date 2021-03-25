@@ -94,7 +94,8 @@ class _SubjectThreeAttendanceState extends State<SubjectThreeAttendance> {
               )
             : OneSubjectPieChart(
                 attendance: totalAttendane,
-                chartColor: Color.fromRGBO(0, 141, 82, 1),
+                //chartColor: Color.fromRGBO(0, 141, 82, 1),
+                chartColor: Color(0xffff7171),
               ),
       ],
     );

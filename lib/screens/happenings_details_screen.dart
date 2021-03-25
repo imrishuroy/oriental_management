@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:google_fonts/google_fonts.dart';
 
 class HappeningDetailScreen extends StatelessWidget {
   static String routeName = '/happening-details';
@@ -62,7 +61,8 @@ class HappeningDetailScreen extends StatelessWidget {
               ),
               child: Text(
                 '$description',
-                style: GoogleFonts.notoSerif(
+                style: TextStyle(
+                  fontFamily: 'NotoSerif',
                   color: Colors.white,
                   fontSize: 18.0,
                   letterSpacing: 1.0,

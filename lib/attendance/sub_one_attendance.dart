@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:oriental_management/models/attendance_model.dart';
 import 'package:http/http.dart' as http;
+import 'package:oriental_management/services/loader_animation.dart';
 import 'dart:convert' as convert;
 import 'package:oriental_management/widgets/one_subject_piechart.dart';
 
@@ -88,12 +89,15 @@ class _SubjectOneState extends State<SubjectOne> {
         ),
         SizedBox(height: 100.0),
         _isLoading == true
+            // ? LoadingAnimation()
+
             ? Center(
                 child: CircularProgressIndicator(),
               )
             : OneSubjectPieChart(
                 attendance: totalAttendane,
-                chartColor: Color.fromRGBO(0, 141, 82, 1),
+                // chartColor: Color.fromRGBO(0, 141, 82, 1),
+                chartColor: Color(0xffe2703a),
               ),
       ],
     );

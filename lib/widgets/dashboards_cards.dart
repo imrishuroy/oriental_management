@@ -4,7 +4,6 @@ import 'package:oriental_management/screens/announcements_screen.dart';
 import 'package:oriental_management/screens/assignments_screen.dart';
 import 'package:oriental_management/screens/attendance_screen.dart';
 import 'package:oriental_management/screens/lecture_selection_screen.dart';
-import 'package:oriental_management/screens/new_attendance_screen.dart';
 
 import 'package:oriental_management/services/database_service.dart';
 import 'package:provider/provider.dart';

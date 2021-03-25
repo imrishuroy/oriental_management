@@ -110,12 +110,12 @@ class _TodaysLecturesState extends State<TodaysLectures> {
                           final List? today = data?['$day'];
                           if (today == null || today.length == 0) {
                             return Container(
-                              height: 300.0,
+                              height: 100.0,
                               width: 300.0,
                               decoration: BoxDecoration(
                                 image: DecorationImage(
                                   fit: BoxFit.cover,
-                                  image: AssetImage('assets/no-data.png'),
+                                  image: AssetImage('assets/no-data-found.png'),
                                 ),
                               ),
                             );
@@ -192,12 +192,12 @@ class _TodaysLecturesState extends State<TodaysLectures> {
                           );
                         }
                         return Container(
-                          height: 300.0,
+                          height: 100.0,
                           width: 300.0,
                           decoration: BoxDecoration(
                             image: DecorationImage(
                               fit: BoxFit.cover,
-                              image: AssetImage('assets/no-data.png'),
+                              image: AssetImage('assets/no-data-found.png'),
                             ),
                           ),
                         );

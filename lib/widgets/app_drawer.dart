@@ -1,11 +1,8 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:oriental_management/data/external_links_data.dart';
-import 'package:oriental_management/screens/downloads_screen.dart';
-
 import 'package:oriental_management/services/database_service.dart';
 import 'package:oriental_management/widgets/display_image.dart';
-
 import 'package:provider/provider.dart';
 import 'package:url_launcher/url_launcher.dart';
 
