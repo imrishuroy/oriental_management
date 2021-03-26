@@ -1,7 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:oriental_management/models/attendance_model.dart';
 import 'package:http/http.dart' as http;
-import 'package:oriental_management/services/loader_animation.dart';
 import 'dart:convert' as convert;
 import 'package:oriental_management/widgets/one_subject_piechart.dart';
 

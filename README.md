@@ -146,3 +146,10 @@ SHA256: E8:FC:2D:7B:6D:AE:4F:D1:F9:F5:A3:25:DF:20:E0:29:2B:A6:0F:5E:81:C1:78:02:
                     ),
                     obscureText: true,
                   ), -->
+
+
+<!-- Production Keys - 
+
+Certificate fingerprints:
+         SHA1: 1C:6B:4D:86:13:50:AE:F6:A2:80:18:F6:3E:B9:3E:31:3C:08:A2:EC
+         SHA256: B7:F9:3E:07:6D:04:4C:7E:07:8B:71:1F:FC:33:F0:A0:29:48:8A:F6:44:8F:B7:D2:D4:1A:F0:6D:56:1B:6D:FF -->

@@ -110,14 +110,9 @@ class _TodaysLecturesState extends State<TodaysLectures> {
                           final List? today = data?['$day'];
                           if (today == null || today.length == 0) {
                             return Container(
-                              height: 100.0,
-                              width: 300.0,
-                              decoration: BoxDecoration(
-                                image: DecorationImage(
-                                  fit: BoxFit.cover,
-                                  image: AssetImage('assets/no-data-found.png'),
-                                ),
-                              ),
+                              height: 90.0,
+                              width: 220.0,
+                              child: Image.asset('assets/no-data-found.png'),
                             );
                           }
                           return ListView.builder(
@@ -192,14 +187,9 @@ class _TodaysLecturesState extends State<TodaysLectures> {
                           );
                         }
                         return Container(
-                          height: 100.0,
-                          width: 300.0,
-                          decoration: BoxDecoration(
-                            image: DecorationImage(
-                              fit: BoxFit.cover,
-                              image: AssetImage('assets/no-data-found.png'),
-                            ),
-                          ),
+                          height: 90.0,
+                          width: 220.0,
+                          child: Image.asset('assets/no-data-found.png'),
                         );
                       }
                     },

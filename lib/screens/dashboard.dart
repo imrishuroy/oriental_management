@@ -1,7 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:oriental_management/screens/attendance_screen3.dart';
-import 'package:oriental_management/screens/new_attendance_screen.dart';
-
 import 'package:oriental_management/services/database_service.dart';
 
 import 'package:oriental_management/widgets/app_drawer.dart';
@@ -49,3 +46,5 @@ class DashBoard extends StatelessWidget {
     );
   }
 }
+
+// 479

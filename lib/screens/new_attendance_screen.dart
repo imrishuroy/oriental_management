@@ -1,7 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:oriental_management/models/app_user.dart';
-import 'package:oriental_management/models/attendance_model.dart';
 import 'package:oriental_management/services/database_service.dart';
 import 'package:oriental_management/widgets/attendance_data.dart';
 

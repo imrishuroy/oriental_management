@@ -7,17 +7,17 @@
   "client": [
     {
       "client_info": {
-        "mobilesdk_app_id": "1:1090761331913:android:d24b6b70612b12575ba918",
+        "mobilesdk_app_id": "1:1090761331913:android:bdbafdee2b8423e95ba918",
         "android_client_info": {
-          "package_name": "com.sixteenbrains.oriental_management"
+          "package_name": "com.sixteenbrains.lms_admin"
         }
       },
       "oauth_client": [
         {
-          "client_id": "1090761331913-p47bikkitp0dq4ujn6ojmf21qkahhluu.apps.googleusercontent.com",
+          "client_id": "1090761331913-1agsgkf3tln2l529eki67515mm1j73en.apps.googleusercontent.com",
           "client_type": 1,
           "android_info": {
-            "package_name": "com.sixteenbrains.oriental_management",
+            "package_name": "com.sixteenbrains.lms_admin",
             "certificate_hash": "00e8ed515f9fe4328d21d7c8597e67d65e64024b"
           }
         },
@@ -37,6 +37,65 @@
             {
               "client_id": "1090761331913-hnfm99o03tfp3e2ifbmrobqevq2khlmq.apps.googleusercontent.com",
               "client_type": 3
+            },
+            {
+              "client_id": "1090761331913-0naea69mnd9pqdcsbe1rcv8ubi17tp73.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.sixteenbrains.lmsAdmin"
+              }
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:1090761331913:android:d24b6b70612b12575ba918",
+        "android_client_info": {
+          "package_name": "com.sixteenbrains.oriental_management"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "1090761331913-p47bikkitp0dq4ujn6ojmf21qkahhluu.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.sixteenbrains.oriental_management",
+            "certificate_hash": "00e8ed515f9fe4328d21d7c8597e67d65e64024b"
+          }
+        },
+        {
+          "client_id": "1090761331913-ssq2ttplon9u4jutttglvgb441k9ne8s.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.sixteenbrains.oriental_management",
+            "certificate_hash": "1c6b4d861350aef6a28018f63eb93e313c08a2ec"
+          }
+        },
+        {
+          "client_id": "1090761331913-hnfm99o03tfp3e2ifbmrobqevq2khlmq.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCqHq6M_YF2tOQiN2-YYaBlHOegJfUZSgc"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "1090761331913-hnfm99o03tfp3e2ifbmrobqevq2khlmq.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "1090761331913-0naea69mnd9pqdcsbe1rcv8ubi17tp73.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.sixteenbrains.lmsAdmin"
+              }
             }
           ]
         }

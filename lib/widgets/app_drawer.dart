@@ -129,8 +129,9 @@ class _AppDrawerState extends State<AppDrawer> {
   }
 
   SizedBox _buildDrawerContents(BuildContext context) {
+    final height = MediaQuery.of(context).size.height;
     return SizedBox(
-      height: 500.0,
+      height: height < 750 ? 300 : 500.0,
       child: ListView.builder(
         itemCount: externalLink.length,
         itemBuilder: (context, index) {
