@@ -148,8 +148,34 @@ class _AttendanceDataState extends State<AttendanceData> {
         ),
       ),
       body: _isLoading == true
+          // ? Center(
+          //     child: CircularProgressIndicator(),
+          //   )
           ? Center(
-              child: CircularProgressIndicator(),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Container(
+                    height: 80.0,
+                    width: 90,
+                    child: Image.asset(
+                      'assets/loader.gif',
+                      //fit: BoxFit.cover,
+                    ),
+                  ),
+                  SizedBox(
+                    height: 35.0,
+                  ),
+                  Text(
+                    'Please wait a moment...',
+                    style: TextStyle(
+                      fontSize: 15.5,
+                      color: Color.fromRGBO(255, 203, 0, 1),
+                      letterSpacing: 1.2,
+                    ),
+                  ),
+                ],
+              ),
             )
           : ListView(
               children: [

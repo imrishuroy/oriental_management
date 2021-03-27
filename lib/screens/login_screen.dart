@@ -182,6 +182,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         SizedBox(height: 20.0),
                         GoogleSignInButton(
                           onPressed: () => googleSignIn(context),
+                          title: 'Log In with Google',
                         ),
                       ],
                     ),

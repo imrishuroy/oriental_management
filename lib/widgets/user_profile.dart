@@ -24,6 +24,10 @@ class UserProfile extends StatelessWidget {
         if (snapshot.data?.size == 0) {
           return Center(
             child: ElevatedButton(
+              style: ElevatedButton.styleFrom(
+                primary: Color.fromRGBO(0, 141, 82, 1), // background
+                // onPrimary: Colors.white, // foreground
+              ),
               onPressed: () {
                 Navigator.push(
                   context,

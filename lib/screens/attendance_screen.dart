@@ -38,6 +38,7 @@ class AttendanceScreen extends StatelessWidget {
             body: Center(
               child: CircularProgressIndicator(),
             ),
+            // body: Image.asset('assets/loader.gif'),
           );
         }
 
@@ -56,7 +57,15 @@ class AttendanceScreen extends StatelessWidget {
                   ConnectionState.waiting) {
                 return Scaffold(
                   backgroundColor: Color.fromRGBO(29, 38, 40, 1),
-                  body: Center(
+                  body:
+                      // Center(
+                      //   child: Container(
+                      //     height: 80.0,
+                      //     width: 70.0,
+                      //     child: Image.asset('assets/loader.gif'),
+                      //   ),
+                      // ),
+                      Center(
                     child: CircularProgressIndicator(),
                   ),
                 );

@@ -83,13 +83,21 @@ class AssignmentTile extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Text('$assignmentName'),
-              SizedBox(height: 3.0),
-              Text(
-                '$date',
-                style: TextStyle(
-                  fontWeight: FontWeight.w600,
-                ),
+              SizedBox(height: 0.8),
+              Row(
+                children: [
+                  Text('Last Date : '),
+                  Text(
+                    '$date',
+                    style: TextStyle(
+                      color: Colors.redAccent,
+                      fontWeight: FontWeight.w500,
+                      letterSpacing: 1.1,
+                    ),
+                  ),
+                ],
               ),
+              SizedBox(height: 10.0)
             ],
           ),
           trailing: Padding(

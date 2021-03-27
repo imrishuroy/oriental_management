@@ -93,7 +93,19 @@ class _TodaysLecturesState extends State<TodaysLectures> {
                         return Center(child: Text('Something went wrong'));
                       }
                       if (snapshot.connectionState == ConnectionState.waiting) {
-                        return Center(child: CircularProgressIndicator());
+                        return
+                            // Center(
+                            //   child: Container(
+                            //     height: 80.0,
+                            //     width: 90,
+                            //     child: Image.asset(
+                            //       'assets/loader.gif',
+                            //       //fit: BoxFit.cover,
+                            //     ),
+                            //   ),
+                            // );
+
+                            Center(child: CircularProgressIndicator());
                       } else {
                         // checking if documnet exist or not
                         if (snapshot.data?.exists == true) {

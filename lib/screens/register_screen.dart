@@ -168,6 +168,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                     padding: const EdgeInsets.symmetric(horizontal: 20.0),
                     child: GoogleSignInButton(
                       onPressed: () => googleSignIn(context),
+                      title: 'Register with Google',
                     ),
                   ),
                   SizedBox(height: 25.0),
