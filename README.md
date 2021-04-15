@@ -10,14 +10,21 @@
 
 ## Table of contents
 
+- [Sollution Challenge 2021](#solution-challenge2021)
 - [Quick start](#quick-start)
+
+
+## Sollution Challenge 2021
+Google Developer Student Clubs Solution Challenge is an annual challenge hosted by Google developers, inviting college/university students from all over the world to learn & develop solutions for the given set of problems.
+ 
+The 2021 Solution Challenge mission is to solve one or more of the United Nations 17 Sustainable Development Goals using Google technology. This is a great opportunity for all students to kickstart their careers by learning through doing.
 
 
 ## Quick start
 
 Several quick start options are available:
 
-- [Download the latest release](https://play.google.com/store/apps/details?id=com.sixteenbrains.oriental_management) - PlayStore
+- [Download the latest release](https://play.google.com/store/apps/details?id=com.sixteenbrains.oriental_management) - Playstore
 - [Clone the repo: `https://github.com/imrishuroy/oriental_management`](https://github.com/imrishuroy/oriental_management)
 
 - Login / Register with email or Google.
