@@ -15,8 +15,8 @@
 - [Our Aim](#our-aim)
 - [Solution](#solution)
 - [Quick start](#quick-start)
-- [User Guide - YouTube](#user-guide)
-- [Technology Used](#tech-used)
+- [User Guide - YouTube](#user-guide-youtube)
+- [Technology Used](#technology-used)
 - [Contact Us](#contact-us)
 
 
@@ -64,6 +64,7 @@ Several quick start options are available:
 - Hurray! It's Done.
 
 ## User Guide - YouTube
+
 We have uploaded a demo video about installation and how to use the app efficiently.
 Do must check that for seamless user experience
 - [Yukti - YouTube](https://www.youtube.com/watch?v=fkN9zzZTPIQ) 
