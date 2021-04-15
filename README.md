@@ -15,7 +15,7 @@
 - [Our Aim](#our-aim)
 - [Solution](#solution)
 - [Quick start](#quick-start)
-- [User Guide - YouTube](#user-guide-youtube)
+- [User Guide](#user-guide)
 - [Technology Used](#technology-used)
 - [Contact Us](#contact-us)
 
@@ -63,7 +63,7 @@ Several quick start options are available:
 </p>
 - Hurray! It's Done.
 
-## User Guide - YouTube
+## User Guide
 
 We have uploaded a demo video about installation and how to use the app efficiently.
 Do must check that for seamless user experience
