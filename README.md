@@ -17,6 +17,7 @@
 - [Quick start](#quick-start)
 - [Technology Used](#tech-used)
 - [User Guide - YouTube](#user-guide)
+- [Contact Us](#contact-us)
 
 
 
@@ -65,7 +66,7 @@ Several quick start options are available:
 ## User Guide - YouTube
 We have uploaded a demo video about installation and how to use the app efficiently.
 Do must check that for seamless user experience
-- [YouTube](https://www.youtube.com/watch?v=fkN9zzZTPIQ) 
+- [Yukti - YouTube](https://www.youtube.com/watch?v=fkN9zzZTPIQ) 
 
 
 ## Technology Used
@@ -76,6 +77,15 @@ In our app, we have used various  Google Technology such as:-
 3. Firebase - For Backend
 4. Google Sheets - For storing attendance.
 5. Google Apps Script - Connects Google Sheets with our app via Rest API.
+
+
+## Contact Us
+
+The app is open-source if you want to contribute you can fork and start contributing. If you have any queries or facing any problem running the app, or have some feedback or suggestions please do contact us on the email given below.
+
+[contact@sixteenbrains.com](contact@sixteenbrains.com) 
+
+
 
 
 
