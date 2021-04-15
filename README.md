@@ -11,7 +11,11 @@
 ## Table of contents
 
 - [Sollution Challenge 2021](#solution-challenge2021)
+- [Problem](#problem)
+- [Our Aim](#our-aim)
+- [Solution](#solution)
 - [Quick start](#quick-start)
+- [Technology Used](#tech-used)
 
 
 ## Sollution Challenge 2021
@@ -19,6 +23,18 @@ Google Developer Student Clubs Solution Challenge is an annual challenge hosted 
  
 The 2021 Solution Challenge mission is to solve one or more of the United Nations 17 Sustainable Development Goals using Google technology. This is a great opportunity for all students to kickstart their careers by learning through doing.
 
+## Problem
+
+In our college, there is no proper learning management system. Also, there is no proper information flow between Administration, Faculties, and students. Due to which students finds very difficult to get their proper academic details and track their academic performance.
+
+## Our Aim
+
+We are  looking  for the  Quality Education of United Nation’s 17 Sustainable Development development goal and our target is to develop a reliable and user-friendly platform with the help of google’s technology
+Since Our Challenge is based on Quality Education, so for ensuring a better education system for each and every student we have targeted a solution that fulfills all the requirements of students at a single platform and also helps in achieving quality education.
+
+## Solution
+
+So, We decided to make an easy and simple platform  ’ YUKTI’ for fix these bundles of problems where students can easily track and manage their all the academic details and of college on regular basis and ultimately student can also focus on their studies and improved their academic performance without any problem.
 
 ## Quick start
 
@@ -43,6 +59,16 @@ Several quick start options are available:
 
 </p>
 - Hurray! It's Done.
+
+## Technology Used
+
+In our app, we have used various  Google Technology such as:-
+1. Flutter - Used for developing the front-end of our app.
+2. Dart - The programming language used by Flutter.
+3. Firebase - For Backend
+4. Google Sheets - For storing attendance.
+5. Google Apps Script - Connects Google Sheets with our app via Rest API.
+
 
 
 
