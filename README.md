@@ -81,9 +81,10 @@ In our app, we have used various  Google Technology such as:-
 
 ## Contact Us
 
-The app is open-source if you want to contribute you can fork and start contributing. If you have any queries or facing any problem running the app, or have some feedback or suggestions please do contact us on the email given below.
+The app is open-source if you want to contribute you can fork and start contributing.
+If you have any queries or facing any problem running the app, or have some feedback or suggestions please do contact us on the email given below.
 
-[contact@sixteenbrains.com](contact@sixteenbrains.com) 
+<a href="mailto:contact@sixteenbrains.com">contact@sixteenbrains.com</a>
 
 
 
