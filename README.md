@@ -17,7 +17,7 @@
 
 Several quick start options are available:
 
-- [Download the latest release](https://play.google.com/store/apps/details?id=com.sixteenbrains.oriental_management)
+- [Download the latest release](https://play.google.com/store/apps/details?id=com.sixteenbrains.oriental_management) - PlayStore
 - [Clone the repo: `https://github.com/imrishuroy/oriental_management`](https://github.com/imrishuroy/oriental_management)
 
 - Login / Register with email or Google.
