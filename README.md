@@ -86,10 +86,14 @@ In our app, we have used various  Google Technology such as:-
   <img src="https://raw.githubusercontent.com/imrishuroy/Images/main/admin-panel-1.png" alt="Admin Login" width="600" height="300">
 </p>
 
+<p align="center">
+We have also developed an admin panel for adding data (attendance, lectures, happenings, etc) to our app. Admin panel is available on 3 different platforms, Android, iOS, and web.
+  </p>
+
 
 <p align="center">
-<img src="https://raw.githubusercontent.com/imrishuroy/Images/main/admin-panel-2.png" alt="Domain Page" width="500" height="260" margin:10px>
-<img src="https://raw.githubusercontent.com/imrishuroy/Images/main/admin-panel-3.png" alt="Add Lectures Page" width="500" height="260" margin:10px> -->
+<img src="https://raw.githubusercontent.com/imrishuroy/Images/main/admin-panel-2.png" alt="Domain Page" width="450" height="260" margin:10px>
+<img src="https://raw.githubusercontent.com/imrishuroy/Images/main/admin-panel-3.png" alt="Add Lectures Page" width="450" height="260" margin:10px> -->
 </p>
 
 
