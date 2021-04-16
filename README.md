@@ -83,12 +83,13 @@ In our app, we have used various  Google Technology such as:-
 ## Admin Panel
 
 <center>
-<p style="margin-right:5em">
+<p style="margin-right:20em", "margin-left:20em>
+
 <img src="https://raw.githubusercontent.com/imrishuroy/Images/main/admin-panel-1.png" alt="Admin Login" width="600" height="300">
 <br>
   
-<img src="https://raw.githubusercontent.com/imrishuroy/Images/main/admin-panel-2.png" alt="Domain Page" width="400" height="200" margin:10px>
-<img src="https://raw.githubusercontent.com/imrishuroy/Images/main/admin-panel-3.png" alt="Add Lectures Page" width="400" height="200" margin:10px> -->
+<img src="https://raw.githubusercontent.com/imrishuroy/Images/main/admin-panel-2.png" alt="Domain Page" width="500" height="250" margin:10px>
+<img src="https://raw.githubusercontent.com/imrishuroy/Images/main/admin-panel-3.png" alt="Add Lectures Page" width="500" height="250" margin:10px> -->
 
 </p>
 </center>
