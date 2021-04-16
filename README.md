@@ -85,7 +85,10 @@ In our app, we have used various  Google Technology such as:-
 <center>
 <p style="margin-right:20em", "margin-left:20em>
 
-<img src="https://raw.githubusercontent.com/imrishuroy/Images/main/admin-panel-1.png" alt="Admin Login" width="600" height="300">
+<center> 
+  <img src="https://raw.githubusercontent.com/imrishuroy/Images/main/admin-panel-1.png" alt="Admin Login" width="600" height="300">
+</center>
+
 <br>
   
 <img src="https://raw.githubusercontent.com/imrishuroy/Images/main/admin-panel-2.png" alt="Domain Page" width="500" height="250" margin:10px>
