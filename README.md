@@ -17,6 +17,7 @@
 - [Quick start](#quick-start)
 - [User Guide](#user-guide)
 - [Technology Used](#technology-used)
+- [Admin Panel](#admin-panel)
 - [Contact Us](#contact-us)
 
 
@@ -78,6 +79,19 @@ In our app, we have used various  Google Technology such as:-
 3. Firebase - For Backend
 4. Google Sheets - For storing attendance.
 5. Google Apps Script - Connects Google Sheets with our app via Rest API.
+
+## Admin Panel
+
+
+<p style="margin-right:5em">
+<img src="https://raw.githubusercontent.com/imrishuroy/Images/main/admin-panel-1.png" alt="Admin Login" width="150" height="300">
+
+<img src="https://raw.githubusercontent.com/imrishuroy/Images/main/admin-panel-2.png" alt="Domain Page" width="150" height="300" margin:10px>
+
+<img src="https://raw.githubusercontent.com/imrishuroy/Images/main/admin-panel-3.png" alt="Add Lectures Page" width="150" height="300" margin:10px>
+
+</p>
+
 
 
 ## Contact Us
