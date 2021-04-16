@@ -92,8 +92,8 @@ We have also developed an admin panel for adding data (attendance, lectures, hap
 
 
 <p align="center">
-<img src="https://raw.githubusercontent.com/imrishuroy/Images/main/admin-panel-2.png" alt="Domain Page" width="450" height="260" margin:10px>
-<img src="https://raw.githubusercontent.com/imrishuroy/Images/main/admin-panel-3.png" alt="Add Lectures Page" width="450" height="260" margin:10px> -->
+<img src="https://raw.githubusercontent.com/imrishuroy/Images/main/admin-panel-2.png" alt="Domain Page" width="450" height="220" margin:10px>
+<img src="https://raw.githubusercontent.com/imrishuroy/Images/main/admin-panel-3.png" alt="Add Lectures Page" width="450" height="220" margin:10px> -->
 </p>
 
 
