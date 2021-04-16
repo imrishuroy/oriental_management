@@ -84,11 +84,11 @@ In our app, we have used various  Google Technology such as:-
 
 
 <p style="margin-right:5em">
-<img src="https://raw.githubusercontent.com/imrishuroy/Images/main/admin-panel-1.png" alt="Admin Login" width="500" height="400">
+<img src="https://raw.githubusercontent.com/imrishuroy/Images/main/admin-panel-1.png" alt="Admin Login" width="700" height="700">
+  
 
-<img src="https://raw.githubusercontent.com/imrishuroy/Images/main/admin-panel-2.png" alt="Domain Page" width="500" height="400" margin:10px>
-
-<img src="https://raw.githubusercontent.com/imrishuroy/Images/main/admin-panel-3.png" alt="Add Lectures Page" width="500" height="400" margin:10px>
+ <img src="https://raw.githubusercontent.com/imrishuroy/Images/main/admin-panel-2.png" alt="Domain Page" width="500" height="400" margin:10px>
+<img src="https://raw.githubusercontent.com/imrishuroy/Images/main/admin-panel-3.png" alt="Add Lectures Page" width="500" height="400" margin:10px> -->
 
 </p>
 
