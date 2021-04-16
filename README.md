@@ -81,14 +81,14 @@ In our app, we have used various  Google Technology such as:-
 5. Google Apps Script - Connects Google Sheets with our app via Rest API.
 
 ## Admin Panel
-
+<p align="center">
+We have also developed an admin panel for adding data (attendance, lectures, happenings, etc) to our app. Admin panel is available on 3 different platforms, Android, iOS, and web.
+</p>
+  
 <p align="center">
   <img src="https://raw.githubusercontent.com/imrishuroy/Images/main/admin-panel-1.png" alt="Admin Login" width="600" height="300">
 </p>
 
-<p align="center">
-We have also developed an admin panel for adding data (attendance, lectures, happenings, etc) to our app. Admin panel is available on 3 different platforms, Android, iOS, and web.
-  </p>
 
 
 <p align="center">
